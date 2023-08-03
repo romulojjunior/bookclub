@@ -1,5 +1,6 @@
 import 'package:bookclub/domain/models/photo.dart';
 import 'package:bookclub/domain/models/user.dart';
+import 'package:bookclub/generated/l10n.dart';
 import 'package:bookclub/ui/widgets/ui_conditional_widget.dart';
 import 'package:bookclub/ui/widgets/ui_page_header.dart';
 import 'package:bookclub/ui/widgets/ui_photo_card.dart';
@@ -52,6 +53,7 @@ class TabHome extends StatelessWidget {
                         );
                       })),
             ),
+            UIPageHeader(title: S.of(context).trends),
             SizedBox(
                 height: 200,
                 child: ListView.separated(
@@ -67,6 +69,7 @@ class TabHome extends StatelessWidget {
                         onPress: () {},
                       );
                     })),
+            UIPageHeader(title: S.of(context).recommended),
             UIConditionalWidget(
                 canShow: MediaQuery.of(context).size.width <= 600,
                 onBuild: (context) {

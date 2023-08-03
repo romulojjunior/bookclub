@@ -50,11 +50,21 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `hi`
-  String get hi {
+  /// `Trends`
+  String get trends {
     return Intl.message(
-      'hi',
-      name: 'hi',
+      'Trends',
+      name: 'trends',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recommended`
+  String get recommended {
+    return Intl.message(
+      'Recommended',
+      name: 'recommended',
       desc: '',
       args: [],
     );
