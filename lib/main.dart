@@ -28,7 +28,6 @@ class MyApp extends StatelessWidget {
           darkTheme: darkTheme(android.ThemeData.dark()),
         ),
         iOS: ios.CupertinoApp.router(
-          theme: const ios.CupertinoThemeData(brightness: android.Brightness.light),
           routerConfig: goRouter,
         ));
   }
