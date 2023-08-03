@@ -1,4 +1,5 @@
 import 'package:bookclub/ui/router.dart';
+import 'package:bookclub/ui/theme/app_theme.dart';
 import 'package:bookclub/ui/utils/os_selector.dart';
 import 'package:flutter/cupertino.dart' as ios;
 import 'package:flutter/material.dart' as android;
@@ -22,9 +23,9 @@ class MyApp extends StatelessWidget {
           //   GlobalMaterialLocalizations.delegate,
           // ],
           routerConfig: goRouter,
-          theme: android.ThemeData(
-            primarySwatch: android.Colors.deepPurple,
-          ),
+          themeMode: android.ThemeMode.system,
+          theme: lightTheme(android.ThemeData.light()),
+          darkTheme: darkTheme(android.ThemeData.dark()),
         ),
         iOS: ios.CupertinoApp.router(
           theme: const ios.CupertinoThemeData(brightness: android.Brightness.light),
