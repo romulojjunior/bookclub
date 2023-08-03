@@ -22,7 +22,7 @@ final GoRouter goRouter = GoRouter(
           GoRoute(
             path: 'profiles/:id',
             builder: (BuildContext context, GoRouterState state) {
-              int userId = int.parse(state.params['id']!);
+              int userId = int.parse(state.pathParameters['id']!);
               return ProfilePage(userId: userId);
             },
           ),
