@@ -1,5 +1,6 @@
 import 'package:bookclub/data/repositories/books_repository.dart';
 import 'package:bookclub/domain/usecases/books/get_recommened_books_uc.dart';
+import 'package:bookclub/domain/usecases/books/get_trends_books_uc.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
@@ -24,5 +25,9 @@ loadRepositories(GetIt getIt) {
 loadUsecases(GetIt getIt) {
   getIt.registerLazySingleton(() {
     return GetRecommendedBooksUC(bookReposiotry: getIt.get());
+  });
+
+  getIt.registerLazySingleton(() {
+    return GetTrendsBooksUC(bookReposiotry: getIt.get());
   });
 }
