@@ -20,6 +20,11 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
     on<LoadRecommendedBooksEvent>(_onLoadRecommendedBooks);
   }
 
+  loadInitialData() {
+    add(LoadTrendsBooksEvent('travel'));
+    add(LoadRecommendedBooksEvent('tales'));
+  }
+
   _onLoadRecommendedBooks(event, emitter) async {
     List<Book> books = await _getRecommendedBooksUC.execute(event.topic);
     emitter(state.copyWith(recommended: books));

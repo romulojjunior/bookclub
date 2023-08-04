@@ -2,7 +2,6 @@ import 'package:bookclub/domain/models/book.dart';
 import 'package:bookclub/domain/models/user.dart';
 import 'package:bookclub/generated/l10n.dart';
 import 'package:bookclub/ui/state/books_bloc/books_bloc.dart';
-import 'package:bookclub/ui/state/books_bloc/books_event.dart';
 import 'package:bookclub/ui/widgets/ui_book_card.dart';
 import 'package:bookclub/ui/widgets/ui_conditional_widget.dart';
 import 'package:bookclub/ui/widgets/ui_page_header.dart';
@@ -47,8 +46,6 @@ class TabHome extends StatelessWidget {
                                   id: user.id ?? 0,
                                   imageUrl: user.avatarUrl,
                                   onPress: (id) async {
-                                    context.read<BooksBloc>().add(LoadRecommendedBooksEvent('Android'));
-                                    context.read<BooksBloc>().add(LoadTrendsBooksEvent('Sou mais eu'));
                                     context.go('/profiles/${user.id}');
                                   },
                                 ),

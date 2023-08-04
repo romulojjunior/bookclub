@@ -16,7 +16,7 @@ void main() {
   loadAppDI(GetIt.instance);
   runApp(MultiBlocProvider(providers: [
     BlocProvider(create: (context) {
-      return BooksBloc(getTrendsBooksUC: GetIt.I.get(), getRecommendedBooksUC: GetIt.I.get());
+      return GetIt.I.get<BooksBloc>();
     })
   ], child: const MyApp()));
 }
