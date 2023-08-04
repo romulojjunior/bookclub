@@ -56,8 +56,8 @@ class Book {
       book.authors = (volumeInfo['authors'] as List).map((e) => e.toString()).toList();
       book.description = volumeInfo['description'];
       book.language = volumeInfo['language'];
-      book.averageRating = volumeInfo['averageRating'];
-      book.ratingsCount = volumeInfo['ratingsCount'];
+      // book.averageRating = volumeInfo['averageRating'];
+      // book.ratingsCount = volumeInfo['ratingsCount'];
       book.previewLink = volumeInfo['previewLink'];
 
       if (volumeInfo.containsKey('imageLinks')) {
