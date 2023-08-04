@@ -1,5 +1,4 @@
 import 'package:bookclub/domain/models/book.dart';
-import 'package:bookclub/domain/models/photo.dart';
 import 'package:bookclub/domain/models/user.dart';
 import 'package:bookclub/generated/l10n.dart';
 import 'package:bookclub/ui/state/books_bloc/books_bloc.dart';
@@ -7,7 +6,6 @@ import 'package:bookclub/ui/state/books_bloc/books_event.dart';
 import 'package:bookclub/ui/widgets/ui_book_card.dart';
 import 'package:bookclub/ui/widgets/ui_conditional_widget.dart';
 import 'package:bookclub/ui/widgets/ui_page_header.dart';
-import 'package:bookclub/ui/widgets/ui_photo_card.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,7 +19,6 @@ class TabHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Photo> photos = Photo.getSample();
     List<User> users = User.sample();
     List<Book> recommendedBooks = context.watch<BooksBloc>().state.recommended;
     List<Book> trendsBooks = context.watch<BooksBloc>().state.trends;
