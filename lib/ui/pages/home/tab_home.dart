@@ -23,7 +23,8 @@ class TabHome extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Photo> photos = Photo.getSample();
     List<User> users = User.sample();
-    List<Book> books = context.watch<BooksBloc>().state.recommended;
+    List<Book> recommendedBooks = context.watch<BooksBloc>().state.recommended;
+    List<Book> trendsBooks = context.watch<BooksBloc>().state.trends;
     return SafeArea(
       child: SingleChildScrollView(
         child: Column(
@@ -49,7 +50,8 @@ class TabHome extends StatelessWidget {
                                   id: user.id ?? 0,
                                   imageUrl: user.avatarUrl,
                                   onPress: (id) async {
-                                    // context.read<BooksBloc>().add(LoadRecommendedBooksEvent('Android'));
+                                    context.read<BooksBloc>().add(LoadRecommendedBooksEvent('Android'));
+                                    context.read<BooksBloc>().add(LoadTrendsBooksEvent('Sou mais eu'));
                                     context.go('/profiles/${user.id}');
                                   },
                                 ),
@@ -65,36 +67,18 @@ class TabHome extends StatelessWidget {
                 height: 200,
                 child: ListView.separated(
                     scrollDirection: Axis.horizontal,
-                    itemCount: photos.length,
+                    itemCount: trendsBooks.length,
                     separatorBuilder: (ctx, index) => Container(),
                     itemBuilder: (ctx, index) {
-                      Photo photo = photos[index];
-                      return UIPhotoCard(
-                        title: photo.title,
-                        description: photo.description,
-                        imageUrl: photo.url,
+                      Book book = trendsBooks[index];
+                      return UIBookCard(
+                        title: book.title,
+                        description: book.description ?? '',
+                        imageUrl: book.thumbnail ?? '',
                         onPress: () {},
                       );
                     })),
             UIPageHeader(title: S.of(context).recommended),
-            // UIConditionalWidget(
-            //     canShow: true,
-            //     onBuild: (context) {
-            //       return ListView.separated(
-            //           primary: false,
-            //           shrinkWrap: true,
-            //           itemCount: books.length,
-            //           separatorBuilder: (ctx, index) => Container(),
-            //           itemBuilder: (ctx, index) {
-            //             Book book = books[index];
-            //             return UIBookCard(
-            //               title: book.title,
-            //               description: book.description ?? '',
-            //               imageUrl: book.thumbnail ?? '',
-            //               onPress: () {},
-            //             );
-            //           });
-            //     }),
             UIConditionalWidget(
                 canShow: MediaQuery.of(context).size.width <= 600,
                 onBuild: (context) {
@@ -103,9 +87,9 @@ class TabHome extends StatelessWidget {
                           crossAxisCount: 2, crossAxisSpacing: 1.0, mainAxisSpacing: 1.0),
                       primary: false,
                       shrinkWrap: true,
-                      itemCount: books.length,
+                      itemCount: recommendedBooks.length,
                       itemBuilder: (ctx, index) {
-                        Book book = books[index];
+                        Book book = recommendedBooks[index];
                         return UIBookCard(
                           title: book.title,
                           description: book.description ?? '',
@@ -122,9 +106,9 @@ class TabHome extends StatelessWidget {
                           crossAxisCount: 4, crossAxisSpacing: 1.0, mainAxisSpacing: 1.0),
                       primary: false,
                       shrinkWrap: true,
-                      itemCount: books.length,
+                      itemCount: recommendedBooks.length,
                       itemBuilder: (ctx, index) {
-                        Book book = books[index];
+                        Book book = recommendedBooks[index];
                         return UIBookCard(
                           title: book.title,
                           description: book.description ?? '',
