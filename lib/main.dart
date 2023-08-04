@@ -6,8 +6,12 @@ import 'package:flutter/material.dart' as android;
 import 'package:flutter/widgets.dart';
 import 'package:bookclub/generated/l10n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get_it/get_it.dart';
+
+import 'di/app_di.dart';
 
 void main() {
+  loadAppDI(GetIt.instance);
   runApp(const MyApp());
 }
 

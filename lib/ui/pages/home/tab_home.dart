@@ -42,7 +42,7 @@ class TabHome extends StatelessWidget {
                                 child: UIAvatarCard(
                                   id: user.id ?? 0,
                                   imageUrl: user.avatarUrl,
-                                  onPress: (id) {
+                                  onPress: (id) async {
                                     context.go('/profiles/${user.id}');
                                   },
                                 ),
