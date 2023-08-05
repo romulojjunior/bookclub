@@ -16,7 +16,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final List<Widget> tabs = [const TabHome(title: 'Home'), const TabSettings(title: 'Settings')];
+  final List<Widget> tabs = const [TabHome(title: 'Home'), TabSettings(title: 'Settings')];
 
   Widget homeIcon = const OSSelector(
     android: Icon(material.Icons.home),

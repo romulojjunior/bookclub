@@ -1,3 +1,6 @@
 {
-  "hi": "hi"
+  "books": "Books",
+  "friends": "Friends",
+  "trends": "Trends",
+  "recommended": "Recommended"
 }

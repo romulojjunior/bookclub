@@ -50,11 +50,41 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `hi`
-  String get hi {
+  /// `Books`
+  String get books {
     return Intl.message(
-      'hi',
-      name: 'hi',
+      'Books',
+      name: 'books',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Friends`
+  String get friends {
+    return Intl.message(
+      'Friends',
+      name: 'friends',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Trends`
+  String get trends {
+    return Intl.message(
+      'Trends',
+      name: 'trends',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recommended`
+  String get recommended {
+    return Intl.message(
+      'Recommended',
+      name: 'recommended',
       desc: '',
       args: [],
     );
