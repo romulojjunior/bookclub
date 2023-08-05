@@ -1,10 +1,9 @@
 import 'package:bookclub/domain/models/book.dart';
 import 'package:bookclub/domain/models/user.dart';
-import 'package:bookclub/generated/l10n.dart';
 import 'package:bookclub/ui/pages/home/widgets/recommended_books_widget.dart';
+import 'package:bookclub/ui/pages/home/widgets/trends_books_widget.dart';
 import 'package:bookclub/ui/state/books_bloc/books_bloc.dart';
 import 'package:bookclub/ui/widgets/ui_avatar_card.dart';
-import 'package:bookclub/ui/widgets/ui_book_card.dart';
 import 'package:bookclub/ui/widgets/ui_page_header.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/widgets.dart';
@@ -59,22 +58,26 @@ class TabHome extends StatelessWidget {
                         );
                       })),
             ),
-            UIPageHeader(title: S.of(context).trends),
-            SizedBox(
-                height: 200,
-                child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: trendsBooks.length,
-                    separatorBuilder: (ctx, index) => Container(),
-                    itemBuilder: (ctx, index) {
-                      Book book = trendsBooks[index];
-                      return UIBookCard(
-                        title: book.title,
-                        description: book.description ?? '',
-                        imageUrl: book.thumbnail ?? '',
-                        onPress: () {},
-                      );
-                    })),
+            TrendsBooksWidget(
+              isLoading: isTrendsLoading,
+              trendsBooks: trendsBooks,
+            ),
+            // UIPageHeader(title: S.of(context).trends),
+            // SizedBox(
+            //     height: 200,
+            //     child: ListView.separated(
+            //         scrollDirection: Axis.horizontal,
+            //         itemCount: trendsBooks.length,
+            //         separatorBuilder: (ctx, index) => Container(),
+            //         itemBuilder: (ctx, index) {
+            //           Book book = trendsBooks[index];
+            //           return UIBookCard(
+            //             title: book.title,
+            //             description: book.description ?? '',
+            //             imageUrl: book.thumbnail ?? '',
+            //             onPress: () {},
+            //           );
+            //         })),
             RecommendedBooksWidget(
               isLoading: isRecommendedLoading,
               recommendedBooks: recommendedBooks,

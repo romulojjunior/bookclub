@@ -32,8 +32,8 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
   }
 
   _onLoadTrendsBooks(event, emitter) async {
-    emitter(state.copyWith(isRecommendedLoading: true));
+    emitter(state.copyWith(isTrendsLoading: true));
     List<Book> books = await _getTrendsBooksUC.execute(event.topic);
-    emitter(state.copyWith(trends: books, isRecommendedLoading: false));
+    emitter(state.copyWith(trends: books, isTrendsLoading: false));
   }
 }
