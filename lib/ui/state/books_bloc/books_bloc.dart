@@ -12,7 +12,7 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
   BooksBloc({
     required GetRecommendedBooksUC getRecommendedBooksUC,
     required GetTrendsBooksUC getTrendsBooksUC,
-  }) : super(const BooksState(trends: [], recommended: [])) {
+  }) : super(const BooksState(trends: [], isTrendsLoading: false, recommended: [], isRecommendedLoading: false)) {
     _getTrendsBooksUC = getTrendsBooksUC;
     _getRecommendedBooksUC = getRecommendedBooksUC;
 
@@ -26,12 +26,14 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
   }
 
   _onLoadRecommendedBooks(event, emitter) async {
+    emitter(state.copyWith(isRecommendedLoading: true));
     List<Book> books = await _getRecommendedBooksUC.execute(event.topic);
-    emitter(state.copyWith(recommended: books));
+    emitter(state.copyWith(recommended: books, isRecommendedLoading: false));
   }
 
   _onLoadTrendsBooks(event, emitter) async {
+    emitter(state.copyWith(isRecommendedLoading: true));
     List<Book> books = await _getTrendsBooksUC.execute(event.topic);
-    emitter(state.copyWith(trends: books));
+    emitter(state.copyWith(trends: books, isRecommendedLoading: false));
   }
 }

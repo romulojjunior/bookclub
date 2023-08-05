@@ -19,7 +19,10 @@ class TabHome extends StatelessWidget {
   Widget build(BuildContext context) {
     List<User> users = User.sample();
     List<Book> recommendedBooks = context.watch<BooksBloc>().state.recommended;
+    bool isRecommendedLoading = context.watch<BooksBloc>().state.isRecommendedLoading;
+
     List<Book> trendsBooks = context.watch<BooksBloc>().state.trends;
+    bool isTrendsLoading = context.watch<BooksBloc>().state.isTrendsLoading;
 
     return SafeArea(
       child: SingleChildScrollView(
@@ -73,7 +76,7 @@ class TabHome extends StatelessWidget {
                       );
                     })),
             RecommendedBooksWidget(
-              isLoading: false,
+              isLoading: isRecommendedLoading,
               recommendedBooks: recommendedBooks,
             ),
           ],
