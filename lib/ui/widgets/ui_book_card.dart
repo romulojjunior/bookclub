@@ -11,16 +11,6 @@ class UIBookCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return Container(
-    //   margin: const EdgeInsets.all(8),
-    //   child: ClipRRect(
-    //     borderRadius: BorderRadius.circular(16.0),
-    //     child: Image.network(
-    //       imageUrl,
-    //     ),
-    //   ),
-    // );
-
     return Container(
       margin: const EdgeInsets.all(8),
       child: ClipRRect(
