@@ -50,6 +50,16 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `Friends`
+  String get friends {
+    return Intl.message(
+      'Friends',
+      name: 'friends',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Trends`
   String get trends {
     return Intl.message(
