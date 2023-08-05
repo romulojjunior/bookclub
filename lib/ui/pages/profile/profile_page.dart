@@ -1,13 +1,17 @@
+import 'package:bookclub/domain/models/book.dart';
+import 'package:bookclub/generated/l10n.dart';
+import 'package:bookclub/ui/state/books_bloc/books_bloc.dart';
+import 'package:bookclub/ui/widgets/books_widget.dart';
 import 'package:bookclub/ui/widgets/ui_alert_dialog.dart';
 import 'package:bookclub/ui/widgets/ui_avatar_card.dart';
 import 'package:bookclub/ui/widgets/ui_button.dart';
-import 'package:bookclub/ui/widgets/ui_photo_card.dart';
 import 'package:bookclub/ui/widgets/ui_scaffold.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/widgets.dart';
 
 import 'package:bookclub/domain/models/photo.dart';
 import 'package:bookclub/domain/models/user.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfilePage extends StatefulWidget {
   final int userId;
@@ -24,6 +28,9 @@ class _ProfilePageState extends State<ProfilePage> {
     List<User> users = User.sample();
     User user = users.firstWhere((user) => user.id == widget.userId);
     Photo userBackgroundPhoto = photos[user.id!];
+
+    List<Book> trendsBooks = context.watch<BooksBloc>().state.trends;
+    bool isTrendsLoading = context.watch<BooksBloc>().state.isTrendsLoading;
 
     return UIScaffold(
         title: 'Profile',
@@ -42,7 +49,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           color: material.Colors.redAccent,
                           child: Image.network(
                             userBackgroundPhoto.url,
-                            fit: BoxFit.fill,
+                            fit: BoxFit.cover,
                           ),
                         ),
                       ),
@@ -78,8 +85,10 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                       Align(
                         child: Container(
+                          margin: const EdgeInsets.only(left: 16),
                           height: 200,
-                          alignment: Alignment.center,
+                          alignment:
+                              (MediaQuery.of(context).size.width > 600) ? Alignment.center : Alignment.centerLeft,
                           child: Hero(
                             tag: 'Avatar${user.id}',
                             child: UIAvatarCard(
@@ -93,22 +102,16 @@ class _ProfilePageState extends State<ProfilePage> {
                     ],
                   ),
                 ),
-                GridView.builder(
-                    gridDelegate: material.SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: MediaQuery.of(context).size.width > 600 ? 3 : 2,
-                    ),
-                    primary: false,
-                    shrinkWrap: true,
-                    itemCount: photos.length,
-                    itemBuilder: (ctx, index) {
-                      Photo photo = photos[index];
-                      return UIPhotoCard(
-                        title: photo.title,
-                        description: photo.description,
-                        imageUrl: photo.url,
-                        onPress: () {},
-                      );
-                    })
+                Container(
+                  constraints: const BoxConstraints(maxWidth: 400),
+                  margin: const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
+                  child: Text(user.aboutMe),
+                ),
+                BooksWidget(
+                  title: S.of(context).books,
+                  isLoading: isTrendsLoading,
+                  trendsBooks: trendsBooks,
+                ),
               ],
             ),
           ),
