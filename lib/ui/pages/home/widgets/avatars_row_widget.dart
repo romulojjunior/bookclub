@@ -6,26 +6,26 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:go_router/go_router.dart';
 
-class FriendsWidget extends StatelessWidget {
-  const FriendsWidget({required this.friends, super.key});
+class AvatarsRowWidget extends StatelessWidget {
+  const AvatarsRowWidget({required this.users, super.key});
 
-  final List<User> friends;
+  final List<User> users;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        UIPageHeader(title: S.of(context).friends),
+        UIPageHeader(title: S.of(context).writer),
         Container(
           margin: const EdgeInsets.only(top: 16),
           child: SizedBox(
               height: 160,
               child: ListView.separated(
                   scrollDirection: Axis.horizontal,
-                  itemCount: friends.length,
+                  itemCount: users.length,
                   separatorBuilder: (ctx, index) => const material.Divider(),
                   itemBuilder: (ctx, index) {
-                    User user = friends[index];
+                    User user = users[index];
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(

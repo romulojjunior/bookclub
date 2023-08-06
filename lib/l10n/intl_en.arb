@@ -1,6 +1,17 @@
 {
   "books": "Books",
-  "friends": "Friends",
+  "writer": "Writer",
+  "following": "Following",
+  "nFollower": "{count, plural, =0{No follower} =1{1 follower} other{{count} followers}}",
+  "@nFollower": {
+    "placeholders": {
+      "count": {
+        "type": "num",
+        "format": "compact"
+      }
+    }
+  },
   "trends": "Trends",
-  "recommended": "Recommended"
+  "recommended": "Recommended",
+  "wouldYouLikeUnfollow": "Would you like unfollow?"
 }

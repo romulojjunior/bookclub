@@ -2,13 +2,14 @@ import 'package:bookclub/domain/models/book.dart';
 import 'package:bookclub/generated/l10n.dart';
 import 'package:bookclub/ui/state/books_bloc/books_bloc.dart';
 import 'package:bookclub/ui/widgets/books_widget.dart';
+import 'package:bookclub/ui/widgets/start_rate_widget.dart';
 import 'package:bookclub/ui/widgets/ui_alert_dialog.dart';
 import 'package:bookclub/ui/widgets/ui_avatar_card.dart';
 import 'package:bookclub/ui/widgets/ui_button.dart';
+import 'package:bookclub/ui/widgets/ui_photo_opacity.dart';
 import 'package:bookclub/ui/widgets/ui_scaffold.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/widgets.dart';
-
 import 'package:bookclub/domain/models/photo.dart';
 import 'package:bookclub/domain/models/user.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,7 +34,7 @@ class _ProfilePageState extends State<ProfilePage> {
     bool isTrendsLoading = context.watch<BooksBloc>().state.isTrendsLoading;
 
     return UIScaffold(
-        title: 'Profile',
+        title: user.name,
         child: SafeArea(
           child: SingleChildScrollView(
             child: Column(
@@ -44,41 +45,36 @@ class _ProfilePageState extends State<ProfilePage> {
                     children: [
                       Align(
                         alignment: Alignment.topCenter,
-                        child: Container(
-                          constraints: const BoxConstraints.expand(height: 200),
-                          color: material.Colors.redAccent,
-                          child: Image.network(
-                            userBackgroundPhoto.url,
-                            fit: BoxFit.cover,
-                          ),
+                        child: UIPhotoOpacity(
+                          opacity: 0.4,
+                          child: Container(
+                              constraints: const BoxConstraints.expand(height: 400),
+                              color: material.Colors.redAccent,
+                              child: Image.network(
+                                userBackgroundPhoto.url,
+                                fit: BoxFit.cover,
+                              )),
                         ),
                       ),
                       Align(
-                        alignment: Alignment.bottomCenter,
+                        alignment: Alignment.centerRight,
                         child: Container(
-                          constraints: const BoxConstraints.expand(height: 200),
+                          margin: const EdgeInsets.only(right: 16),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Container(
-                                  margin: const EdgeInsets.only(top: 32),
-                                  child: Text(
-                                    user.name,
-                                    style: const TextStyle(fontSize: 24),
-                                  )),
-                              Container(margin: const EdgeInsets.only(top: 8), child: const Text('32,383 Followers')),
+                                margin: const EdgeInsets.only(top: 8),
+                                child: Text(S.of(context).nFollower(user.followers),
+                                    style: const TextStyle(fontSize: 14, color: material.Colors.white)),
+                              ),
                               Container(
-                                  margin: const EdgeInsets.only(top: 16),
-                                  child: UIButton(
-                                      title: 'Follow',
-                                      onPressed: () {
-                                        UIAlertDialog(
-                                          title: 'Follow',
-                                          message: 'Would you like follow this user?',
-                                          onSuccess: () => Navigator.of(context).pop(),
-                                          onCancel: () => Navigator.of(context).pop(),
-                                        ).showDialog(context);
-                                      }))
+                                  constraints: const BoxConstraints(maxWidth: 300),
+                                  margin: const EdgeInsets.only(top: 8),
+                                  child: const StarRateWidget()),
+                              Container(
+                                  margin: const EdgeInsets.only(top: 32),
+                                  child: UIButton(title: S.of(context).following, onPressed: _showDialog))
                             ],
                           ),
                         ),
@@ -99,13 +95,16 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                         ),
                       ),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Container(
+                          constraints: const BoxConstraints(maxWidth: 400),
+                          margin: const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
+                          child: Text(user.aboutMe, style: const TextStyle(fontSize: 14, color: material.Colors.white)),
+                        ),
+                      )
                     ],
                   ),
-                ),
-                Container(
-                  constraints: const BoxConstraints(maxWidth: 400),
-                  margin: const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
-                  child: Text(user.aboutMe),
                 ),
                 BooksWidget(
                   title: S.of(context).books,
@@ -116,5 +115,14 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
         ));
+  }
+
+  _showDialog() {
+    UIAlertDialog(
+      title: S.of(context).following,
+      message: S.of(context).wouldYouLikeUnfollow,
+      onSuccess: () {},
+      onCancel: () {},
+    ).showDialog(context);
   }
 }
