@@ -60,13 +60,36 @@ class S {
     );
   }
 
-  /// `Friends`
-  String get friends {
+  /// `Writer`
+  String get writer {
     return Intl.message(
-      'Friends',
-      name: 'friends',
+      'Writer',
+      name: 'writer',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `Following`
+  String get following {
+    return Intl.message(
+      'Following',
+      name: 'following',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{count, plural, =0{No follower} =1{1 follower} other{{count} followers}}`
+  String nFollower(num count) {
+    return Intl.plural(
+      count,
+      zero: 'No follower',
+      one: '1 follower',
+      other: '$count followers',
+      name: 'nFollower',
+      desc: '',
+      args: [count],
     );
   }
 
@@ -85,6 +108,16 @@ class S {
     return Intl.message(
       'Recommended',
       name: 'recommended',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Would you like unfollow?`
+  String get wouldYouLikeUnfollow {
+    return Intl.message(
+      'Would you like unfollow?',
+      name: 'wouldYouLikeUnfollow',
       desc: '',
       args: [],
     );

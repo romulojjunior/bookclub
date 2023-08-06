@@ -1,7 +1,7 @@
 import 'package:bookclub/domain/models/book.dart';
 import 'package:bookclub/domain/models/user.dart';
 import 'package:bookclub/generated/l10n.dart';
-import 'package:bookclub/ui/pages/home/widgets/friends_widget.dart';
+import 'package:bookclub/ui/pages/home/widgets/avatars_row_widget.dart';
 import 'package:bookclub/ui/pages/home/widgets/recommended_books_widget.dart';
 import 'package:bookclub/ui/widgets/books_widget.dart';
 import 'package:bookclub/ui/state/books_bloc/books_bloc.dart';
@@ -24,8 +24,8 @@ class TabHome extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            FriendsWidget(
-              friends: User.sample(),
+            AvatarsRowWidget(
+              users: User.sample(),
             ),
             BooksWidget(
               title: S.of(context).trends,

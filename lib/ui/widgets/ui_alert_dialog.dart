@@ -35,6 +35,7 @@ class UIAlertDialog {
               child: const Text('Yes'),
               onPressed: () {
                 onSuccess();
+                Navigator.of(context).pop();
               },
             ),
           ],
@@ -54,6 +55,7 @@ class UIAlertDialog {
             isDefaultAction: true,
             onPressed: () {
               onSuccess();
+              Navigator.of(context).pop();
             },
             child: const Text('Yes'),
           ),
