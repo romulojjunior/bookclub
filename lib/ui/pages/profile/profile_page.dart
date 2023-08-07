@@ -1,14 +1,18 @@
 import 'package:bookclub/domain/models/book.dart';
 import 'package:bookclub/generated/l10n.dart';
 import 'package:bookclub/ui/state/books_bloc/books_bloc.dart';
+import 'package:bookclub/ui/state/favorites_cubit/favorites_cubit.dart';
+import 'package:bookclub/ui/utils/os_selector.dart';
 import 'package:bookclub/ui/widgets/books_widget.dart';
 import 'package:bookclub/ui/widgets/start_rate_widget.dart';
 import 'package:bookclub/ui/widgets/ui_alert_dialog.dart';
 import 'package:bookclub/ui/widgets/ui_avatar_card.dart';
 import 'package:bookclub/ui/widgets/ui_button.dart';
+import 'package:bookclub/ui/widgets/ui_icon_button.dart';
 import 'package:bookclub/ui/widgets/ui_photo_opacity.dart';
 import 'package:bookclub/ui/widgets/ui_scaffold.dart';
 import 'package:flutter/material.dart' as material;
+import 'package:flutter/cupertino.dart' as cupertino;
 import 'package:flutter/widgets.dart';
 import 'package:bookclub/domain/models/photo.dart';
 import 'package:bookclub/domain/models/writer.dart';
@@ -23,18 +27,29 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  late Writer writer;
+  late Photo userBackgroundPhoto;
+  List<Photo> photos = Photo.getSample();
+  List<Writer> users = Writer.sample();
+
+  // TODO: Load this flag from FavoritesCubit.isFavorite(writer);
+  bool isFavoriteEnabled = false;
+
+  @override
+  void initState() {
+    super.initState();
+    writer = users.firstWhere((user) => user.id == widget.userId);
+    userBackgroundPhoto = photos[writer.id!];
+  }
+
   @override
   Widget build(BuildContext context) {
-    List<Photo> photos = Photo.getSample();
-    List<Writer> users = Writer.sample();
-    Writer user = users.firstWhere((user) => user.id == widget.userId);
-    Photo userBackgroundPhoto = photos[user.id!];
-
-    List<Book> trendsBooks = context.watch<BooksBloc>().state.trends;
-    bool isTrendsLoading = context.watch<BooksBloc>().state.isTrendsLoading;
+    BooksBloc booksBloc = context.watch<BooksBloc>();
+    List<Book> trendsBooks = booksBloc.state.trends;
+    bool isTrendsLoading = booksBloc.state.isTrendsLoading;
 
     return UIScaffold(
-        title: user.name,
+        title: writer.name,
         child: SafeArea(
           child: SingleChildScrollView(
             child: Column(
@@ -57,6 +72,22 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                       Align(
+                        alignment: Alignment.topRight,
+                        child: UIIconButton(
+                            icon: const OSSelector(
+                              android: Icon(material.Icons.star_border),
+                              iOS: Icon(cupertino.CupertinoIcons.star),
+                            ),
+                            secondaryIcon: const OSSelector(
+                              android: Icon(material.Icons.star),
+                              iOS: Icon(cupertino.CupertinoIcons.star_fill),
+                            ),
+                            isSelected: isFavoriteEnabled,
+                            onPressed: () {
+                              _setFavorite(isFavoriteEnabled);
+                            }),
+                      ),
+                      Align(
                         alignment: Alignment.centerRight,
                         child: Container(
                           margin: const EdgeInsets.only(right: 16),
@@ -65,7 +96,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             children: [
                               Container(
                                 margin: const EdgeInsets.only(top: 8),
-                                child: Text(S.of(context).nFollower(user.followers),
+                                child: Text(S.of(context).nFollower(writer.followers),
                                     style: const TextStyle(fontSize: 14, color: material.Colors.white)),
                               ),
                               Container(
@@ -86,10 +117,10 @@ class _ProfilePageState extends State<ProfilePage> {
                           alignment:
                               (MediaQuery.of(context).size.width > 600) ? Alignment.center : Alignment.centerLeft,
                           child: Hero(
-                            tag: 'Avatar${user.id}',
+                            tag: 'Avatar${writer.id}',
                             child: UIAvatarCard(
-                              id: user.id!,
-                              imageUrl: user.avatarUrl,
+                              id: writer.id!,
+                              imageUrl: writer.avatarUrl,
                               onPress: (id) {},
                             ),
                           ),
@@ -100,7 +131,8 @@ class _ProfilePageState extends State<ProfilePage> {
                         child: Container(
                           constraints: const BoxConstraints(maxWidth: 400),
                           margin: const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
-                          child: Text(user.aboutMe, style: const TextStyle(fontSize: 14, color: material.Colors.white)),
+                          child:
+                              Text(writer.aboutMe, style: const TextStyle(fontSize: 14, color: material.Colors.white)),
                         ),
                       )
                     ],
@@ -124,5 +156,12 @@ class _ProfilePageState extends State<ProfilePage> {
       onSuccess: () {},
       onCancel: () {},
     ).showDialog(context);
+  }
+
+  _setFavorite(bool isSelected) {
+    context.read<FavoritesCubit>().favoriteWriter(writer);
+    setState(() {
+      isFavoriteEnabled = !isSelected;
+    });
   }
 }

@@ -6,30 +6,50 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class FavoritesCubit extends Cubit<FavoritesState> {
   FavoritesCubit() : super(const FavoritesState(isLoading: false, books: [], writers: []));
 
-  addBook(Book book) {
+  favoriteBook(Book book) {
+    bool isFavorited = state.books.where((e) => e.id == book.id).isNotEmpty;
+
+    if (isFavorited) {
+      _removeBook(book.id!);
+    } else {
+      _addBook(book);
+    }
+  }
+
+  _addBook(Book book) {
     emit(state.copyWith(isLoading: true));
-    List<Book> books = state.books;
+    List<Book> books = state.books.toList();
     books.add(book);
     emit(state.copyWith(isLoading: false, books: books));
   }
 
-  removeBook(String bookId) {
+  _removeBook(String bookId) {
     emit(state.copyWith(isLoading: true));
-    List<Book> books = state.books;
+    List<Book> books = state.books.toList();
     books.removeWhere((e) => e.id == bookId);
     emit(state.copyWith(isLoading: false, books: books));
   }
 
-  addWriter(Writer writer) {
+  favoriteWriter(Writer writer) {
+    bool isFavorited = state.writers.where((e) => e.id == writer.id).isNotEmpty;
+
+    if (isFavorited) {
+      _removeWriter(writer.id!);
+    } else {
+      _addWriter(writer);
+    }
+  }
+
+  _addWriter(Writer writer) {
     emit(state.copyWith(isLoading: true));
-    List<Writer> writers = state.writers;
+    List<Writer> writers = state.writers.toList();
     writers.add(writer);
     emit(state.copyWith(isLoading: false, writers: writers));
   }
 
-  removeWriter(int writerId) {
+  _removeWriter(int writerId) {
     emit(state.copyWith(isLoading: true));
-    List<Writer> writers = state.writers;
+    List<Writer> writers = state.writers.toList();
     writers.removeWhere((e) => e.id == writerId);
     emit(state.copyWith(isLoading: false, writers: writers));
   }
