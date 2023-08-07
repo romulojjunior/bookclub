@@ -1,4 +1,4 @@
-import 'package:bookclub/domain/models/user.dart';
+import 'package:bookclub/domain/models/writer.dart';
 import 'package:bookclub/generated/l10n.dart';
 import 'package:bookclub/ui/widgets/ui_avatar_card.dart';
 import 'package:bookclub/ui/widgets/ui_page_header.dart';
@@ -9,7 +9,7 @@ import 'package:go_router/go_router.dart';
 class AvatarsRowWidget extends StatelessWidget {
   const AvatarsRowWidget({required this.users, super.key});
 
-  final List<User> users;
+  final List<Writer> users;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class AvatarsRowWidget extends StatelessWidget {
                   itemCount: users.length,
                   separatorBuilder: (ctx, index) => const material.Divider(),
                   itemBuilder: (ctx, index) {
-                    User user = users[index];
+                    Writer user = users[index];
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(

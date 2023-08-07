@@ -1,5 +1,5 @@
 import 'package:bookclub/domain/models/book.dart';
-import 'package:bookclub/domain/models/user.dart';
+import 'package:bookclub/domain/models/writer.dart';
 import 'package:bookclub/generated/l10n.dart';
 import 'package:bookclub/ui/pages/home/widgets/avatars_row_widget.dart';
 import 'package:bookclub/ui/pages/home/widgets/recommended_books_widget.dart';
@@ -25,7 +25,7 @@ class TabHome extends StatelessWidget {
         child: Column(
           children: <Widget>[
             AvatarsRowWidget(
-              users: User.sample(),
+              users: Writer.sample(),
             ),
             BooksWidget(
               title: S.of(context).trends,

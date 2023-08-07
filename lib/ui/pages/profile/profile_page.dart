@@ -11,7 +11,7 @@ import 'package:bookclub/ui/widgets/ui_scaffold.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/widgets.dart';
 import 'package:bookclub/domain/models/photo.dart';
-import 'package:bookclub/domain/models/user.dart';
+import 'package:bookclub/domain/models/writer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -26,8 +26,8 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     List<Photo> photos = Photo.getSample();
-    List<User> users = User.sample();
-    User user = users.firstWhere((user) => user.id == widget.userId);
+    List<Writer> users = Writer.sample();
+    Writer user = users.firstWhere((user) => user.id == widget.userId);
     Photo userBackgroundPhoto = photos[user.id!];
 
     List<Book> trendsBooks = context.watch<BooksBloc>().state.trends;
