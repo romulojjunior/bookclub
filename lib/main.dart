@@ -28,7 +28,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return OSSelector(
         android: android.MaterialApp.router(
-          title: 'App Demo',
           supportedLocales: const [Locale('en')],
           localizationsDelegates: const [
             S.delegate,
@@ -42,6 +41,7 @@ class MyApp extends StatelessWidget {
         ),
         iOS: ios.CupertinoApp.router(
           routerConfig: goRouter,
+          supportedLocales: const [Locale('en')],
           localizationsDelegates: const [
             S.delegate,
             GlobalWidgetsLocalizations.delegate,

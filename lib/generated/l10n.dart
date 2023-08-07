@@ -50,6 +50,16 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `BookClub`
+  String get appName {
+    return Intl.message(
+      'BookClub',
+      name: 'appName',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Books`
   String get books {
     return Intl.message(
@@ -118,6 +128,36 @@ class S {
     return Intl.message(
       'Would you like unfollow?',
       name: 'wouldYouLikeUnfollow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home`
+  String get tab_home {
+    return Intl.message(
+      'Home',
+      name: 'tab_home',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Favorites`
+  String get tab_favorites {
+    return Intl.message(
+      'Favorites',
+      name: 'tab_favorites',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get tab_settings {
+    return Intl.message(
+      'Settings',
+      name: 'tab_settings',
       desc: '',
       args: [],
     );
