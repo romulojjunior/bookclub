@@ -53,7 +53,9 @@ class Book {
     if (data.containsKey('volumeInfo')) {
       Map volumeInfo = data['volumeInfo'];
       book.id = data['id'];
-      book.authors = (volumeInfo['authors'] as List).map((e) => e.toString()).toList();
+      if (volumeInfo.containsKey('authors')) {
+        book.authors = (volumeInfo['authors'] as List).map((e) => e.toString()).toList();
+      }
       book.description = volumeInfo['description'];
       book.language = volumeInfo['language'];
       // book.averageRating = volumeInfo['averageRating'];
