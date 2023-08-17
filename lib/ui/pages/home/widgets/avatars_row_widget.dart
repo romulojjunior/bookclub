@@ -1,5 +1,6 @@
 import 'package:bookclub/domain/models/writer.dart';
 import 'package:bookclub/generated/l10n.dart';
+import 'package:bookclub/ui/router.dart';
 import 'package:bookclub/ui/widgets/ui_avatar_card.dart';
 import 'package:bookclub/ui/widgets/ui_page_header.dart';
 import 'package:flutter/widgets.dart';
@@ -35,8 +36,8 @@ class AvatarsRowWidget extends StatelessWidget {
                             child: UIAvatarCard(
                               id: user.id ?? 0,
                               imageUrl: user.avatarUrl,
-                              onPress: (id) async {
-                                context.go('/profiles/${user.id}');
+                              onPress: (userId) async {
+                                context.go(RouterPaths.getWriterDetailsPath(userId));
                               },
                             ),
                           ),

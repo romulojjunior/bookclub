@@ -18,15 +18,15 @@ import 'package:bookclub/domain/models/photo.dart';
 import 'package:bookclub/domain/models/writer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ProfilePage extends StatefulWidget {
+class WriterDetailsPage extends StatefulWidget {
   final int userId;
-  const ProfilePage({super.key, required this.userId});
+  const WriterDetailsPage({super.key, required this.userId});
 
   @override
-  State<ProfilePage> createState() => _ProfilePageState();
+  State<WriterDetailsPage> createState() => _WriterDetailsPageState();
 }
 
-class _ProfilePageState extends State<ProfilePage> {
+class _WriterDetailsPageState extends State<WriterDetailsPage> {
   late Writer writer;
   late Photo userBackgroundPhoto;
   List<Photo> photos = Photo.getSample();
