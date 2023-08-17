@@ -32,9 +32,6 @@ class _ProfilePageState extends State<ProfilePage> {
   List<Photo> photos = Photo.getSample();
   List<Writer> users = Writer.sample();
 
-  // TODO: Load this flag from FavoritesCubit.isFavorite(writer);
-  bool isFavoriteEnabled = false;
-
   @override
   void initState() {
     super.initState();
@@ -73,19 +70,24 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                       Align(
                         alignment: Alignment.topRight,
-                        child: UIIconButton(
-                            icon: const OSSelector(
-                              android: Icon(material.Icons.star_border),
-                              iOS: Icon(cupertino.CupertinoIcons.star),
-                            ),
-                            secondaryIcon: const OSSelector(
-                              android: Icon(material.Icons.star),
-                              iOS: Icon(cupertino.CupertinoIcons.star_fill),
-                            ),
-                            isSelected: isFavoriteEnabled,
-                            onPressed: () {
-                              _setFavorite(isFavoriteEnabled);
-                            }),
+                        child: material.Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: UIIconButton(
+                              icon: const OSSelector(
+                                android: Icon(material.Icons.star_border),
+                                iOS: Icon(cupertino.CupertinoIcons.star),
+                              ),
+                              secondaryIcon: const OSSelector(
+                                android: Icon(material.Icons.star),
+                                iOS: Icon(cupertino.CupertinoIcons.star_fill),
+                              ),
+                              isSelected: context.watch<FavoritesCubit>().isFavoriteWriter(writer),
+                              onPressed: (isSelected) {
+                                isSelected
+                                    ? context.read<FavoritesCubit>().addWriter(writer)
+                                    : context.read<FavoritesCubit>().removeWriter(writer.id!);
+                              }),
+                        ),
                       ),
                       Align(
                         alignment: Alignment.centerRight,
@@ -156,12 +158,5 @@ class _ProfilePageState extends State<ProfilePage> {
       onSuccess: () {},
       onCancel: () {},
     ).showDialog(context);
-  }
-
-  _setFavorite(bool isSelected) {
-    context.read<FavoritesCubit>().favoriteWriter(writer);
-    setState(() {
-      isFavoriteEnabled = !isSelected;
-    });
   }
 }
