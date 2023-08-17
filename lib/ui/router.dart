@@ -16,7 +16,7 @@ final GoRouter goRouter = GoRouter(
           GoRoute(
             path: RouterPaths.bookDetailsPath,
             builder: (BuildContext context, GoRouterState state) {
-              return const DetailsPage();
+              return const BookDetailsPage();
             },
           ),
           GoRoute(
@@ -38,7 +38,7 @@ class RouterPaths {
     return '/writer/$userId/details';
   }
 
-  static getBookDetailsPath(int bookId) {
+  static getBookDetailsPath(String bookId) {
     return '/book/$bookId/details';
   }
 }

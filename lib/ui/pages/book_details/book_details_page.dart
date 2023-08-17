@@ -3,23 +3,23 @@ import 'package:bookclub/ui/widgets/ui_scaffold.dart';
 // import 'package:flutter/material.dart' as material;
 import 'package:flutter/widgets.dart';
 
-class DetailsPage extends StatefulWidget {
-  const DetailsPage({super.key});
+class BookDetailsPage extends StatefulWidget {
+  const BookDetailsPage({super.key});
 
   @override
-  State<DetailsPage> createState() => _DetailsPageState();
+  State<BookDetailsPage> createState() => _BookDetailsPageState();
 }
 
-class _DetailsPageState extends State<DetailsPage> {
+class _BookDetailsPageState extends State<BookDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return const UIScaffold(
-        title: 'Details',
+        title: 'Book Details',
         child: SafeArea(
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Text('Details'),
+                Text('Book Details'),
               ],
             ),
           ),
