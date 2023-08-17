@@ -1,5 +1,6 @@
 import 'package:bookclub/ui/router.dart';
 import 'package:bookclub/ui/state/books_bloc/books_bloc.dart';
+import 'package:bookclub/ui/state/favorites_cubit/favorites_cubit.dart';
 import 'package:bookclub/ui/theme/app_theme.dart';
 import 'package:bookclub/ui/utils/os_selector.dart';
 import 'package:flutter/cupertino.dart' as ios;
@@ -17,6 +18,9 @@ void main() {
   runApp(MultiBlocProvider(providers: [
     BlocProvider(create: (context) {
       return GetIt.I.get<BooksBloc>();
+    }),
+    BlocProvider(create: (context) {
+      return GetIt.I.get<FavoritesCubit>();
     })
   ], child: const MyApp()));
 }
@@ -28,7 +32,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return OSSelector(
         android: android.MaterialApp.router(
-          title: 'App Demo',
           supportedLocales: const [Locale('en')],
           localizationsDelegates: const [
             S.delegate,
@@ -42,6 +45,7 @@ class MyApp extends StatelessWidget {
         ),
         iOS: ios.CupertinoApp.router(
           routerConfig: goRouter,
+          supportedLocales: const [Locale('en')],
           localizationsDelegates: const [
             S.delegate,
             GlobalWidgetsLocalizations.delegate,
