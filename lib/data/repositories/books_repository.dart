@@ -8,8 +8,14 @@ class BookReposiotry {
 
   late Dio _remoteSource;
 
-  // Get Google Books
+  // Google Books Api
   final _apiHost = 'https://www.googleapis.com/books';
+
+  Future<Book> getBookById(String id) async {
+    String url = '$_apiHost/v1/volumes/$id';
+    Response response = await _remoteSource.get(url);
+    return Book.fromMap(response.data);
+  }
 
   Future<List<Book>> getRecommendedBooks(String topic) async {
     String url = '$_apiHost/v1/volumes?q=$topic';

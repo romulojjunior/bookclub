@@ -1,6 +1,8 @@
 import 'package:bookclub/data/repositories/books_repository.dart';
+import 'package:bookclub/domain/usecases/books/get_book_by_id.dart';
 import 'package:bookclub/domain/usecases/books/get_recommened_books_uc.dart';
 import 'package:bookclub/domain/usecases/books/get_trends_books_uc.dart';
+import 'package:bookclub/ui/state/book_details_bloc/book_details_bloc.dart';
 import 'package:bookclub/ui/state/books_bloc/books_bloc.dart';
 import 'package:bookclub/ui/state/favorites_cubit/favorites_cubit.dart';
 import 'package:dio/dio.dart';
@@ -34,6 +36,10 @@ loadUsecases(GetIt getIt) {
   getIt.registerLazySingleton(() {
     return GetTrendsBooksUC(bookReposiotry: getIt.get());
   });
+
+  getIt.registerLazySingleton(() {
+    return GetBookUC(bookReposiotry: getIt.get());
+  });
 }
 
 loadBlocs(GetIt getIt) {
@@ -41,6 +47,10 @@ loadBlocs(GetIt getIt) {
     BooksBloc booksBloc = BooksBloc(getTrendsBooksUC: getIt.get(), getRecommendedBooksUC: getIt.get());
     booksBloc.loadInitialData();
     return booksBloc;
+  });
+
+  getIt.registerFactory(() {
+    return BookDetailsBloc(getBookUC: getIt.get());
   });
 }
 

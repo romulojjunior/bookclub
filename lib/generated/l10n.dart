@@ -162,6 +162,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Book Details`
+  String get bookDetails {
+    return Intl.message(
+      'Book Details',
+      name: 'bookDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Book not found.`
+  String get bookNotFound {
+    return Intl.message(
+      'Book not found.',
+      name: 'bookNotFound',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

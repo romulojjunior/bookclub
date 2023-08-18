@@ -21,6 +21,7 @@ class Book {
 
   String? smallThumbnail;
   String? thumbnail;
+  String? largeThumbnail;
   String? previewLink;
   int? averageRating;
   int? ratingsCount;
@@ -37,6 +38,7 @@ class Book {
       language: language,
       smallThumbnail: smallThumbnail,
       thumbnail: thumbnail,
+      largeThumbnail: largeThumbnail,
       previewLink: previewLink,
       averageRating: averageRating,
       ratingsCount: ratingsCount,
@@ -66,6 +68,7 @@ class Book {
         Map imageLinks = volumeInfo['imageLinks'];
         book.smallThumbnail = imageLinks['smallThumbnail'];
         book.thumbnail = imageLinks['thumbnail'];
+        book.largeThumbnail = imageLinks['large'];
       }
     }
 

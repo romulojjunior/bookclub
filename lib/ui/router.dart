@@ -16,7 +16,8 @@ final GoRouter goRouter = GoRouter(
           GoRoute(
             path: RouterPaths.bookDetailsPath,
             builder: (BuildContext context, GoRouterState state) {
-              return const BookDetailsPage();
+              String bookId = state.pathParameters['id']!;
+              return BookDetailsPage(bookId: bookId);
             },
           ),
           GoRoute(
