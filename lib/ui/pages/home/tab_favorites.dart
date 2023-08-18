@@ -1,4 +1,5 @@
 import 'package:bookclub/domain/models/writer.dart';
+import 'package:bookclub/ui/router.dart';
 import 'package:bookclub/ui/state/favorites_cubit/favorites_cubit.dart';
 import 'package:bookclub/ui/widgets/ui_avatar_card.dart';
 import 'package:bookclub/ui/widgets/ui_page_header.dart';
@@ -37,7 +38,7 @@ class FavoritesSettings extends StatelessWidget {
                             id: writer.id ?? 0,
                             imageUrl: writer.avatarUrl,
                             onPress: (id) {
-                              context.go('/profiles/${writer.id}');
+                              context.go(RouterPaths.getWriterDetailsPath(id));
                             }),
                       ),
                       Text(writer.name)
