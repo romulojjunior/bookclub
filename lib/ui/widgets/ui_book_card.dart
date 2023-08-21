@@ -1,4 +1,6 @@
-import 'package:flutter/widgets.dart';
+import 'package:bookclub/ui/widgets/ui_loading_indicator.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 
 class UIBookCard extends StatelessWidget {
   final String id;
@@ -23,12 +25,10 @@ class UIBookCard extends StatelessWidget {
       },
       child: Container(
         margin: const EdgeInsets.all(8),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(16.0),
-          child: Image.network(
-            imageUrl,
-            fit: BoxFit.cover,
-          ),
+        child: CachedNetworkImage(
+          fit: BoxFit.cover,
+          imageUrl: imageUrl,
+          progressIndicatorBuilder: (context, url, downloadProgress) => const UILoadingIndicator(),
         ),
       ),
     );
