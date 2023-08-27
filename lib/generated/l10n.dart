@@ -200,6 +200,16 @@ class S {
     );
   }
 
+  /// `Favorite`
+  String get favorite {
+    return Intl.message(
+      'Favorite',
+      name: 'favorite',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `{count, plural, =0{No follower} =1{1 follower} other{{count} followers}}`
   String nFollower(num count) {
     return Intl.plural(

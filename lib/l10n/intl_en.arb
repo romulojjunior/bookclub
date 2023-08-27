@@ -14,6 +14,7 @@
   "ebook": "E-Book",
   "pages": "pages",
   "buy": "Buy",
+  "favorite": "Favorite",
   "nFollower": "{count, plural, =0{No follower} =1{1 follower} other{{count} followers}}",
   "@nFollower": {
     "placeholders": {

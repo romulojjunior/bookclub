@@ -52,7 +52,7 @@ class BookPanelInfo extends StatelessWidget {
                     isSelected: isFavorite,
                     onPressed: onFavorite),
                 Text(
-                  S.of(context).buy,
+                  S.of(context).favorite,
                   style: const TextStyle(fontSize: 12),
                 ),
               ]),
