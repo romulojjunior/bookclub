@@ -4,6 +4,7 @@ import 'package:bookclub/ui/pages/book_details/widgets/book_panel_info.dart';
 import 'package:bookclub/ui/state/book_details_bloc/book_details_bloc.dart';
 import 'package:bookclub/ui/state/book_details_bloc/book_details_event.dart';
 import 'package:bookclub/ui/state/book_details_bloc/book_details_state.dart';
+import 'package:bookclub/ui/state/favorites_cubit/favorites_cubit.dart';
 import 'package:bookclub/ui/widgets/ui_conditional_widget.dart';
 import 'package:bookclub/ui/widgets/ui_loading_indicator.dart';
 import 'package:bookclub/ui/widgets/ui_scaffold.dart';
@@ -57,6 +58,16 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
           ));
     }
 
+    Widget bookPanelInfo = BookPanelInfo(
+      book: state.book!,
+      isFavorite: context.watch<FavoritesCubit>().isFavoriteBook(state.book!),
+      onFavorite: (isFavorite) {
+        isFavorite
+            ? context.read<FavoritesCubit>().addBook(state.book!)
+            : context.read<FavoritesCubit>().removeBook(state.book!.id!);
+      },
+    );
+
     List<Widget> body = [
       Column(
         children: [
@@ -79,11 +90,7 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
                 return Container(
                   constraints: const BoxConstraints(maxWidth: _containerMaxWidth),
                   margin: const EdgeInsets.all(16),
-                  child: BookPanelInfo(
-                    ratingsCount: state.book?.ratingsCount,
-                    averageRating: state.book?.averageRating,
-                    pageQuantity: state.book?.pageQuantity,
-                  ),
+                  child: bookPanelInfo,
                 );
               }),
         ],
@@ -108,11 +115,7 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
             UIConditionalWidget(
                 canShow: isLargeScreen,
                 onBuild: (context) {
-                  return BookPanelInfo(
-                    ratingsCount: state.book?.ratingsCount,
-                    averageRating: state.book?.averageRating,
-                    pageQuantity: state.book?.pageQuantity,
-                  );
+                  return bookPanelInfo;
                 }),
           ],
         ),
