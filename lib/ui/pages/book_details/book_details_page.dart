@@ -61,6 +61,7 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
       Column(
         children: [
           Container(
+            margin: EdgeInsets.all(isLargeScreen ? 32 : 0),
             constraints: const BoxConstraints(
               maxWidth: _containerMaxWidth,
               minHeight: 500,
@@ -78,7 +79,11 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
                 return Container(
                   constraints: const BoxConstraints(maxWidth: _containerMaxWidth),
                   margin: const EdgeInsets.all(16),
-                  child: const BookPanelInfo(),
+                  child: BookPanelInfo(
+                    ratingsCount: state.book?.ratingsCount,
+                    averageRating: state.book?.averageRating,
+                    pageQuantity: state.book?.pageQuantity,
+                  ),
                 );
               }),
         ],
@@ -103,7 +108,11 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
             UIConditionalWidget(
                 canShow: isLargeScreen,
                 onBuild: (context) {
-                  return const BookPanelInfo();
+                  return BookPanelInfo(
+                    ratingsCount: state.book?.ratingsCount,
+                    averageRating: state.book?.averageRating,
+                    pageQuantity: state.book?.pageQuantity,
+                  );
                 }),
           ],
         ),

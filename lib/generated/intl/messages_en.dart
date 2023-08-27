@@ -23,14 +23,21 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m0(count) =>
       "${Intl.plural(count, zero: 'No follower', one: '1 follower', other: '${count} followers')}";
 
+  static String m1(count) =>
+      "${Intl.plural(count, zero: '0 Review', one: '1 Review', other: '${count} reviews')}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appName": MessageLookupByLibrary.simpleMessage("BookClub"),
         "bookDetails": MessageLookupByLibrary.simpleMessage("Book Details"),
         "bookNotFound": MessageLookupByLibrary.simpleMessage("Book not found."),
         "books": MessageLookupByLibrary.simpleMessage("Books"),
+        "buy": MessageLookupByLibrary.simpleMessage("Buy"),
+        "ebook": MessageLookupByLibrary.simpleMessage("E-Book"),
         "following": MessageLookupByLibrary.simpleMessage("Following"),
         "nFollower": m0,
+        "nReviews": m1,
+        "pages": MessageLookupByLibrary.simpleMessage("pages"),
         "recommended": MessageLookupByLibrary.simpleMessage("Recommended"),
         "tab_favorites": MessageLookupByLibrary.simpleMessage("Favorites"),
         "tab_home": MessageLookupByLibrary.simpleMessage("Home"),
