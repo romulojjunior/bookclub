@@ -90,19 +90,6 @@ class S {
     );
   }
 
-  /// `{count, plural, =0{No follower} =1{1 follower} other{{count} followers}}`
-  String nFollower(num count) {
-    return Intl.plural(
-      count,
-      zero: 'No follower',
-      one: '1 follower',
-      other: '$count followers',
-      name: 'nFollower',
-      desc: '',
-      args: [count],
-    );
-  }
-
   /// `Trends`
   String get trends {
     return Intl.message(
@@ -160,6 +147,92 @@ class S {
       name: 'tab_settings',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `Book Details`
+  String get bookDetails {
+    return Intl.message(
+      'Book Details',
+      name: 'bookDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Book not found.`
+  String get bookNotFound {
+    return Intl.message(
+      'Book not found.',
+      name: 'bookNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `E-Book`
+  String get ebook {
+    return Intl.message(
+      'E-Book',
+      name: 'ebook',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `pages`
+  String get pages {
+    return Intl.message(
+      'pages',
+      name: 'pages',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Buy`
+  String get buy {
+    return Intl.message(
+      'Buy',
+      name: 'buy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Favorite`
+  String get favorite {
+    return Intl.message(
+      'Favorite',
+      name: 'favorite',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{count, plural, =0{No follower} =1{1 follower} other{{count} followers}}`
+  String nFollower(num count) {
+    return Intl.plural(
+      count,
+      zero: 'No follower',
+      one: '1 follower',
+      other: '$count followers',
+      name: 'nFollower',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `{count, plural, =0{0 Review} =1{1 Review} other{{count} reviews}}`
+  String nReviews(num count) {
+    return Intl.plural(
+      count,
+      zero: '0 Review',
+      one: '1 Review',
+      other: '$count reviews',
+      name: 'nReviews',
+      desc: '',
+      args: [count],
     );
   }
 }

@@ -3,6 +3,18 @@
   "books": "Books",
   "writer": "Writer",
   "following": "Following",
+  "trends": "Trends",
+  "recommended": "Recommended",
+  "wouldYouLikeUnfollow": "Would you like unfollow?",
+  "tab_home": "Home",
+  "tab_favorites": "Favorites",
+  "tab_settings": "Settings",
+  "bookDetails": "Book Details",
+  "bookNotFound": "Book not found.",
+  "ebook": "E-Book",
+  "pages": "pages",
+  "buy": "Buy",
+  "favorite": "Favorite",
   "nFollower": "{count, plural, =0{No follower} =1{1 follower} other{{count} followers}}",
   "@nFollower": {
     "placeholders": {
@@ -12,10 +24,13 @@
       }
     }
   },
-  "trends": "Trends",
-  "recommended": "Recommended",
-  "wouldYouLikeUnfollow": "Would you like unfollow?",
-  "tab_home": "Home",
-  "tab_favorites": "Favorites",
-  "tab_settings": "Settings"
+  "nReviews": "{count, plural, =0{0 Review} =1{1 Review} other{{count} reviews}}",
+  "@nReviews": {
+    "placeholders": {
+      "count": {
+        "type": "num",
+        "format": "compact"
+      }
+    }
+  }
 }

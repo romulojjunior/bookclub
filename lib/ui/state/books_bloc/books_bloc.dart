@@ -6,9 +6,6 @@ import 'package:bookclub/ui/state/books_bloc/books_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BooksBloc extends Bloc<BooksEvent, BooksState> {
-  late GetTrendsBooksUC _getTrendsBooksUC;
-  late GetRecommendedBooksUC _getRecommendedBooksUC;
-
   BooksBloc({
     required GetRecommendedBooksUC getRecommendedBooksUC,
     required GetTrendsBooksUC getTrendsBooksUC,
@@ -19,6 +16,9 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
     on<LoadTrendsBooksEvent>(_onLoadTrendsBooks);
     on<LoadRecommendedBooksEvent>(_onLoadRecommendedBooks);
   }
+
+  late GetTrendsBooksUC _getTrendsBooksUC;
+  late GetRecommendedBooksUC _getRecommendedBooksUC;
 
   loadInitialData() {
     add(LoadTrendsBooksEvent('travel'));

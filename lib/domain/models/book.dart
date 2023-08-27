@@ -11,7 +11,8 @@ class Book {
       this.averageRating,
       this.ratingsCount,
       this.price,
-      this.currencyCode});
+      this.currencyCode,
+      this.pageQuantity});
 
   String? id;
   String title;
@@ -21,9 +22,11 @@ class Book {
 
   String? smallThumbnail;
   String? thumbnail;
+  String? largeThumbnail;
   String? previewLink;
-  int? averageRating;
+  double? averageRating;
   int? ratingsCount;
+  int? pageQuantity;
 
   double? price;
   String? currencyCode;
@@ -37,11 +40,13 @@ class Book {
       language: language,
       smallThumbnail: smallThumbnail,
       thumbnail: thumbnail,
+      largeThumbnail: largeThumbnail,
       previewLink: previewLink,
       averageRating: averageRating,
       ratingsCount: ratingsCount,
       price: price,
       currencyCode: currencyCode,
+      pageQuantity: pageQuantity,
     };
 
     return data;
@@ -58,14 +63,24 @@ class Book {
       }
       book.description = volumeInfo['description'];
       book.language = volumeInfo['language'];
-      // book.averageRating = volumeInfo['averageRating'];
-      // book.ratingsCount = volumeInfo['ratingsCount'];
       book.previewLink = volumeInfo['previewLink'];
+
+      book.ratingsCount = volumeInfo['ratingsCount'] ?? 0;
+      book.pageQuantity = volumeInfo['pageCount'] ?? 0;
+
+      if (volumeInfo.containsKey('averageRating') == true) {
+        try {
+          book.averageRating = double.parse('${volumeInfo['averageRating']}');
+        } catch (_) {
+          book.averageRating = 0.0;
+        }
+      }
 
       if (volumeInfo.containsKey('imageLinks')) {
         Map imageLinks = volumeInfo['imageLinks'];
         book.smallThumbnail = imageLinks['smallThumbnail'];
         book.thumbnail = imageLinks['thumbnail'];
+        book.largeThumbnail = imageLinks['large'];
       }
     }
 

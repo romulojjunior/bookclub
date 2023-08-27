@@ -1,9 +1,11 @@
 import 'package:bookclub/domain/models/book.dart';
+import 'package:bookclub/ui/router.dart';
 import 'package:bookclub/ui/widgets/ui_book_card.dart';
 import 'package:bookclub/ui/widgets/ui_conditional_widget.dart';
 import 'package:bookclub/ui/widgets/ui_loading_indicator.dart';
 import 'package:bookclub/ui/widgets/ui_page_header.dart';
 import 'package:flutter/widgets.dart';
+import 'package:go_router/go_router.dart';
 
 class BooksWidget extends StatelessWidget {
   const BooksWidget({required this.title, required this.isLoading, required this.trendsBooks, super.key});
@@ -34,10 +36,13 @@ class BooksWidget extends StatelessWidget {
                       itemBuilder: (ctx, index) {
                         Book book = trendsBooks[index];
                         return UIBookCard(
+                          id: book.id!,
                           title: book.title,
                           description: book.description ?? '',
                           imageUrl: book.thumbnail ?? '',
-                          onPress: () {},
+                          onPress: (bookId) {
+                            context.go(RouterPaths.getBookDetailsPath(bookId));
+                          },
                         );
                       }));
             }),
