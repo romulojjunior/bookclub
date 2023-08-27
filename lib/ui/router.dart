@@ -1,6 +1,6 @@
-import 'package:bookclub/ui/pages/details/details_page.dart';
+import 'package:bookclub/ui/pages/book_details/book_details_page.dart';
 import 'package:bookclub/ui/pages/home/home_page.dart';
-import 'package:bookclub/ui/pages/profile/profile_page.dart';
+import 'package:bookclub/ui/pages/writer_details/writer_details_page.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:flutter/widgets.dart';
@@ -14,18 +14,32 @@ final GoRouter goRouter = GoRouter(
         },
         routes: [
           GoRoute(
-            path: 'photos/:id',
+            path: RouterPaths.bookDetailsPath,
             builder: (BuildContext context, GoRouterState state) {
-              return const DetailsPage();
+              String bookId = state.pathParameters['id']!;
+              return BookDetailsPage(bookId: bookId);
             },
           ),
           GoRoute(
-            path: 'profiles/:id',
+            path: RouterPaths.writeDetailsPath,
             builder: (BuildContext context, GoRouterState state) {
               int userId = int.parse(state.pathParameters['id']!);
-              return ProfilePage(userId: userId);
+              return WriterDetailsPage(userId: userId);
             },
           ),
         ]),
   ],
 );
+
+class RouterPaths {
+  static String writeDetailsPath = 'writer/:id/details';
+  static String bookDetailsPath = 'book/:id/details';
+
+  static getWriterDetailsPath(int userId) {
+    return '/writer/$userId/details';
+  }
+
+  static getBookDetailsPath(String bookId) {
+    return '/book/$bookId/details';
+  }
+}
