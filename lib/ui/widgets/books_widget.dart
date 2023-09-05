@@ -1,18 +1,18 @@
 import 'package:bookclub/domain/models/book.dart';
-import 'package:bookclub/ui/router.dart';
 import 'package:bookclub/ui/widgets/ui_book_card.dart';
 import 'package:bookclub/ui/widgets/ui_conditional_widget.dart';
 import 'package:bookclub/ui/widgets/ui_loading_indicator.dart';
 import 'package:bookclub/ui/widgets/ui_page_header.dart';
 import 'package:flutter/widgets.dart';
-import 'package:go_router/go_router.dart';
 
 class BooksWidget extends StatelessWidget {
-  const BooksWidget({required this.title, required this.isLoading, required this.trendsBooks, super.key});
+  const BooksWidget(
+      {required this.title, required this.isLoading, required this.books, required this.onBookSelected, super.key});
 
   final String title;
   final bool isLoading;
-  final List<Book> trendsBooks;
+  final List<Book> books;
+  final Function(String) onBookSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -31,17 +31,17 @@ class BooksWidget extends StatelessWidget {
                   height: 200,
                   child: ListView.separated(
                       scrollDirection: Axis.horizontal,
-                      itemCount: trendsBooks.length,
+                      itemCount: books.length,
                       separatorBuilder: (ctx, index) => Container(),
                       itemBuilder: (ctx, index) {
-                        Book book = trendsBooks[index];
+                        Book book = books[index];
                         return UIBookCard(
                           id: book.id!,
                           title: book.title,
                           description: book.description ?? '',
                           imageUrl: book.thumbnail ?? '',
                           onPress: (bookId) {
-                            context.go(RouterPaths.getBookDetailsPath(bookId));
+                            onBookSelected(bookId);
                           },
                         );
                       }));

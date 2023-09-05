@@ -1,6 +1,5 @@
 import 'package:bookclub/domain/models/book.dart';
 import 'package:bookclub/generated/l10n.dart';
-import 'package:bookclub/ui/router.dart';
 import 'package:bookclub/ui/widgets/ui_book_card.dart';
 import 'package:bookclub/ui/widgets/ui_conditional_widget.dart';
 import 'package:bookclub/ui/widgets/ui_loading_indicator.dart';
@@ -8,13 +7,14 @@ import 'package:bookclub/ui/widgets/ui_page_header.dart';
 import 'package:bookclub/ui/widgets/ui_resizable_widget.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/widgets.dart';
-import 'package:go_router/go_router.dart';
 
 class RecommendedBooksWidget extends StatelessWidget {
-  const RecommendedBooksWidget({required this.isLoading, required this.recommendedBooks, super.key});
+  const RecommendedBooksWidget(
+      {required this.isLoading, required this.recommendedBooks, required this.onBookSelected, super.key});
 
   final bool isLoading;
   final List<Book> recommendedBooks;
+  final Function(String) onBookSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class RecommendedBooksWidget extends StatelessWidget {
                         description: book.description ?? '',
                         imageUrl: book.thumbnail ?? '',
                         onPress: (bookId) {
-                          context.go(RouterPaths.getBookDetailsPath(bookId));
+                          onBookSelected(bookId);
                         },
                       );
                     });
