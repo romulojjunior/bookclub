@@ -1,5 +1,6 @@
 import 'package:bookclub/domain/models/book.dart';
 import 'package:bookclub/domain/models/writer.dart';
+import 'package:bookclub/generated/l10n.dart';
 import 'package:bookclub/ui/router.dart';
 import 'package:bookclub/ui/state/favorites_cubit/favorites_cubit.dart';
 import 'package:bookclub/ui/widgets/ui_avatar_card.dart';
@@ -103,6 +104,18 @@ class _FavoritesSettingsState extends material.State<FavoritesSettings> {
                   context.go(RouterPaths.getBookDetailsPath(id));
                 });
           }));
+    }
+
+    // No favorites message
+    Widget noFavorites =
+        Container(constraints: const BoxConstraints(minHeight: 300), child: Center(child: Text(S.of(context).empty)));
+
+    if (shouldShowWriters && favoriteWriters.isEmpty) {
+      body.add(noFavorites);
+    }
+
+    if (shouldShowBooks && favoriteBooks.isEmpty) {
+      body.add(noFavorites);
     }
 
     return SafeArea(

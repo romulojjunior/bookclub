@@ -34,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "books": MessageLookupByLibrary.simpleMessage("Books"),
         "buy": MessageLookupByLibrary.simpleMessage("Buy"),
         "ebook": MessageLookupByLibrary.simpleMessage("E-Book"),
+        "empty": MessageLookupByLibrary.simpleMessage("Empty"),
         "favorite": MessageLookupByLibrary.simpleMessage("Favorite"),
         "following": MessageLookupByLibrary.simpleMessage("Following"),
         "nFollower": m0,

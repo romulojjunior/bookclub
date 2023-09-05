@@ -210,6 +210,16 @@ class S {
     );
   }
 
+  /// `Empty`
+  String get empty {
+    return Intl.message(
+      'Empty',
+      name: 'empty',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `{count, plural, =0{No follower} =1{1 follower} other{{count} followers}}`
   String nFollower(num count) {
     return Intl.plural(
