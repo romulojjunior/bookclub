@@ -92,4 +92,27 @@ class Book {
 
     return book;
   }
+
+  static List<Book> filterBrokeBooks(List<Book> books) {
+    return books.where((book) {
+      if (book.largeThumbnail?.isEmpty == true) {
+        return false;
+      }
+
+      if (book.thumbnail?.isEmpty == true) {
+        return false;
+      }
+
+      if (book.description?.isEmpty == true) {
+        return false;
+      }
+
+      // Black List
+      if (book.title.toLowerCase() == 'travel by design') {
+        return false;
+      }
+
+      return true;
+    }).toList();
+  }
 }

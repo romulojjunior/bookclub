@@ -3,10 +3,12 @@ import 'package:bookclub/domain/models/writer.dart';
 import 'package:bookclub/generated/l10n.dart';
 import 'package:bookclub/ui/pages/home/widgets/avatars_row_widget.dart';
 import 'package:bookclub/ui/pages/home/widgets/recommended_books_widget.dart';
+import 'package:bookclub/ui/router.dart';
 import 'package:bookclub/ui/widgets/books_widget.dart';
 import 'package:bookclub/ui/state/books_bloc/books_bloc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class TabHome extends StatelessWidget {
   final String title;
@@ -30,11 +32,17 @@ class TabHome extends StatelessWidget {
             BooksWidget(
               title: S.of(context).trends,
               isLoading: isTrendsLoading,
-              trendsBooks: trendsBooks,
+              books: trendsBooks,
+              onBookSelected: (bookId) {
+                context.push(RouterPaths.getBookDetailsPath(bookId));
+              },
             ),
             RecommendedBooksWidget(
               isLoading: isRecommendedLoading,
               recommendedBooks: recommendedBooks,
+              onBookSelected: (bookId) {
+                context.push(RouterPaths.getBookDetailsPath(bookId));
+              },
             ),
           ],
         ),

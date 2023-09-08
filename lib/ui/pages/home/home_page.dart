@@ -1,6 +1,7 @@
 import 'package:bookclub/generated/l10n.dart';
 import 'package:bookclub/ui/pages/home/tab_favorites.dart';
 import 'package:bookclub/ui/pages/home/tab_home.dart';
+import 'package:bookclub/ui/pages/home/tab_search.dart';
 import 'package:bookclub/ui/pages/home/tab_settings.dart';
 import 'package:bookclub/ui/utils/os_selector.dart';
 import 'package:bookclub/ui/widgets/ui_tab_scaffold.dart';
@@ -28,6 +29,11 @@ class _HomePageState extends State<HomePage> {
     iOS: Icon(cupertino.CupertinoIcons.star),
   );
 
+  Widget searchIcon = const OSSelector(
+    android: Icon(material.Icons.search),
+    iOS: Icon(cupertino.CupertinoIcons.search),
+  );
+
   Widget settingsIcon = const OSSelector(
     android: Icon(material.Icons.settings),
     iOS: Icon(cupertino.CupertinoIcons.settings),
@@ -37,6 +43,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     List<Widget> tabs = [
       TabHome(title: S.of(context).tab_home),
+      TabSearch(title: S.of(context).tab_search),
       FavoritesSettings(title: S.of(context).tab_favorites),
       TabSettings(title: S.of(context).tab_settings)
     ];
@@ -46,6 +53,10 @@ class _HomePageState extends State<HomePage> {
         BottomNavigationBarItem(
           icon: homeIcon,
           label: S.of(context).tab_home,
+        ),
+        BottomNavigationBarItem(
+          icon: searchIcon,
+          label: S.of(context).tab_search,
         ),
         BottomNavigationBarItem(
           icon: favoritesIcon,

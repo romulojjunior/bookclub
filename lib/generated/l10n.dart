@@ -140,6 +140,16 @@ class S {
     );
   }
 
+  /// `Search`
+  String get tab_search {
+    return Intl.message(
+      'Search',
+      name: 'tab_search',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Settings`
   String get tab_settings {
     return Intl.message(
@@ -205,6 +215,16 @@ class S {
     return Intl.message(
       'Favorite',
       name: 'favorite',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Empty`
+  String get empty {
+    return Intl.message(
+      'Empty',
+      name: 'empty',
       desc: '',
       args: [],
     );

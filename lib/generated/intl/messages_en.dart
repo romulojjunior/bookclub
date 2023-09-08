@@ -34,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "books": MessageLookupByLibrary.simpleMessage("Books"),
         "buy": MessageLookupByLibrary.simpleMessage("Buy"),
         "ebook": MessageLookupByLibrary.simpleMessage("E-Book"),
+        "empty": MessageLookupByLibrary.simpleMessage("Empty"),
         "favorite": MessageLookupByLibrary.simpleMessage("Favorite"),
         "following": MessageLookupByLibrary.simpleMessage("Following"),
         "nFollower": m0,
@@ -42,6 +43,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "recommended": MessageLookupByLibrary.simpleMessage("Recommended"),
         "tab_favorites": MessageLookupByLibrary.simpleMessage("Favorites"),
         "tab_home": MessageLookupByLibrary.simpleMessage("Home"),
+        "tab_search": MessageLookupByLibrary.simpleMessage("Search"),
         "tab_settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "trends": MessageLookupByLibrary.simpleMessage("Trends"),
         "wouldYouLikeUnfollow":
