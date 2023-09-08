@@ -35,14 +35,18 @@ class BooksWidget extends StatelessWidget {
                       separatorBuilder: (ctx, index) => Container(),
                       itemBuilder: (ctx, index) {
                         Book book = books[index];
-                        return UIBookCard(
-                          id: book.id!,
-                          title: book.title,
-                          description: book.description ?? '',
-                          imageUrl: book.thumbnail ?? '',
-                          onPress: (bookId) {
-                            onBookSelected(bookId);
-                          },
+                        return Row(
+                          children: [
+                            UIBookCard(
+                              id: book.id!,
+                              title: book.title,
+                              description: book.description ?? '',
+                              imageUrl: book.thumbnail ?? '',
+                              onPress: (bookId) {
+                                onBookSelected(bookId);
+                              },
+                            ),
+                          ],
                         );
                       }));
             }),

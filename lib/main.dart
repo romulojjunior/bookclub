@@ -1,7 +1,9 @@
+import 'package:bookclub/di/app_di.dart';
 import 'package:bookclub/ui/router.dart';
 import 'package:bookclub/ui/state/book_details_bloc/book_details_bloc.dart';
 import 'package:bookclub/ui/state/books_bloc/books_bloc.dart';
 import 'package:bookclub/ui/state/favorites_cubit/favorites_cubit.dart';
+import 'package:bookclub/ui/state/search_cubit/search_cubit.dart';
 import 'package:bookclub/ui/theme/app_theme.dart';
 import 'package:bookclub/ui/utils/os_selector.dart';
 import 'package:flutter/cupertino.dart' as ios;
@@ -11,8 +13,6 @@ import 'package:bookclub/generated/l10n.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get_it/get_it.dart';
-
-import 'di/app_di.dart';
 
 void main() {
   loadAppDI(GetIt.instance);
@@ -25,6 +25,9 @@ void main() {
     }),
     BlocProvider(create: (context) {
       return GetIt.I.get<FavoritesCubit>();
+    }),
+    BlocProvider(create: (context) {
+      return GetIt.I.get<SearchCubit>();
     })
   ], child: const MyApp()));
 }

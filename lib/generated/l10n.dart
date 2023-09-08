@@ -140,6 +140,16 @@ class S {
     );
   }
 
+  /// `Search`
+  String get tab_search {
+    return Intl.message(
+      'Search',
+      name: 'tab_search',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Settings`
   String get tab_settings {
     return Intl.message(

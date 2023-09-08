@@ -43,6 +43,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "recommended": MessageLookupByLibrary.simpleMessage("Recommended"),
         "tab_favorites": MessageLookupByLibrary.simpleMessage("Favorites"),
         "tab_home": MessageLookupByLibrary.simpleMessage("Home"),
+        "tab_search": MessageLookupByLibrary.simpleMessage("Search"),
         "tab_settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "trends": MessageLookupByLibrary.simpleMessage("Trends"),
         "wouldYouLikeUnfollow":
