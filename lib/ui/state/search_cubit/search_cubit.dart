@@ -11,12 +11,16 @@ class SearchCubit extends Cubit<SearchState> {
 
   late SearchBookByNameUC _searchBookByNameUC;
   searchByName(String name) async {
-    emit(state.copyWith(isLoading: true));
-    List<Book> books = await _searchBookByNameUC.execute(name);
-    emit(state.copyWith(isLoading: false, books: books));
+    if (name.length >= 3) {
+      emit(state.copyWith(isLoading: true));
+      List<Book> books = await _searchBookByNameUC.execute(name);
+      emit(state.copyWith(isLoading: false, books: books));
+    } else if (name.isEmpty) {
+      _clearSearchResult();
+    }
   }
 
-  clearSearchResult() {
+  _clearSearchResult() {
     emit(state.copyWith(books: []));
   }
 }

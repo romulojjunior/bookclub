@@ -95,14 +95,18 @@ class _FavoritesSettingsState extends material.State<FavoritesSettings> {
           itemCount: favoriteBooks.length,
           itemBuilder: (ctx, index) {
             Book book = favoriteBooks[index];
-            return UIBookCard(
-                id: book.id ?? '',
-                title: book.title,
-                description: book.description ?? '',
-                imageUrl: book.smallThumbnail ?? '',
-                onPress: (id) {
-                  context.go(RouterPaths.getBookDetailsPath(id));
-                });
+            return material.Row(
+              children: [
+                UIBookCard(
+                    id: book.id ?? '',
+                    title: book.title,
+                    description: book.description ?? '',
+                    imageUrl: book.smallThumbnail ?? '',
+                    onPress: (id) {
+                      context.go(RouterPaths.getBookDetailsPath(id));
+                    }),
+              ],
+            );
           }));
     }
 
