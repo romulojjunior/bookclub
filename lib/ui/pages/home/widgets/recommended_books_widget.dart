@@ -43,6 +43,7 @@ class RecommendedBooksWidget extends StatelessWidget {
                     itemBuilder: (ctx, index) {
                       Book book = recommendedBooks[index];
                       return material.Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           UIBookCard(
                             id: book.id!,

@@ -46,7 +46,8 @@ class TabSearch extends StatelessWidget {
                         itemCount: books.length,
                         itemBuilder: (ctx, index) {
                           Book book = books[index];
-                          return material.Row(
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               UIBookCard(
                                 id: book.id!,

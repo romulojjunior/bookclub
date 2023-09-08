@@ -96,6 +96,7 @@ class _FavoritesSettingsState extends material.State<FavoritesSettings> {
           itemBuilder: (ctx, index) {
             Book book = favoriteBooks[index];
             return material.Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 UIBookCard(
                     id: book.id ?? '',

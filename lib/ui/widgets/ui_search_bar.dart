@@ -11,11 +11,12 @@ class UISearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+        margin: const EdgeInsets.all(16),
         constraints: const BoxConstraints(
           maxWidth: 500,
         ),
         child: OSSelector(
-          android: material.SearchBar(
+          android: material.TextField(
             onChanged: onChanged,
           ),
           iOS: cupertino.CupertinoSearchTextField(
