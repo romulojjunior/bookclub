@@ -25,7 +25,7 @@ class BookReposiotry {
       return Book.fromMap(data);
     }).toList();
 
-    return books;
+    return Book.filterBrokeBooks(books);
   }
 
   Future<List<Book>> getTrendsBooks(String topic) async {
@@ -36,7 +36,7 @@ class BookReposiotry {
       return Book.fromMap(data);
     }).toList();
 
-    return books;
+    return Book.filterBrokeBooks(books);
   }
 
   Future<List<Book>> searchByName(String name) async {
@@ -47,6 +47,6 @@ class BookReposiotry {
       return Book.fromMap(data);
     }).toList();
 
-    return books;
+    return Book.filterBrokeBooks(books);
   }
 }
