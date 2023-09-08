@@ -38,4 +38,15 @@ class BookReposiotry {
 
     return books;
   }
+
+  Future<List<Book>> searchByName(String name) async {
+    String url = '$_apiHost/v1/volumes?q=$name';
+    Response response = await _remoteSource.get(url);
+
+    List<Book> books = (response.data['items'] as List).map((data) {
+      return Book.fromMap(data);
+    }).toList();
+
+    return books;
+  }
 }

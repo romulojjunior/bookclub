@@ -22,7 +22,7 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
 
   loadInitialData() {
     add(LoadTrendsBooksEvent('travel'));
-    add(LoadRecommendedBooksEvent('tales'));
+    add(LoadRecommendedBooksEvent('nature'));
   }
 
   _onLoadRecommendedBooks(event, emitter) async {
