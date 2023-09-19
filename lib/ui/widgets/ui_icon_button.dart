@@ -1,15 +1,13 @@
 import 'package:bookclub/ui/utils/os_selector.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter/material.dart' as material;
 
 class UIIconButton extends StatefulWidget {
-  const UIIconButton(
-      {required this.icon, this.secondaryIcon, this.isSelected = false, required this.onPressed, super.key});
+  const UIIconButton({required this.icon, this.secondaryIcon, this.isSelected = false, this.onPressed, super.key});
 
   final Widget icon;
   final Widget? secondaryIcon;
   final bool isSelected;
-  final Function(bool) onPressed;
+  final Function(bool)? onPressed;
 
   @override
   State<UIIconButton> createState() => _UIIconButtonState();
@@ -26,9 +24,9 @@ class _UIIconButtonState extends State<UIIconButton> {
   @override
   Widget build(BuildContext context) {
     return OSSelector(
-      android: material.IconButton(
-        icon: _isSelected ? (widget.secondaryIcon ?? widget.icon) : widget.icon,
-        onPressed: _onIconPressed,
+      android: GestureDetector(
+        onTap: _onIconPressed,
+        child: _isSelected ? (widget.secondaryIcon ?? widget.icon) : widget.icon,
       ),
       iOS: GestureDetector(
         onTap: _onIconPressed,
@@ -38,7 +36,7 @@ class _UIIconButtonState extends State<UIIconButton> {
   }
 
   _onIconPressed() {
-    widget.onPressed(!_isSelected);
+    widget.onPressed?.call(!_isSelected);
     setState(() {
       _isSelected = !_isSelected;
     });
