@@ -7,12 +7,12 @@ class UIPageHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16, top: 32),
+      padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16, top: 28),
       child: Row(
         children: [
           Text(
             title,
-            style: const TextStyle(fontSize: 36),
+            style: const TextStyle(fontSize: 28),
           ),
         ],
       ),
