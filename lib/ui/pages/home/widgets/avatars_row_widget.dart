@@ -39,7 +39,12 @@ class AvatarsRowWidget extends StatelessWidget {
                             },
                           ),
                         ),
-                        Container(margin: const EdgeInsets.all(8), child: Text(user.name))
+                        Container(
+                            margin: const EdgeInsets.all(8),
+                            child: Text(
+                              user.name,
+                              style: const TextStyle(fontSize: 14),
+                            ))
                       ],
                     ),
                   );
