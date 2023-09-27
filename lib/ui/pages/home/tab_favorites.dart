@@ -29,12 +29,11 @@ class _FavoritesSettingsState extends material.State<FavoritesSettings> {
     List<Book> favoriteBooks = favoritesCubit.state.books;
     const List<Widget> menuOptions = <Widget>[Text('Writers'), Text('Books')];
 
-    // List of widgets used in the body page
     List<Widget> body = [];
 
-    // Add ToggleButtons
-    body.add(
-      material.ToggleButtons(
+    body.add(Container(
+      margin: const EdgeInsets.only(bottom: 16),
+      child: material.ToggleButtons(
         direction: Axis.horizontal,
         borderRadius: const BorderRadius.all(Radius.circular(8)),
         constraints: const BoxConstraints(
@@ -52,7 +51,7 @@ class _FavoritesSettingsState extends material.State<FavoritesSettings> {
         },
         children: menuOptions,
       ),
-    );
+    ));
 
     // Add Writers Grid
     bool shouldShowWriters = _selectedMenuOptions[0] == true;
@@ -77,7 +76,10 @@ class _FavoritesSettingsState extends material.State<FavoritesSettings> {
                           context.go(RouterPaths.getWriterDetailsPath(id));
                         }),
                   ),
-                  Text(writer.name)
+                  Text(
+                    writer.name,
+                    style: const TextStyle(fontSize: 14),
+                  )
                 ],
               );
             }),

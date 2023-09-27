@@ -17,36 +17,38 @@ class AvatarsRowWidget extends StatelessWidget {
     return Column(
       children: [
         UIPageHeader(title: S.of(context).writer),
-        Container(
-          margin: const EdgeInsets.only(top: 16),
-          child: SizedBox(
-              height: 160,
-              child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: users.length,
-                  separatorBuilder: (ctx, index) => const material.Divider(),
-                  itemBuilder: (ctx, index) {
-                    Writer user = users[index];
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          Hero(
-                            tag: 'Avatar${user.id}',
-                            child: UIAvatarCard(
-                              id: user.id ?? 0,
-                              imageUrl: user.avatarUrl,
-                              onPress: (userId) async {
-                                context.go(RouterPaths.getWriterDetailsPath(userId));
-                              },
-                            ),
+        SizedBox(
+            height: 160,
+            child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                itemCount: users.length,
+                separatorBuilder: (ctx, index) => const material.Divider(),
+                itemBuilder: (ctx, index) {
+                  Writer user = users[index];
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Hero(
+                          tag: 'Avatar${user.id}',
+                          child: UIAvatarCard(
+                            id: user.id ?? 0,
+                            imageUrl: user.avatarUrl,
+                            onPress: (userId) async {
+                              context.go(RouterPaths.getWriterDetailsPath(userId));
+                            },
                           ),
-                          Container(margin: const EdgeInsets.all(8), child: Text(user.name))
-                        ],
-                      ),
-                    );
-                  })),
-        ),
+                        ),
+                        Container(
+                            margin: const EdgeInsets.all(8),
+                            child: Text(
+                              user.name,
+                              style: const TextStyle(fontSize: 14),
+                            ))
+                      ],
+                    ),
+                  );
+                })),
       ],
     );
   }
