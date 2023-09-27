@@ -1,16 +1,33 @@
-# bookclub
+# Bookclub
 
-A new Flutter project.
+A simple flutter app built using the  BloC, GetIt, Dio, GoRouter and some concepts of clean code/arch.
+This project is just a demo. Don't use it in production.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+## Mobile
+| Home | Writer Details|
+| ------------- | ------------- |
+| <img src=".readme-files/mob-home.jpg" width="300"/>  | <img src=".readme-files/mob-writer-details.jpg" width="300"/>  |
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+| Book Details | Search |
+| ------------- | ------------- |
+|<img src=".readme-files/mob-book-details.jpg" width="300"/>  | <img src=".readme-files/mob-search-details.jpg" width="300"/> |
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+| Book Details |
+| ------------- | 
+|<img src=".readme-files/mob-favorites-writer.jpg" width="300"/>  |
+
+
+## Desktop
+### Home
+<img src=".readme-files/desktop-home.jpg" width="800"/>
+
+### Writer Details
+<img src=".readme-files/desktop-writer-details.jpg" width="800"/>
+
+### Book Details
+<img src=".readme-files/desktop-book-details.jpg" width="800"/>
+
+### Favorites
+<img src=".readme-files/desktop-favorites-writer.jpg" width="800"/>
