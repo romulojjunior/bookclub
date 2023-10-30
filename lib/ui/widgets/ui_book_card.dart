@@ -1,6 +1,7 @@
 import 'package:bookclub/ui/widgets/ui_loading_indicator.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class UIBookCard extends StatelessWidget {
   final String id;
@@ -10,12 +11,12 @@ class UIBookCard extends StatelessWidget {
   final Function onPress;
 
   const UIBookCard(
-      {super.key,
-      required this.id,
+      {required this.id,
       required this.title,
       required this.description,
       required this.imageUrl,
-      required this.onPress});
+      required this.onPress,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +24,30 @@ class UIBookCard extends StatelessWidget {
       onTap: () {
         onPress(id);
       },
-      child: Container(
-        margin: const EdgeInsets.all(8),
-        child: CachedNetworkImage(
-          fit: BoxFit.cover,
-          imageUrl: imageUrl,
-          progressIndicatorBuilder: (context, url, downloadProgress) => const UILoadingIndicator(),
-        ),
+      child: Column(
+        children: [
+          Container(
+            clipBehavior: Clip.hardEdge,
+            decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5.0))),
+            margin: const EdgeInsets.all(8),
+            child: CachedNetworkImage(
+              height: 180,
+              width: 120,
+              fit: BoxFit.cover,
+              imageUrl: imageUrl,
+              progressIndicatorBuilder: (context, url, downloadProgress) => const UILoadingIndicator(),
+            ),
+          ),
+          SizedBox(
+            width: 100,
+            child: Text(
+              title,
+              style: const TextStyle(fontSize: 12),
+              maxLines: 2,
+              textAlign: TextAlign.center,
+            ),
+          )
+        ],
       ),
     );
   }

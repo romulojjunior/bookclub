@@ -28,7 +28,7 @@ class BooksWidget extends StatelessWidget {
             canShow: isLoading == false,
             onBuild: (context) {
               return SizedBox(
-                  height: 200,
+                  height: 250,
                   child: ListView.separated(
                       scrollDirection: Axis.horizontal,
                       itemCount: books.length,

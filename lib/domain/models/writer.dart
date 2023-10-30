@@ -49,13 +49,6 @@ class Writer {
           aboutMe:
               'Latin words, consectetur, from a Lorem Ipsum sage, and going through the cites of the word in classical literature, discns 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil)'),
       Writer(
-          id: 6,
-          name: 'Tony',
-          followers: 243,
-          avatarUrl: 'https://m0.her.ie/wp-content/uploads/2018/01/07093633/GettyImages-887815620.jpg',
-          aboutMe:
-              'Latin words, consectetur, from a Lorem Ipsum sage, and going through the cites of the word in classical literature, discns 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil)'),
-      Writer(
           id: 7,
           name: 'Paula',
           followers: 313,

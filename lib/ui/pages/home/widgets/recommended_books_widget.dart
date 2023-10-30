@@ -35,8 +35,7 @@ class RecommendedBooksWidget extends StatelessWidget {
               }, onBuild: (context, size) {
                 int rowsQty = size.toInt();
                 return GridView.builder(
-                    gridDelegate: material.SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: rowsQty, crossAxisSpacing: 1.0, mainAxisSpacing: 1.0),
+                    gridDelegate: material.SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: rowsQty),
                     primary: false,
                     shrinkWrap: true,
                     itemCount: recommendedBooks.length,
