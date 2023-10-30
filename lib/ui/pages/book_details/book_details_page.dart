@@ -36,6 +36,7 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
   @override
   Widget build(BuildContext context) {
     BookDetailsState state = context.watch<BookDetailsBloc>().state;
+    double screenWidth = MediaQuery.of(context).size.width;
     bool isLargeScreen = MediaQuery.of(context).size.width > _largeScreenWidth;
 
     if (state.isLoading) {
@@ -79,6 +80,8 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
             ),
             child: Center(
               child: CachedNetworkImage(
+                width: (screenWidth < 600) ? screenWidth : 600,
+                fit: BoxFit.fitWidth,
                 imageUrl: state.book!.largeThumbnail ?? state.book!.thumbnail ?? '',
                 progressIndicatorBuilder: (context, url, downloadProgress) => const UILoadingIndicator(),
               ),
