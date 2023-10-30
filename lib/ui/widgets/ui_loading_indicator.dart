@@ -8,9 +8,11 @@ class UILoadingIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const OSSelector(
-      android: material.CircularProgressIndicator(),
-      iOS: ios.CupertinoActivityIndicator(),
+    return const Center(
+      child: OSSelector(
+        android: material.CircularProgressIndicator(),
+        iOS: ios.CupertinoActivityIndicator(),
+      ),
     );
   }
 }

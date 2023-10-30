@@ -31,8 +31,8 @@ class UIBookCard extends StatelessWidget {
             decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5.0))),
             margin: const EdgeInsets.all(8),
             child: CachedNetworkImage(
-              height: 180,
-              width: 120,
+              height: 150,
+              width: 100,
               fit: BoxFit.cover,
               imageUrl: imageUrl,
               progressIndicatorBuilder: (context, url, downloadProgress) => const UILoadingIndicator(),
