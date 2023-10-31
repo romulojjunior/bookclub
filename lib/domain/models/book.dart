@@ -112,6 +112,10 @@ class Book {
         return false;
       }
 
+      if (book.title.toLowerCase() == 'nature') {
+        return false;
+      }
+
       return true;
     }).toList();
   }

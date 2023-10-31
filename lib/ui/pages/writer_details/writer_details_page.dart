@@ -48,119 +48,122 @@ class _WriterDetailsPageState extends State<WriterDetailsPage> {
     bool isTrendsLoading = booksBloc.state.isTrendsLoading;
 
     return UIScaffold(
+        title: S.of(context).writer,
         child: SafeArea(
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 400,
-              child: Stack(
-                children: [
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: UIPhotoOpacity(
-                      opacity: 0.4,
-                      child: Container(
-                          constraints: const BoxConstraints.expand(height: 400),
-                          color: material.Colors.redAccent,
-                          child: Image.network(
-                            userBackgroundPhoto.url,
-                            fit: BoxFit.cover,
-                          )),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: material.Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: UIIconButton(
-                          icon: const OSSelector(
-                            android: Icon(material.Icons.star_border),
-                            iOS: Icon(cupertino.CupertinoIcons.star),
-                          ),
-                          secondaryIcon: const OSSelector(
-                            android: Icon(material.Icons.star),
-                            iOS: Icon(cupertino.CupertinoIcons.star_fill),
-                          ),
-                          isSelected: context.watch<FavoritesCubit>().isFavoriteWriter(writer),
-                          onPressed: (isSelected) {
-                            isSelected
-                                ? context.read<FavoritesCubit>().addWriter(writer)
-                                : context.read<FavoritesCubit>().removeWriter(writer.id!);
-                          }),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: material.Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Text(
-                        writer.name,
-                        style: const TextStyle(fontSize: 36, color: material.Colors.white),
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Container(
-                      margin: const EdgeInsets.only(right: 16),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.only(top: 8),
-                            child: Text(S.of(context).nFollower(writer.followers),
-                                style: const TextStyle(fontSize: 14, color: material.Colors.white)),
-                          ),
-                          Container(
-                              constraints: const BoxConstraints(maxWidth: 300),
-                              margin: const EdgeInsets.only(top: 8),
-                              child: const StarRateWidget()),
-                          Container(
-                              margin: const EdgeInsets.only(top: 32),
-                              child: UIButton(title: S.of(context).following, onPressed: _showDialog))
-                        ],
-                      ),
-                    ),
-                  ),
-                  Align(
-                    child: Container(
-                      margin: const EdgeInsets.only(left: 16),
-                      height: 200,
-                      alignment: (MediaQuery.of(context).size.width > 600) ? Alignment.center : Alignment.centerLeft,
-                      child: Hero(
-                        tag: 'Avatar${writer.id}',
-                        child: UIAvatarCard(
-                          id: writer.id!,
-                          imageUrl: writer.avatarUrl,
-                          onPress: (id) {},
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 400,
+                  child: Stack(
+                    children: [
+                      Align(
+                        alignment: Alignment.topCenter,
+                        child: UIPhotoOpacity(
+                          opacity: 0.4,
+                          child: Container(
+                              constraints: const BoxConstraints.expand(height: 400),
+                              color: material.Colors.redAccent,
+                              child: Image.network(
+                                userBackgroundPhoto.url,
+                                fit: BoxFit.cover,
+                              )),
                         ),
                       ),
-                    ),
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: material.Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: UIIconButton(
+                              icon: const OSSelector(
+                                android: Icon(material.Icons.star_border, color: material.Colors.deepOrange),
+                                iOS: Icon(cupertino.CupertinoIcons.star, color: material.Colors.deepOrange),
+                              ),
+                              secondaryIcon: const OSSelector(
+                                android: Icon(material.Icons.star, color: material.Colors.deepOrange),
+                                iOS: Icon(cupertino.CupertinoIcons.star_fill, color: material.Colors.deepOrange),
+                              ),
+                              isSelected: context.watch<FavoritesCubit>().isFavoriteWriter(writer),
+                              onPressed: (isSelected) {
+                                isSelected
+                                    ? context.read<FavoritesCubit>().addWriter(writer)
+                                    : context.read<FavoritesCubit>().removeWriter(writer.id!);
+                              }),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: material.Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Text(
+                            writer.name,
+                            style: const TextStyle(fontSize: 36, color: material.Colors.white),
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Container(
+                          margin: const EdgeInsets.only(right: 16),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                margin: const EdgeInsets.only(top: 8),
+                                child: Text(S.of(context).nFollower(writer.followers),
+                                    style: const TextStyle(fontSize: 14, color: material.Colors.white)),
+                              ),
+                              Container(
+                                  constraints: const BoxConstraints(maxWidth: 300),
+                                  margin: const EdgeInsets.only(top: 8),
+                                  child: const StarRateWidget()),
+                              Container(
+                                  margin: const EdgeInsets.only(top: 32),
+                                  child: UIButton(title: S.of(context).following, onPressed: _showDialog))
+                            ],
+                          ),
+                        ),
+                      ),
+                      Align(
+                        child: Container(
+                          margin: const EdgeInsets.only(left: 16),
+                          height: 200,
+                          alignment:
+                              (MediaQuery.of(context).size.width > 600) ? Alignment.center : Alignment.centerLeft,
+                          child: Hero(
+                            tag: 'Avatar${writer.id}',
+                            child: UIAvatarCard(
+                              id: writer.id!,
+                              imageUrl: writer.avatarUrl,
+                              onPress: (id) {},
+                            ),
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Container(
+                          constraints: const BoxConstraints(maxWidth: 400),
+                          margin: const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
+                          child:
+                              Text(writer.aboutMe, style: const TextStyle(fontSize: 14, color: material.Colors.white)),
+                        ),
+                      )
+                    ],
                   ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                      constraints: const BoxConstraints(maxWidth: 400),
-                      margin: const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
-                      child: Text(writer.aboutMe, style: const TextStyle(fontSize: 14, color: material.Colors.white)),
-                    ),
-                  )
-                ],
-              ),
+                ),
+                BooksWidget(
+                  title: S.of(context).books,
+                  isLoading: isTrendsLoading,
+                  books: trendsBooks,
+                  onBookSelected: (bookId) {
+                    context.push(RouterPaths.getBookDetailsPath(bookId));
+                  },
+                ),
+              ],
             ),
-            BooksWidget(
-              title: S.of(context).books,
-              isLoading: isTrendsLoading,
-              books: trendsBooks,
-              onBookSelected: (bookId) {
-                context.push(RouterPaths.getBookDetailsPath(bookId));
-              },
-            ),
-          ],
-        ),
-      ),
-    ));
+          ),
+        ));
   }
 
   _showDialog() {
