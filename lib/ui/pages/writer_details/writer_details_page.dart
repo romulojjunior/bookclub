@@ -1,4 +1,4 @@
-import 'package:bookclub/domain/models/book.dart';
+import 'package:bookclub/domain/entities/book.dart';
 import 'package:bookclub/generated/l10n.dart';
 import 'package:bookclub/ui/router.dart';
 import 'package:bookclub/ui/state/books_bloc/books_bloc.dart';
@@ -15,8 +15,8 @@ import 'package:bookclub/ui/widgets/ui_scaffold.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/cupertino.dart' as cupertino;
 import 'package:flutter/widgets.dart';
-import 'package:bookclub/domain/models/photo.dart';
-import 'package:bookclub/domain/models/writer.dart';
+import 'package:bookclub/domain/entities/photo.dart';
+import 'package:bookclub/domain/entities/writer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 

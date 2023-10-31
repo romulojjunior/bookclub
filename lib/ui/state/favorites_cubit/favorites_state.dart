@@ -1,5 +1,5 @@
-import 'package:bookclub/domain/models/book.dart';
-import 'package:bookclub/domain/models/writer.dart';
+import 'package:bookclub/domain/entities/book.dart';
+import 'package:bookclub/domain/entities/writer.dart';
 import 'package:flutter/material.dart';
 
 @immutable

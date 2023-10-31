@@ -1,4 +1,4 @@
-import 'package:bookclub/domain/models/book.dart';
+import 'package:bookclub/domain/entities/book.dart';
 import 'package:bookclub/domain/usecases/books/get_recommened_books_uc.dart';
 import 'package:bookclub/domain/usecases/books/get_trends_books_uc.dart';
 import 'package:bookclub/ui/state/books_bloc/books_event.dart';

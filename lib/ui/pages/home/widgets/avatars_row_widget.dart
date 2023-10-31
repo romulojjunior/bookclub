@@ -1,4 +1,4 @@
-import 'package:bookclub/domain/models/writer.dart';
+import 'package:bookclub/domain/entities/writer.dart';
 import 'package:bookclub/generated/l10n.dart';
 import 'package:bookclub/ui/router.dart';
 import 'package:bookclub/ui/widgets/ui_avatar_card.dart';

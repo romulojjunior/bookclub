@@ -1,5 +1,5 @@
-import 'package:bookclub/domain/models/book.dart';
-import 'package:bookclub/domain/models/writer.dart';
+import 'package:bookclub/domain/entities/book.dart';
+import 'package:bookclub/domain/entities/writer.dart';
 import 'package:bookclub/generated/l10n.dart';
 import 'package:bookclub/ui/router.dart';
 import 'package:bookclub/ui/state/favorites_cubit/favorites_cubit.dart';

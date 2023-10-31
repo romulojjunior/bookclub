@@ -1,5 +1,5 @@
 import 'package:bookclub/data/repositories/books_repository.dart';
-import 'package:bookclub/domain/models/book.dart';
+import 'package:bookclub/domain/entities/book.dart';
 
 class GetTrendsBooksUC {
   GetTrendsBooksUC({required BookReposiotry bookReposiotry}) {

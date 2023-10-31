@@ -1,4 +1,4 @@
-import 'package:bookclub/domain/models/book.dart';
+import 'package:bookclub/domain/entities/book.dart';
 import 'package:bookclub/ui/widgets/ui_book_card.dart';
 import 'package:bookclub/ui/widgets/ui_conditional_widget.dart';
 import 'package:bookclub/ui/widgets/ui_loading_indicator.dart';

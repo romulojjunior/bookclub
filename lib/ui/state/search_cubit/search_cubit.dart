@@ -1,4 +1,4 @@
-import 'package:bookclub/domain/models/book.dart';
+import 'package:bookclub/domain/entities/book.dart';
 import 'package:bookclub/domain/usecases/search/search_book_by_name_uc.dart';
 import 'package:bookclub/ui/state/search_cubit/search_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
