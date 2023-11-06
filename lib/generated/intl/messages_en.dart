@@ -39,6 +39,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "following": MessageLookupByLibrary.simpleMessage("Following"),
         "nFollower": m0,
         "nReviews": m1,
+        "no": MessageLookupByLibrary.simpleMessage("no"),
         "pages": MessageLookupByLibrary.simpleMessage("pages"),
         "recommended": MessageLookupByLibrary.simpleMessage("Recommended"),
         "tab_favorites": MessageLookupByLibrary.simpleMessage("Favorites"),
@@ -48,6 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "trends": MessageLookupByLibrary.simpleMessage("Trends"),
         "wouldYouLikeUnfollow":
             MessageLookupByLibrary.simpleMessage("Would you like unfollow?"),
-        "writer": MessageLookupByLibrary.simpleMessage("Writer")
+        "writer": MessageLookupByLibrary.simpleMessage("Writer"),
+        "yes": MessageLookupByLibrary.simpleMessage("yes")
       };
 }

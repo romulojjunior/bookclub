@@ -1,3 +1,4 @@
+import 'package:bookclub/generated/l10n.dart';
 import 'package:bookclub/ui/utils/os_action_selector.dart';
 import 'package:flutter/cupertino.dart' as cupertino;
 import 'package:flutter/material.dart' as material;
@@ -25,14 +26,14 @@ class UIAlertDialog {
           content: Text(message),
           actions: <Widget>[
             material.TextButton(
-              child: const Text('No'),
+              child: Text(S.of(context).no),
               onPressed: () {
                 onCancel?.call();
                 Navigator.of(context).pop();
               },
             ),
             material.TextButton(
-              child: const Text('Yes'),
+              child: Text(S.of(context).yes),
               onPressed: () {
                 onSuccess();
                 Navigator.of(context).pop();
@@ -57,7 +58,7 @@ class UIAlertDialog {
               onSuccess();
               Navigator.of(context).pop();
             },
-            child: const Text('Yes'),
+            child: Text(S.of(context).yes),
           ),
           cupertino.CupertinoDialogAction(
             isDestructiveAction: true,
@@ -65,7 +66,7 @@ class UIAlertDialog {
               onCancel?.call();
               Navigator.of(context).pop();
             },
-            child: const Text('No'),
+            child: Text(S.of(context).no),
           ),
         ],
       ),

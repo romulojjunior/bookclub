@@ -230,6 +230,26 @@ class S {
     );
   }
 
+  /// `yes`
+  String get yes {
+    return Intl.message(
+      'yes',
+      name: 'yes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `no`
+  String get no {
+    return Intl.message(
+      'no',
+      name: 'no',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `{count, plural, =0{No follower} =1{1 follower} other{{count} followers}}`
   String nFollower(num count) {
     return Intl.plural(
