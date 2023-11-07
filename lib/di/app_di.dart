@@ -1,3 +1,4 @@
+import 'package:bookclub/data/api/book_api.dart';
 import 'package:bookclub/domain/repositories/books_repository.dart';
 import 'package:bookclub/domain/usecases/books/get_book_by_id.dart';
 import 'package:bookclub/domain/usecases/books/get_recommened_books_uc.dart';
@@ -12,6 +13,7 @@ import 'package:get_it/get_it.dart';
 
 loadAppDI(GetIt getIt) {
   loadHttpClient(getIt);
+  loadApi(getIt);
   loadRepositories(getIt);
   loadUsecases(getIt);
   loadBlocs(getIt);
@@ -24,9 +26,15 @@ loadHttpClient(GetIt getIt) {
   });
 }
 
+loadApi(GetIt getIt) {
+  getIt.registerLazySingleton(() {
+    return BookApi(httpClient: getIt.get());
+  });
+}
+
 loadRepositories(GetIt getIt) {
   getIt.registerLazySingleton(() {
-    return BookReposiotry(remoteSource: getIt.get());
+    return BookReposiotry(bookApi: getIt.get());
   });
 }
 
