@@ -8,6 +8,7 @@ import 'package:bookclub/ui/state/book_details_bloc/book_details_bloc.dart';
 import 'package:bookclub/ui/state/books_bloc/books_bloc.dart';
 import 'package:bookclub/ui/state/favorites_cubit/favorites_cubit.dart';
 import 'package:bookclub/ui/state/search_cubit/search_cubit.dart';
+import 'package:bookclub/ui/state/settings_cubit/settings_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
@@ -75,5 +76,9 @@ loadCubits(GetIt getIt) {
 
   getIt.registerFactory(() {
     return SearchCubit(searchBookByNameUC: getIt.get());
+  });
+
+  getIt.registerFactory(() {
+    return SettingsCubit();
   });
 }
