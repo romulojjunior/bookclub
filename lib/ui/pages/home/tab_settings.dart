@@ -45,7 +45,7 @@ class _TabSettingsState extends State<TabSettings> {
                     ],
                   );
                 }),
-            SettingsList(items: options)
+            Container(constraints: const BoxConstraints(maxWidth: 400), child: SettingsList(items: options))
           ],
         ),
       ),
