@@ -50,6 +50,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "wouldYouLikeUnfollow":
             MessageLookupByLibrary.simpleMessage("Would you like unfollow?"),
         "writer": MessageLookupByLibrary.simpleMessage("Writer"),
+        "writers": MessageLookupByLibrary.simpleMessage("Writers"),
         "yes": MessageLookupByLibrary.simpleMessage("yes")
       };
 }

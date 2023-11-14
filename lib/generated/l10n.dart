@@ -80,6 +80,16 @@ class S {
     );
   }
 
+  /// `Writers`
+  String get writers {
+    return Intl.message(
+      'Writers',
+      name: 'writers',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Following`
   String get following {
     return Intl.message(

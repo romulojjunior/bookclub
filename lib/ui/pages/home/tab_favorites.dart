@@ -29,7 +29,7 @@ class _FavoritesSettingsState extends material.State<FavoritesSettings> {
     FavoritesCubit favoritesCubit = context.watch<FavoritesCubit>();
     List<Writer> favoriteWriters = favoritesCubit.state.writers;
     List<Book> favoriteBooks = favoritesCubit.state.books;
-    const List<Widget> menuOptions = <Widget>[Text('Writers'), Text('Books')];
+    List<Widget> menuOptions = <Widget>[Text(S.of(context).writers), Text(S.of(context).books)];
 
     List<Widget> body = [];
 

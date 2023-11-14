@@ -2,6 +2,7 @@
   "appName": "BookClub",
   "books": "Books",
   "writer": "Writer",
+  "writers": "Writers",
   "following": "Following",
   "trends": "Trends",
   "recommended": "Recommended",
