@@ -133,7 +133,9 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
               child: LayoutBuilder(
                 builder: (context, boxConstraints) {
                   if (isLargeScreen) {
-                    return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: body);
+                    return Container(
+                        constraints: const BoxConstraints(maxWidth: 1280),
+                        child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: body));
                   } else {
                     return Column(children: body);
                   }
