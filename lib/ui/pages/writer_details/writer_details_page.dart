@@ -63,7 +63,6 @@ class _WriterDetailsPageState extends State<WriterDetailsPage> {
                           opacity: 0.4,
                           child: Container(
                               constraints: const BoxConstraints.expand(height: 400),
-                              color: material.Colors.redAccent,
                               child: Image.network(
                                 userBackgroundPhoto.url,
                                 fit: BoxFit.cover,
