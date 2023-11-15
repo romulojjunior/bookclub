@@ -1,4 +1,5 @@
 import 'package:bookclub/domain/entities/book.dart';
+import 'package:bookclub/domain/utils/book_utils.dart';
 import 'package:dio/dio.dart';
 
 class BookApi {
@@ -25,7 +26,7 @@ class BookApi {
       return Book.fromMap(data);
     }).toList();
 
-    return Book.filterBrokeBooks(books);
+    return BookUtils.filterBrokeBooks(books);
   }
 
   Future<List<Book>> getTrendsBooks(String topic) async {
@@ -36,7 +37,7 @@ class BookApi {
       return Book.fromMap(data);
     }).toList();
 
-    return Book.filterBrokeBooks(books);
+    return BookUtils.filterBrokeBooks(books);
   }
 
   Future<List<Book>> searchByName(String name) async {
@@ -47,6 +48,6 @@ class BookApi {
       return Book.fromMap(data);
     }).toList();
 
-    return Book.filterBrokeBooks(books);
+    return BookUtils.filterBrokeBooks(books);
   }
 }
