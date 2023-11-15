@@ -133,7 +133,7 @@ class _WriterDetailsPageState extends State<WriterDetailsPage> {
                           alignment:
                               (MediaQuery.of(context).size.width > 600) ? Alignment.center : Alignment.centerLeft,
                           child: Hero(
-                            tag: 'Avatar${writer.id}',
+                            tag: UIAvatarCard.getHeroTag(writer.id),
                             child: UIAvatarCard(
                               id: writer.id!,
                               imageUrl: writer.avatarUrl,

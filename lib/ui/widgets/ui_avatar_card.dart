@@ -30,4 +30,8 @@ class UIAvatarCard extends StatelessWidget {
           )),
     );
   }
+
+  static getHeroTag(id) {
+    return 'UIAvatarCard-tag-$id';
+  }
 }

@@ -30,7 +30,7 @@ class AvatarsRowWidget extends StatelessWidget {
                     child: Column(
                       children: [
                         Hero(
-                          tag: 'Avatar${user.id}',
+                          tag: UIAvatarCard.getHeroTag(user.id),
                           child: UIAvatarCard(
                             id: user.id ?? 0,
                             imageUrl: user.avatarUrl,
