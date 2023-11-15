@@ -1,3 +1,4 @@
+import 'package:bookclub/ui/theme/images_path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -19,8 +20,10 @@ class UIAvatarCard extends StatelessWidget {
             children: [
               ClipOval(
                 child: SizedBox.fromSize(
-                  size: const Size.fromRadius(48), // Image radius
-                  child: Image.network(imageUrl, fit: BoxFit.cover),
+                  size: const Size.fromRadius(48),
+                  child: Image.network(imageUrl, fit: BoxFit.cover, errorBuilder: (_, __, ___) {
+                    return Image.asset(ImagesPath.avatarImagePath);
+                  }),
                 ),
               ),
             ],

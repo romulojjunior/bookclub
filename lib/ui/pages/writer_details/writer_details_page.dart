@@ -66,6 +66,9 @@ class _WriterDetailsPageState extends State<WriterDetailsPage> {
                               child: Image.network(
                                 userBackgroundPhoto.url,
                                 fit: BoxFit.cover,
+                                errorBuilder: (_, __, ___) {
+                                  return Container(color: material.Colors.black);
+                                },
                               )),
                         ),
                       ),
