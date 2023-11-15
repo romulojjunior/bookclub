@@ -15,7 +15,6 @@ import 'package:bookclub/ui/widgets/ui_scaffold.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/cupertino.dart' as cupertino;
 import 'package:flutter/widgets.dart';
-import 'package:bookclub/domain/entities/photo.dart';
 import 'package:bookclub/domain/entities/writer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -30,15 +29,12 @@ class WriterDetailsPage extends StatefulWidget {
 
 class _WriterDetailsPageState extends State<WriterDetailsPage> {
   late Writer writer;
-  late Photo userBackgroundPhoto;
-  List<Photo> photos = Photo.getSample();
-  List<Writer> users = Writer.sample();
+  List<Writer> users = Writer.getSamples();
 
   @override
   void initState() {
     super.initState();
     writer = users.firstWhere((user) => user.id == widget.userId);
-    userBackgroundPhoto = photos[writer.id!];
   }
 
   @override
@@ -64,7 +60,7 @@ class _WriterDetailsPageState extends State<WriterDetailsPage> {
                           child: Container(
                               constraints: const BoxConstraints.expand(height: 400),
                               child: Image.network(
-                                userBackgroundPhoto.url,
+                                writer.imageCoverUrl,
                                 fit: BoxFit.cover,
                                 errorBuilder: (_, __, ___) {
                                   return Container(color: material.Colors.black);

@@ -7,7 +7,7 @@ class SettingsCubit extends Cubit<SettingsState> {
 
   loadAndCacheUser() async {
     if (state.user == null) {
-      User user = User.sample()[0];
+      User user = User.getSamples()[0];
       var newState = state.copyWith(isLoading: false, user: user);
       emit(newState);
     }

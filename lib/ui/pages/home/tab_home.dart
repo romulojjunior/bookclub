@@ -27,7 +27,7 @@ class TabHome extends StatelessWidget {
         child: Column(
           children: <Widget>[
             AvatarsRowWidget(
-              users: Writer.sample(),
+              users: Writer.getSamples(),
             ),
             BooksWidget(
               title: S.of(context).trends,

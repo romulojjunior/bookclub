@@ -1,6 +1,6 @@
 import 'package:bookclub/ui/widgets/ui_loading_indicator.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' as material;
 import 'package:flutter/widgets.dart';
 
 class UIBookCard extends StatelessWidget {
@@ -36,6 +36,9 @@ class UIBookCard extends StatelessWidget {
               fit: BoxFit.cover,
               imageUrl: imageUrl,
               progressIndicatorBuilder: (context, url, downloadProgress) => const UILoadingIndicator(),
+              errorWidget: (context, url, error) {
+                return Container(color: material.Colors.grey);
+              },
             ),
           ),
           SizedBox(
