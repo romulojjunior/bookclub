@@ -20,6 +20,9 @@
   "empty": "Empty",
   "yes": "yes",
   "no": "no",
+  "messageErrorTitle": "Something went wrong!",
+  "messageErrorBody": "Try refreshing the page or checking \n your internet connection.",
+  "retry": "Retry",
   "nFollower": "{count, plural, =0{No follower} =1{1 follower} other{{count} followers}}",
   "@nFollower": {
     "placeholders": {

@@ -16,3 +16,9 @@ class LoadRecommendedBooksEvent extends BooksEvent {
 
   final String topic;
 }
+
+@immutable
+class EnableBooksUIErrorEvent extends BooksEvent {}
+
+@immutable
+class DisableBooksUIErrorEvent extends BooksEvent {}

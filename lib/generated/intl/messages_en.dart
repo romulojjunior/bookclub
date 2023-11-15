@@ -37,11 +37,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "empty": MessageLookupByLibrary.simpleMessage("Empty"),
         "favorite": MessageLookupByLibrary.simpleMessage("Favorite"),
         "following": MessageLookupByLibrary.simpleMessage("Following"),
+        "messageErrorBody": MessageLookupByLibrary.simpleMessage(
+            "Try refreshing the page or checking \n your internet connection."),
+        "messageErrorTitle":
+            MessageLookupByLibrary.simpleMessage("Something went wrong!"),
         "nFollower": m0,
         "nReviews": m1,
         "no": MessageLookupByLibrary.simpleMessage("no"),
         "pages": MessageLookupByLibrary.simpleMessage("pages"),
         "recommended": MessageLookupByLibrary.simpleMessage("Recommended"),
+        "retry": MessageLookupByLibrary.simpleMessage("Retry"),
         "tab_favorites": MessageLookupByLibrary.simpleMessage("Favorites"),
         "tab_home": MessageLookupByLibrary.simpleMessage("Home"),
         "tab_search": MessageLookupByLibrary.simpleMessage("Search"),

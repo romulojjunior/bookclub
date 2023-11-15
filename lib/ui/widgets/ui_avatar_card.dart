@@ -22,7 +22,7 @@ class UIAvatarCard extends StatelessWidget {
                 child: SizedBox.fromSize(
                   size: const Size.fromRadius(48),
                   child: Image.network(imageUrl, fit: BoxFit.cover, errorBuilder: (_, __, ___) {
-                    return Image.asset(ImagesPath.avatarImagePath);
+                    return Image.asset(ImagesPath.avatar);
                   }),
                 ),
               ),

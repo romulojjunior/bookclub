@@ -260,6 +260,36 @@ class S {
     );
   }
 
+  /// `Something went wrong!`
+  String get messageErrorTitle {
+    return Intl.message(
+      'Something went wrong!',
+      name: 'messageErrorTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try refreshing the page or checking \n your internet connection.`
+  String get messageErrorBody {
+    return Intl.message(
+      'Try refreshing the page or checking \n your internet connection.',
+      name: 'messageErrorBody',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Retry`
+  String get retry {
+    return Intl.message(
+      'Retry',
+      name: 'retry',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `{count, plural, =0{No follower} =1{1 follower} other{{count} followers}}`
   String nFollower(num count) {
     return Intl.plural(
