@@ -8,8 +8,8 @@ import 'package:bookclub/ui/state/books_bloc/books_event.dart';
 import 'package:bookclub/ui/widgets/books_widget.dart';
 import 'package:bookclub/ui/state/books_bloc/books_bloc.dart';
 import 'package:bookclub/ui/widgets/ui_conditional_widget.dart';
+import 'package:bookclub/ui/widgets/ui_custom_scroll_view.dart';
 import 'package:bookclub/ui/widgets/ui_error_message.dart';
-import 'package:bookclub/ui/widgets/ui_pull_to_refresh.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,45 +40,46 @@ class TabHome extends StatelessWidget {
     }
 
     return SafeArea(
-      child: UIPullToRefresh(
-        onRefresh: () {
-          context.read<BooksBloc>().loadInitialData();
-        },
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              AvatarsRowWidget(
-                users: Writer.getSamples(),
-              ),
-              UIConditionalWidget(
-                canShow: trendsBooks.isNotEmpty,
-                onBuild: (context) {
-                  return BooksWidget(
-                    title: S.of(context).trends,
-                    isLoading: isTrendsLoading,
-                    books: trendsBooks,
-                    onBookSelected: (bookId) {
-                      context.push(RouterPaths.getBookDetailsPath(bookId));
+      child: UICustomScrollView(
+          onRefresh: () {
+            context.read<BooksBloc>().loadInitialData();
+          },
+          slivers: [
+            SliverList.list(children: [
+              Column(
+                children: <Widget>[
+                  AvatarsRowWidget(
+                    users: Writer.getSamples(),
+                  ),
+                  UIConditionalWidget(
+                    canShow: trendsBooks.isNotEmpty,
+                    onBuild: (context) {
+                      return BooksWidget(
+                        title: S.of(context).trends,
+                        isLoading: isTrendsLoading,
+                        books: trendsBooks,
+                        onBookSelected: (bookId) {
+                          context.push(RouterPaths.getBookDetailsPath(bookId));
+                        },
+                      );
                     },
-                  );
-                },
-              ),
-              UIConditionalWidget(
-                canShow: recommendedBooks.isNotEmpty,
-                onBuild: (context) {
-                  return RecommendedBooksWidget(
-                    isLoading: isRecommendedLoading,
-                    recommendedBooks: recommendedBooks,
-                    onBookSelected: (bookId) {
-                      context.push(RouterPaths.getBookDetailsPath(bookId));
+                  ),
+                  UIConditionalWidget(
+                    canShow: recommendedBooks.isNotEmpty,
+                    onBuild: (context) {
+                      return RecommendedBooksWidget(
+                        isLoading: isRecommendedLoading,
+                        recommendedBooks: recommendedBooks,
+                        onBookSelected: (bookId) {
+                          context.push(RouterPaths.getBookDetailsPath(bookId));
+                        },
+                      );
                     },
-                  );
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
+                  ),
+                ],
+              )
+            ])
+          ]),
     );
   }
 }
