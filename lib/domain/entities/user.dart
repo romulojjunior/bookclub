@@ -1,13 +1,6 @@
 import 'package:bookclub/data/samples/user_samples.dart';
 
 class User {
-  int? id;
-  String name;
-  String avatarUrl;
-  String imageCoverUrl;
-  String aboutMe;
-  int followers = 0;
-
   User(
       {this.id,
       required this.name,
@@ -15,6 +8,13 @@ class User {
       required this.imageCoverUrl,
       required this.aboutMe,
       this.followers = 0});
+
+  int? id;
+  String name;
+  String avatarUrl;
+  String imageCoverUrl;
+  String aboutMe;
+  int followers = 0;
 
   static List<User> getSamples() {
     return UserSamples.getSamples().map((e) {

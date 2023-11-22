@@ -8,8 +8,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TabSettings extends StatefulWidget {
-  final String title;
   const TabSettings({required this.title, super.key});
+
+  final String title;
 
   @override
   State<TabSettings> createState() => _TabSettingsState();

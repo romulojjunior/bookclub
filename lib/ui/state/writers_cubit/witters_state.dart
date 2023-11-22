@@ -1,11 +1,11 @@
 import 'package:bookclub/domain/entities/writer.dart';
 
 class WritersState {
+  WritersState({required this.isLoading, required this.isUIErrorEnabled, required this.writers});
+
   final bool isLoading;
   final bool isUIErrorEnabled;
   final List<Writer> writers;
-
-  WritersState({required this.isLoading, required this.isUIErrorEnabled, required this.writers});
 
   static WritersState initalState() {
     return WritersState(isLoading: false, isUIErrorEnabled: false, writers: []);

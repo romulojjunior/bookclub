@@ -3,12 +3,12 @@ import 'package:bookclub/domain/entities/writer.dart';
 
 class WriterRepository {
   WriterRepository({required WriterApi writerApi}) {
-    _writerApi = writerApi;
+    _remoteSource = writerApi;
   }
 
-  late WriterApi _writerApi;
+  late WriterApi _remoteSource;
 
   Future<List<Writer>> getWriters() {
-    return _writerApi.getWriters();
+    return _remoteSource.getWriters();
   }
 }

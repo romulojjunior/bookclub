@@ -4,8 +4,9 @@ import 'package:flutter/material.dart' as material;
 import 'package:flutter/widgets.dart';
 
 class SettingsList extends StatelessWidget {
-  final List<String> items;
   const SettingsList({required this.items, super.key});
+
+  final List<String> items;
 
   @override
   Widget build(BuildContext context) {

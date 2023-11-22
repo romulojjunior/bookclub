@@ -14,8 +14,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class FavoritesSettings extends material.StatefulWidget {
-  final String title;
   const FavoritesSettings({super.key, required this.title});
+
+  final String title;
 
   @override
   State<FavoritesSettings> createState() => _FavoritesSettingsState();

@@ -21,8 +21,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class WriterDetailsPage extends StatefulWidget {
-  final int userId;
   const WriterDetailsPage({super.key, required this.userId});
+
+  final int userId;
 
   @override
   State<WriterDetailsPage> createState() => _WriterDetailsPageState();

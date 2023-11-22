@@ -13,8 +13,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class TabSearch extends StatelessWidget {
-  final String title;
   const TabSearch({super.key, required this.title});
+
+  final String title;
 
   @override
   Widget build(BuildContext context) {
