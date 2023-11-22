@@ -32,7 +32,7 @@ class Book {
   String? currencyCode;
 
   Map toMap() {
-    Map data = {
+    Map object = {
       id: id,
       title: title,
       authors: authors,
@@ -49,15 +49,15 @@ class Book {
       pageQuantity: pageQuantity,
     };
 
-    return data;
+    return object;
   }
 
-  static Book fromMap(Map<String, dynamic> data) {
-    Book book = Book(title: data['volumeInfo']['title']);
+  static Book fromMap(Map<String, dynamic> object) {
+    Book book = Book(title: object['volumeInfo']['title']);
 
-    if (data.containsKey('volumeInfo')) {
-      Map volumeInfo = data['volumeInfo'];
-      book.id = data['id'];
+    if (object.containsKey('volumeInfo')) {
+      Map volumeInfo = object['volumeInfo'];
+      book.id = object['id'];
       if (volumeInfo.containsKey('authors')) {
         book.authors = (volumeInfo['authors'] as List).map((e) => e.toString()).toList();
       }
@@ -84,8 +84,8 @@ class Book {
       }
     }
 
-    if (data.containsKey('saleInfo')) {
-      Map saleInfo = data['saleInfo'];
+    if (object.containsKey('saleInfo')) {
+      Map saleInfo = object['saleInfo'];
       book.price = saleInfo['price'];
       book.currencyCode = saleInfo['currencyCode'];
     }

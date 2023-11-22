@@ -5,6 +5,7 @@ import 'package:bookclub/ui/pages/home/widgets/avatars_row_widget.dart';
 import 'package:bookclub/ui/pages/home/widgets/recommended_books_widget.dart';
 import 'package:bookclub/ui/router.dart';
 import 'package:bookclub/ui/state/books_bloc/books_event.dart';
+import 'package:bookclub/ui/state/writers_cubit/writers_cubit.dart';
 import 'package:bookclub/ui/widgets/books_widget.dart';
 import 'package:bookclub/ui/state/books_bloc/books_bloc.dart';
 import 'package:bookclub/ui/widgets/ui_conditional_widget.dart';
@@ -21,19 +22,26 @@ class TabHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Book> recommendedBooks = context.watch<BooksBloc>().state.recommended;
-    bool isRecommendedLoading = context.watch<BooksBloc>().state.isRecommendedLoading;
+    BooksBloc booksBloc = context.watch<BooksBloc>();
+    WritersCubit writersCubit = context.watch<WritersCubit>();
 
-    List<Book> trendsBooks = context.watch<BooksBloc>().state.trends;
-    bool isTrendsLoading = context.watch<BooksBloc>().state.isTrendsLoading;
-    bool isUIErrorEnabled = context.watch<BooksBloc>().state.isUIErrorEnabled;
+    List<Writer> writers = writersCubit.state.writers;
+    List<Book> recommendedBooks = booksBloc.state.recommended;
+    List<Book> trendsBooks = booksBloc.state.trends;
 
-    if (isUIErrorEnabled) {
+    bool isRecommendedLoading = booksBloc.state.isRecommendedLoading;
+    bool isTrendsLoading = booksBloc.state.isTrendsLoading;
+
+    bool isBooksUIErrorEnabled = booksBloc.state.isUIErrorEnabled;
+    bool isWritersUIErrorEnabled = booksBloc.state.isUIErrorEnabled;
+
+    if (isBooksUIErrorEnabled || isWritersUIErrorEnabled) {
       return SafeArea(
         child: UIErrorMessage(
           onRetry: () {
-            context.read<BooksBloc>().loadInitialData();
-            context.read<BooksBloc>().add(DisableBooksUIErrorEvent());
+            writersCubit.loadInitialData();
+            booksBloc.loadInitialData();
+            booksBloc.add(DisableBooksUIErrorEvent());
           },
         ),
       );
@@ -48,8 +56,13 @@ class TabHome extends StatelessWidget {
             SliverList.list(children: [
               Column(
                 children: <Widget>[
-                  AvatarsRowWidget(
-                    users: Writer.getSamples(),
+                  UIConditionalWidget(
+                    canShow: writers.isNotEmpty,
+                    onBuild: (context) {
+                      return AvatarsRowWidget(
+                        users: writers,
+                      );
+                    },
                   ),
                   UIConditionalWidget(
                     canShow: trendsBooks.isNotEmpty,

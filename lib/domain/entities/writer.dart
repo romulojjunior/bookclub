@@ -1,5 +1,3 @@
-import 'package:bookclub/data/samples/writer_samples.dart';
-
 class Writer {
   int? id;
   String name;
@@ -16,15 +14,13 @@ class Writer {
       required this.aboutMe,
       this.followers = 0});
 
-  static List<Writer> getSamples() {
-    return WriterSamples.getSamples().map((e) {
-      return Writer(
-          id: e['id'],
-          name: e['name'],
-          followers: e['followers'],
-          avatarUrl: e['avatarUrl'],
-          imageCoverUrl: e['imageCoverUrl'],
-          aboutMe: e['aboutMe']);
-    }).toList();
+  static Writer fromMap(Map<String, dynamic> object) {
+    return Writer(
+        id: object['id'],
+        name: object['name'],
+        followers: object['followers'],
+        avatarUrl: object['avatarUrl'],
+        imageCoverUrl: object['imageCoverUrl'],
+        aboutMe: object['aboutMe']);
   }
 }

@@ -3,6 +3,7 @@ import 'package:bookclub/generated/l10n.dart';
 import 'package:bookclub/ui/router.dart';
 import 'package:bookclub/ui/state/books_bloc/books_bloc.dart';
 import 'package:bookclub/ui/state/favorites_cubit/favorites_cubit.dart';
+import 'package:bookclub/ui/state/writers_cubit/writers_cubit.dart';
 import 'package:bookclub/ui/utils/os_selector.dart';
 import 'package:bookclub/ui/widgets/books_widget.dart';
 import 'package:bookclub/ui/widgets/start_rate_widget.dart';
@@ -29,12 +30,12 @@ class WriterDetailsPage extends StatefulWidget {
 
 class _WriterDetailsPageState extends State<WriterDetailsPage> {
   late Writer writer;
-  List<Writer> users = Writer.getSamples();
+  late List<Writer> users;
 
   @override
   void initState() {
+    writer = context.read<WritersCubit>().state.writers.firstWhere((user) => user.id == widget.userId);
     super.initState();
-    writer = users.firstWhere((user) => user.id == widget.userId);
   }
 
   @override
