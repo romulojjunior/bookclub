@@ -3,7 +3,7 @@ import 'package:bookclub/ui/pages/home/tab_favorites.dart';
 import 'package:bookclub/ui/pages/home/tab_home.dart';
 import 'package:bookclub/ui/pages/home/tab_search.dart';
 import 'package:bookclub/ui/pages/home/tab_settings.dart';
-import 'package:bookclub/ui/utils/os_selector.dart';
+import 'package:bookclub/ui/widgets/ui_selector.dart';
 import 'package:bookclub/ui/widgets/ui_tab_scaffold.dart';
 import 'package:flutter/cupertino.dart' as cupertino;
 import 'package:flutter/material.dart' as material;
@@ -19,22 +19,22 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Widget homeIcon = const OSSelector(
+  Widget homeIcon = const UISelector(
     android: Icon(material.Icons.home),
     iOS: Icon(cupertino.CupertinoIcons.home),
   );
 
-  Widget favoritesIcon = const OSSelector(
+  Widget favoritesIcon = const UISelector(
     android: Icon(material.Icons.star),
     iOS: Icon(cupertino.CupertinoIcons.star),
   );
 
-  Widget searchIcon = const OSSelector(
+  Widget searchIcon = const UISelector(
     android: Icon(material.Icons.search),
     iOS: Icon(cupertino.CupertinoIcons.search),
   );
 
-  Widget settingsIcon = const OSSelector(
+  Widget settingsIcon = const UISelector(
     android: Icon(material.Icons.settings),
     iOS: Icon(cupertino.CupertinoIcons.settings),
   );

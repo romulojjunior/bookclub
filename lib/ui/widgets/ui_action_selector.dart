@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
-class OSActionSelector {
-  const OSActionSelector({this.onAndroid, this.onIOS, this.onMacOS, this.onGeneric});
+class UIActionSelector {
+  const UIActionSelector({this.onAndroid, this.onIOS, this.onMacOS, this.onGeneric});
 
   final Function(BuildContext context)? onAndroid;
   final Function(BuildContext context)? onIOS;

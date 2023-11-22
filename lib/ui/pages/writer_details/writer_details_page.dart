@@ -4,7 +4,7 @@ import 'package:bookclub/ui/router.dart';
 import 'package:bookclub/ui/state/books_bloc/books_bloc.dart';
 import 'package:bookclub/ui/state/favorites_cubit/favorites_cubit.dart';
 import 'package:bookclub/ui/state/writers_cubit/writers_cubit.dart';
-import 'package:bookclub/ui/utils/os_selector.dart';
+import 'package:bookclub/ui/widgets/ui_selector.dart';
 import 'package:bookclub/ui/widgets/ui_books.dart';
 import 'package:bookclub/ui/widgets/ui_start_rate.dart';
 import 'package:bookclub/ui/widgets/ui_alert_dialog.dart';
@@ -75,11 +75,11 @@ class _WriterDetailsPageState extends State<WriterDetailsPage> {
                         child: material.Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: UIIconButton(
-                              icon: const OSSelector(
+                              icon: const UISelector(
                                 android: Icon(material.Icons.star_border, color: material.Colors.deepOrange),
                                 iOS: Icon(cupertino.CupertinoIcons.star, color: material.Colors.deepOrange),
                               ),
-                              secondaryIcon: const OSSelector(
+                              secondaryIcon: const UISelector(
                                 android: Icon(material.Icons.star, color: material.Colors.deepOrange),
                                 iOS: Icon(cupertino.CupertinoIcons.star_fill, color: material.Colors.deepOrange),
                               ),

@@ -1,6 +1,6 @@
 import 'package:bookclub/domain/entities/book.dart';
 import 'package:bookclub/generated/l10n.dart';
-import 'package:bookclub/ui/utils/os_selector.dart';
+import 'package:bookclub/ui/widgets/ui_selector.dart';
 import 'package:bookclub/ui/widgets/ui_icon_button.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart' as material;
@@ -24,7 +24,7 @@ class BookPanelInfo extends StatelessWidget {
             constraints: const BoxConstraints(minHeight: 50, minWidth: 50),
             child: Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
               const UIIconButton(
-                icon: OSSelector(
+                icon: UISelector(
                   android: Icon(material.Icons.shop),
                   iOS: Icon(cupertino.CupertinoIcons.shopping_cart),
                 ),
@@ -40,11 +40,11 @@ class BookPanelInfo extends StatelessWidget {
             constraints: const BoxConstraints(minHeight: 50, minWidth: 50),
             child: Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
               UIIconButton(
-                  icon: const OSSelector(
+                  icon: const UISelector(
                     android: Icon(material.Icons.star_border),
                     iOS: Icon(cupertino.CupertinoIcons.star),
                   ),
-                  secondaryIcon: const OSSelector(
+                  secondaryIcon: const UISelector(
                     android: Icon(material.Icons.star),
                     iOS: Icon(cupertino.CupertinoIcons.star_fill),
                   ),
@@ -61,7 +61,7 @@ class BookPanelInfo extends StatelessWidget {
             constraints: const BoxConstraints(minHeight: 50, minWidth: 50),
             child: Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
               const UIIconButton(
-                icon: OSSelector(
+                icon: UISelector(
                   android: Icon(material.Icons.book_online),
                   iOS: Icon(cupertino.CupertinoIcons.book),
                 ),

@@ -1,4 +1,4 @@
-import 'package:bookclub/ui/utils/os_selector.dart';
+import 'package:bookclub/ui/widgets/ui_selector.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/cupertino.dart' as cupertino;
 import 'package:flutter/widgets.dart';
@@ -15,7 +15,7 @@ class UISearchBar extends StatelessWidget {
         constraints: const BoxConstraints(
           maxWidth: 500,
         ),
-        child: OSSelector(
+        child: UISelector(
           android: material.TextField(
             onChanged: onChanged,
           ),

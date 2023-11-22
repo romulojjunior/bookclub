@@ -1,4 +1,4 @@
-import 'package:bookclub/ui/utils/os_selector.dart';
+import 'package:bookclub/ui/widgets/ui_selector.dart';
 import 'package:flutter/widgets.dart';
 
 class UIIconButton extends StatefulWidget {
@@ -23,7 +23,7 @@ class _UIIconButtonState extends State<UIIconButton> {
 
   @override
   Widget build(BuildContext context) {
-    return OSSelector(
+    return UISelector(
       android: GestureDetector(
         onTap: _onIconPressed,
         child: _isSelected ? (widget.secondaryIcon ?? widget.icon) : widget.icon,

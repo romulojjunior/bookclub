@@ -1,5 +1,5 @@
 import 'package:bookclub/generated/l10n.dart';
-import 'package:bookclub/ui/utils/os_action_selector.dart';
+import 'package:bookclub/ui/widgets/ui_action_selector.dart';
 import 'package:flutter/cupertino.dart' as cupertino;
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/widgets.dart';
@@ -13,7 +13,7 @@ class UIAlertDialog {
   const UIAlertDialog({required this.title, required this.message, required this.onSuccess, required this.onCancel});
 
   showDialog(BuildContext context) {
-    OSActionSelector(onAndroid: _showAndroidDialog, onIOS: _showIOSDialog).select(context);
+    UIActionSelector(onAndroid: _showAndroidDialog, onIOS: _showIOSDialog).select(context);
   }
 
   _showAndroidDialog(BuildContext context) {

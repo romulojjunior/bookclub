@@ -1,4 +1,4 @@
-import 'package:bookclub/ui/utils/os_selector.dart';
+import 'package:bookclub/ui/widgets/ui_selector.dart';
 import 'package:flutter/cupertino.dart' as cupertino;
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/widgets.dart';
@@ -10,7 +10,7 @@ class UIScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OSSelector(
+    return UISelector(
       android: material.Scaffold(
         appBar: material.AppBar(
           title: Text(title ?? ''),

@@ -7,7 +7,7 @@ import 'package:bookclub/ui/state/search_cubit/search_cubit.dart';
 import 'package:bookclub/ui/state/settings_cubit/settings_cubit.dart';
 import 'package:bookclub/ui/state/writers_cubit/writers_cubit.dart';
 import 'package:bookclub/ui/theme/app_theme.dart';
-import 'package:bookclub/ui/utils/os_selector.dart';
+import 'package:bookclub/ui/widgets/ui_selector.dart';
 import 'package:flutter/cupertino.dart' as ios;
 import 'package:flutter/material.dart' as android;
 import 'package:flutter/widgets.dart';
@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OSSelector(
+    return UISelector(
         android: android.MaterialApp.router(
           supportedLocales: const [Locale('en')],
           localizationsDelegates: const [

@@ -1,4 +1,4 @@
-import 'package:bookclub/ui/utils/os_selector.dart';
+import 'package:bookclub/ui/widgets/ui_selector.dart';
 import 'package:flutter/cupertino.dart' as cupertino;
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/widgets.dart';
@@ -17,7 +17,7 @@ class SettingsList extends StatelessWidget {
         separatorBuilder: (_, __) => const material.Divider(),
         itemBuilder: (_, index) {
           String item = items[index];
-          return OSSelector(
+          return UISelector(
             android: material.ListTile(
               title: Text(item),
               selectedColor: material.Colors.transparent,
