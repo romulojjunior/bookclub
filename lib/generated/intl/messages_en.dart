@@ -23,8 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m0(count) =>
       "${Intl.plural(count, zero: 'No follower', one: '1 follower', other: '${count} followers')}";
 
-  static String m1(count) =>
-      "${Intl.plural(count, zero: '0 Review', one: '1 Review', other: '${count} reviews')}";
+  static String m1(count) => "${Intl.plural(count, zero: '0 Review', one: '1 Review', other: '${count} reviews')}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -37,10 +36,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "empty": MessageLookupByLibrary.simpleMessage("Empty"),
         "favorite": MessageLookupByLibrary.simpleMessage("Favorite"),
         "following": MessageLookupByLibrary.simpleMessage("Following"),
-        "messageErrorBody": MessageLookupByLibrary.simpleMessage(
-            "Try refreshing the page or checking \n your internet connection."),
-        "messageErrorTitle":
-            MessageLookupByLibrary.simpleMessage("Something went wrong!"),
+        "messageErrorBody":
+            MessageLookupByLibrary.simpleMessage("Try refreshing the page and checking \n your internet connection."),
+        "messageErrorTitle": MessageLookupByLibrary.simpleMessage("Something went wrong!"),
         "nFollower": m0,
         "nReviews": m1,
         "no": MessageLookupByLibrary.simpleMessage("no"),
@@ -52,8 +50,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tab_search": MessageLookupByLibrary.simpleMessage("Search"),
         "tab_settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "trends": MessageLookupByLibrary.simpleMessage("Trends"),
-        "wouldYouLikeUnfollow":
-            MessageLookupByLibrary.simpleMessage("Would you like unfollow?"),
+        "wouldYouLikeUnfollow": MessageLookupByLibrary.simpleMessage("Would you like unfollow?"),
         "writer": MessageLookupByLibrary.simpleMessage("Writer"),
         "writers": MessageLookupByLibrary.simpleMessage("Writers"),
         "yes": MessageLookupByLibrary.simpleMessage("yes")

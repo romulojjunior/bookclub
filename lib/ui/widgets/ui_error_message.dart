@@ -17,14 +17,14 @@ class UIErrorMessage extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Container(constraints: const BoxConstraints(maxWidth: 350), child: Image.asset(ImagesPath.connectionErroe)),
             Container(
-                margin: const EdgeInsets.only(top: 36, bottom: 16),
+                margin: const EdgeInsets.only(top: 16, bottom: 16),
                 child: Text(
                   title ?? S.of(context).messageErrorTitle,
-                  style: Theme.of(context).textTheme.headlineSmall,
+                  style: const TextStyle(fontSize: 32),
                   textAlign: TextAlign.center,
                 )),
-            Container(constraints: const BoxConstraints(maxWidth: 350), child: Image.asset(ImagesPath.connectionErroe)),
             Text(
               title ?? S.of(context).messageErrorBody,
               textAlign: TextAlign.center,
