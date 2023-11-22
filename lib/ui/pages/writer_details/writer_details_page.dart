@@ -5,8 +5,8 @@ import 'package:bookclub/ui/state/books_bloc/books_bloc.dart';
 import 'package:bookclub/ui/state/favorites_cubit/favorites_cubit.dart';
 import 'package:bookclub/ui/state/writers_cubit/writers_cubit.dart';
 import 'package:bookclub/ui/utils/os_selector.dart';
-import 'package:bookclub/ui/widgets/books_widget.dart';
-import 'package:bookclub/ui/widgets/start_rate_widget.dart';
+import 'package:bookclub/ui/widgets/ui_books.dart';
+import 'package:bookclub/ui/widgets/ui_start_rate.dart';
 import 'package:bookclub/ui/widgets/ui_alert_dialog.dart';
 import 'package:bookclub/ui/widgets/ui_avatar_card.dart';
 import 'package:bookclub/ui/widgets/ui_button.dart';
@@ -116,7 +116,7 @@ class _WriterDetailsPageState extends State<WriterDetailsPage> {
                               Container(
                                   constraints: const BoxConstraints(maxWidth: 300),
                                   margin: const EdgeInsets.only(top: 8),
-                                  child: const StarRateWidget()),
+                                  child: const UIStarRate()),
                               Container(
                                   margin: const EdgeInsets.only(top: 32),
                                   child: UIButton(title: S.of(context).following, onPressed: _showDialog))
@@ -152,7 +152,7 @@ class _WriterDetailsPageState extends State<WriterDetailsPage> {
                     ],
                   ),
                 ),
-                BooksWidget(
+                UIBooks(
                   title: S.of(context).books,
                   isLoading: isTrendsLoading,
                   books: trendsBooks,

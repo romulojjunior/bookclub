@@ -1,12 +1,12 @@
 import 'package:bookclub/domain/entities/book.dart';
 import 'package:bookclub/ui/widgets/ui_book_card.dart';
-import 'package:bookclub/ui/widgets/ui_conditional_widget.dart';
+import 'package:bookclub/ui/widgets/ui_conditional.dart';
 import 'package:bookclub/ui/widgets/ui_loading_indicator.dart';
 import 'package:bookclub/ui/widgets/ui_page_header.dart';
 import 'package:flutter/widgets.dart';
 
-class BooksWidget extends StatelessWidget {
-  const BooksWidget(
+class UIBooks extends StatelessWidget {
+  const UIBooks(
       {required this.title, required this.isLoading, required this.books, required this.onBookSelected, super.key});
 
   final String title;
@@ -19,12 +19,12 @@ class BooksWidget extends StatelessWidget {
     return Column(
       children: [
         UIPageHeader(title: title),
-        UIConditionalWidget(
+        UIConditional(
             canShow: isLoading,
             onBuild: (context) {
               return Container(margin: const EdgeInsets.all(32), child: const UILoadingIndicator());
             }),
-        UIConditionalWidget(
+        UIConditional(
             canShow: isLoading == false,
             onBuild: (context) {
               return SizedBox(

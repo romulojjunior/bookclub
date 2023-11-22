@@ -2,7 +2,7 @@ import 'package:bookclub/domain/entities/user.dart';
 import 'package:bookclub/ui/pages/home/widgets/settings_list_widget.dart';
 import 'package:bookclub/ui/state/settings_cubit/settings_cubit.dart';
 import 'package:bookclub/ui/widgets/ui_avatar_card.dart';
-import 'package:bookclub/ui/widgets/ui_conditional_widget.dart';
+import 'package:bookclub/ui/widgets/ui_conditional.dart';
 import 'package:bookclub/ui/widgets/ui_page_header.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,7 +35,7 @@ class _TabSettingsState extends State<TabSettings> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             UIPageHeader(title: widget.title),
-            UIConditionalWidget(
+            UIConditional(
                 canShow: _settingsCubit.state.user != null,
                 onBuild: (context) {
                   User user = _settingsCubit.state.user!;

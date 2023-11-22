@@ -3,9 +3,9 @@ import 'package:bookclub/ui/router.dart';
 import 'package:bookclub/ui/state/search_cubit/search_cubit.dart';
 import 'package:bookclub/ui/utils/screen_utils.dart';
 import 'package:bookclub/ui/widgets/ui_book_card.dart';
-import 'package:bookclub/ui/widgets/ui_conditional_widget.dart';
+import 'package:bookclub/ui/widgets/ui_conditional.dart';
 import 'package:bookclub/ui/widgets/ui_page_header.dart';
-import 'package:bookclub/ui/widgets/ui_resizable_widget.dart';
+import 'package:bookclub/ui/widgets/ui_resizable.dart';
 import 'package:bookclub/ui/widgets/ui_search_bar.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/widgets.dart';
@@ -32,10 +32,10 @@ class TabSearch extends StatelessWidget {
                 searchCubit.searchByName(value);
               },
             ),
-            UIConditionalWidget(
+            UIConditional(
                 canShow: !searchCubit.state.isLoading,
                 onBuild: (context) {
-                  return UIResizableWidget(onSize: (screenWidth, _) {
+                  return UIResizable(onSize: (screenWidth, _) {
                     return ScreenUtils.calculateGridSize(screenWidth);
                   }, onBuild: (context, size) {
                     int rowsQty = size.toInt();

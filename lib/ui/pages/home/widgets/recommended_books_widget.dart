@@ -2,10 +2,10 @@ import 'package:bookclub/domain/entities/book.dart';
 import 'package:bookclub/generated/l10n.dart';
 import 'package:bookclub/ui/utils/screen_utils.dart';
 import 'package:bookclub/ui/widgets/ui_book_card.dart';
-import 'package:bookclub/ui/widgets/ui_conditional_widget.dart';
+import 'package:bookclub/ui/widgets/ui_conditional.dart';
 import 'package:bookclub/ui/widgets/ui_loading_indicator.dart';
 import 'package:bookclub/ui/widgets/ui_page_header.dart';
-import 'package:bookclub/ui/widgets/ui_resizable_widget.dart';
+import 'package:bookclub/ui/widgets/ui_resizable.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/widgets.dart';
 
@@ -22,15 +22,15 @@ class RecommendedBooksWidget extends StatelessWidget {
     return Column(
       children: [
         UIPageHeader(title: S.of(context).recommended),
-        UIConditionalWidget(
+        UIConditional(
             canShow: isLoading,
             onBuild: (context) {
               return Container(margin: const EdgeInsets.all(32), child: const UILoadingIndicator());
             }),
-        UIConditionalWidget(
+        UIConditional(
             canShow: isLoading == false,
             onBuild: (context) {
-              return UIResizableWidget(onSize: (screenWidth, _) {
+              return UIResizable(onSize: (screenWidth, _) {
                 return ScreenUtils.calculateGridSize(screenWidth);
               }, onBuild: (context, size) {
                 int rowsQty = size.toInt();

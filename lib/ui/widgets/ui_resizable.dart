@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
-class UIResizableWidget extends StatelessWidget {
-  const UIResizableWidget({required this.onSize, required this.onBuild, super.key});
+class UIResizable extends StatelessWidget {
+  const UIResizable({required this.onSize, required this.onBuild, super.key});
 
   final double Function(double screenWidth, double screenHeight) onSize;
   final Widget Function(BuildContext, double size) onBuild;

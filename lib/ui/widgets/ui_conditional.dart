@@ -1,9 +1,9 @@
 import 'package:flutter/widgets.dart';
 
-class UIConditionalWidget extends StatelessWidget {
+class UIConditional extends StatelessWidget {
   final bool canShow;
   final Widget Function(BuildContext) onBuild;
-  const UIConditionalWidget({super.key, required this.canShow, required this.onBuild});
+  const UIConditional({super.key, required this.canShow, required this.onBuild});
 
   @override
   Widget build(BuildContext context) {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/widgets.dart';
 
-class StarRateWidget extends StatelessWidget {
-  const StarRateWidget({super.key});
+class UIStarRate extends StatelessWidget {
+  const UIStarRate({super.key});
 
   @override
   Widget build(BuildContext context) {

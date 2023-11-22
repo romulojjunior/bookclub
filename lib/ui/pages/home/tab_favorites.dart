@@ -7,7 +7,7 @@ import 'package:bookclub/ui/utils/screen_utils.dart';
 import 'package:bookclub/ui/widgets/ui_avatar_card.dart';
 import 'package:bookclub/ui/widgets/ui_book_card.dart';
 import 'package:bookclub/ui/widgets/ui_page_header.dart';
-import 'package:bookclub/ui/widgets/ui_resizable_widget.dart';
+import 'package:bookclub/ui/widgets/ui_resizable.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -60,7 +60,7 @@ class _FavoritesSettingsState extends material.State<FavoritesSettings> {
     // Add Writers Grid
     bool shouldShowWriters = _selectedMenuOptions[0] == true;
     if (shouldShowWriters) {
-      body.add(UIResizableWidget(
+      body.add(UIResizable(
         onSize: (screenWidth, _) {
           return ScreenUtils.calculateGridSize(screenWidth);
         },
@@ -99,7 +99,7 @@ class _FavoritesSettingsState extends material.State<FavoritesSettings> {
     // Add Books Grid
     bool shouldShowBooks = _selectedMenuOptions[1] == true;
     if (shouldShowBooks) {
-      body.add(UIResizableWidget(
+      body.add(UIResizable(
         onSize: (screenWidth, _) {
           return ScreenUtils.calculateGridSize(screenWidth);
         },

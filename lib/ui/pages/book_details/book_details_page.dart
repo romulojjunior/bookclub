@@ -5,7 +5,7 @@ import 'package:bookclub/ui/state/book_details_bloc/book_details_bloc.dart';
 import 'package:bookclub/ui/state/book_details_bloc/book_details_event.dart';
 import 'package:bookclub/ui/state/book_details_bloc/book_details_state.dart';
 import 'package:bookclub/ui/state/favorites_cubit/favorites_cubit.dart';
-import 'package:bookclub/ui/widgets/ui_conditional_widget.dart';
+import 'package:bookclub/ui/widgets/ui_conditional.dart';
 import 'package:bookclub/ui/widgets/ui_loading_indicator.dart';
 import 'package:bookclub/ui/widgets/ui_scaffold.dart';
 import 'package:flutter/widgets.dart';
@@ -87,7 +87,7 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
               ),
             ),
           ),
-          UIConditionalWidget(
+          UIConditional(
               canShow: !isLargeScreen,
               onBuild: (context) {
                 return Container(
@@ -115,7 +115,7 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
                 style: const TextStyle(fontSize: 18),
               ),
             ),
-            UIConditionalWidget(
+            UIConditional(
                 canShow: isLargeScreen,
                 onBuild: (context) {
                   return bookPanelInfo;

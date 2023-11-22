@@ -6,9 +6,9 @@ import 'package:bookclub/ui/pages/home/widgets/recommended_books_widget.dart';
 import 'package:bookclub/ui/router.dart';
 import 'package:bookclub/ui/state/books_bloc/books_event.dart';
 import 'package:bookclub/ui/state/writers_cubit/writers_cubit.dart';
-import 'package:bookclub/ui/widgets/books_widget.dart';
+import 'package:bookclub/ui/widgets/ui_books.dart';
 import 'package:bookclub/ui/state/books_bloc/books_bloc.dart';
-import 'package:bookclub/ui/widgets/ui_conditional_widget.dart';
+import 'package:bookclub/ui/widgets/ui_conditional.dart';
 import 'package:bookclub/ui/widgets/ui_custom_scroll_view.dart';
 import 'package:bookclub/ui/widgets/ui_error_message.dart';
 import 'package:flutter/material.dart';
@@ -56,7 +56,7 @@ class TabHome extends StatelessWidget {
             SliverList.list(children: [
               Column(
                 children: <Widget>[
-                  UIConditionalWidget(
+                  UIConditional(
                     canShow: writers.isNotEmpty,
                     onBuild: (context) {
                       return AvatarsRowWidget(
@@ -64,10 +64,10 @@ class TabHome extends StatelessWidget {
                       );
                     },
                   ),
-                  UIConditionalWidget(
+                  UIConditional(
                     canShow: trendsBooks.isNotEmpty,
                     onBuild: (context) {
-                      return BooksWidget(
+                      return UIBooks(
                         title: S.of(context).trends,
                         isLoading: isTrendsLoading,
                         books: trendsBooks,
@@ -77,7 +77,7 @@ class TabHome extends StatelessWidget {
                       );
                     },
                   ),
-                  UIConditionalWidget(
+                  UIConditional(
                     canShow: recommendedBooks.isNotEmpty,
                     onBuild: (context) {
                       return RecommendedBooksWidget(
