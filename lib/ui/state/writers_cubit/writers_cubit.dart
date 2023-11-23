@@ -16,11 +16,17 @@ class WritersCubit extends Cubit<WritersState> {
 
   loadWriters() async {
     try {
-      emit(state.copyWith(isLoading: true));
+      emit(state.copyWith(
+        isLoading: true,
+        exception: () => null,
+      ));
       List<Writer> writers = await _getWritersUC.execute();
       emit(state.copyWith(isLoading: false, writers: writers));
-    } catch (_) {
-      emit(state.copyWith(isLoading: false, isUIErrorEnabled: true));
+    } catch (e) {
+      emit(state.copyWith(
+        isLoading: false,
+        exception: () => e as Exception,
+      ));
     }
   }
 }

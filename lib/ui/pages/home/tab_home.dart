@@ -1,10 +1,10 @@
+import 'package:bookclub/data/exceptions/connection_exception.dart';
 import 'package:bookclub/domain/entities/book.dart';
 import 'package:bookclub/domain/entities/writer.dart';
 import 'package:bookclub/generated/l10n.dart';
 import 'package:bookclub/ui/pages/home/widgets/avatars_row_widget.dart';
 import 'package:bookclub/ui/pages/home/widgets/recommended_books_widget.dart';
 import 'package:bookclub/ui/router.dart';
-import 'package:bookclub/ui/state/books_bloc/books_event.dart';
 import 'package:bookclub/ui/state/writers_cubit/writers_cubit.dart';
 import 'package:bookclub/ui/widgets/ui_books.dart';
 import 'package:bookclub/ui/state/books_bloc/books_bloc.dart';
@@ -32,16 +32,28 @@ class TabHome extends StatelessWidget {
     bool isRecommendedLoading = booksBloc.state.isRecommendedLoading;
     bool isTrendsLoading = booksBloc.state.isTrendsLoading;
 
-    bool isBooksUIErrorEnabled = booksBloc.state.isUIErrorEnabled;
-    bool isWritersUIErrorEnabled = booksBloc.state.isUIErrorEnabled;
+    Exception? bookUIException = booksBloc.state.exception;
+    Exception? writerUIException = writersCubit.state.exception;
 
-    if (isBooksUIErrorEnabled || isWritersUIErrorEnabled) {
+    if (bookUIException is ConnectionException || writerUIException is ConnectionException) {
+      return SafeArea(
+        child: UIErrorMessage(
+          title: S.of(context).connectionErrorTitle,
+          message: S.of(context).connectionErrorMessage,
+          onRetry: () {
+            writersCubit.loadInitialData();
+            booksBloc.loadInitialData();
+          },
+        ),
+      );
+    }
+
+    if (bookUIException != null || writerUIException != null) {
       return SafeArea(
         child: UIErrorMessage(
           onRetry: () {
             writersCubit.loadInitialData();
             booksBloc.loadInitialData();
-            booksBloc.add(DisableBooksUIErrorEvent());
           },
         ),
       );
@@ -50,7 +62,8 @@ class TabHome extends StatelessWidget {
     return SafeArea(
       child: UICustomScrollView(
           onRefresh: () {
-            context.read<BooksBloc>().loadInitialData();
+            writersCubit.loadInitialData();
+            booksBloc.loadInitialData();
           },
           slivers: [
             SliverList.list(children: [

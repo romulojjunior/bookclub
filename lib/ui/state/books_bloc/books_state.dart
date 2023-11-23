@@ -1,16 +1,13 @@
+import 'package:flutter/material.dart';
 import 'package:bookclub/domain/entities/book.dart';
-import 'package:flutter/widgets.dart';
 
-@immutable
 class BooksState {
-  const BooksState(
-      {required this.isUIErrorEnabled,
-      required this.trends,
+  BooksState(
+      {required this.trends,
       required this.isTrendsLoading,
       required this.recommended,
-      required this.isRecommendedLoading});
-
-  final bool isUIErrorEnabled;
+      required this.isRecommendedLoading,
+      this.exception});
 
   final List<Book> trends;
   final bool isTrendsLoading;
@@ -18,23 +15,23 @@ class BooksState {
   final List<Book> recommended;
   final bool isRecommendedLoading;
 
-  copyWith(
-      {bool? isUIErrorEnabled,
-      List<Book>? trends,
-      bool? isTrendsLoading,
-      List<Book>? recommended,
-      bool? isRecommendedLoading}) {
-    return BooksState(
-      isUIErrorEnabled: isUIErrorEnabled ?? this.isUIErrorEnabled,
-      trends: trends ?? this.trends,
-      isTrendsLoading: isTrendsLoading ?? this.isTrendsLoading,
-      recommended: recommended ?? this.recommended,
-      isRecommendedLoading: isRecommendedLoading ?? this.isRecommendedLoading,
-    );
-  }
+  final Exception? exception;
 
   static BooksState initialState() {
-    return const BooksState(
-        isUIErrorEnabled: false, trends: [], isTrendsLoading: false, recommended: [], isRecommendedLoading: false);
+    return BooksState(trends: [], isTrendsLoading: false, recommended: [], isRecommendedLoading: false);
+  }
+
+  BooksState copyWith(
+      {List<Book>? trends,
+      bool? isTrendsLoading,
+      List<Book>? recommended,
+      bool? isRecommendedLoading,
+      ValueGetter<Exception?>? exception}) {
+    return BooksState(
+        trends: trends ?? this.trends,
+        isTrendsLoading: isTrendsLoading ?? this.isTrendsLoading,
+        recommended: recommended ?? this.recommended,
+        isRecommendedLoading: isRecommendedLoading ?? this.isRecommendedLoading,
+        exception: exception != null ? exception() : this.exception);
   }
 }

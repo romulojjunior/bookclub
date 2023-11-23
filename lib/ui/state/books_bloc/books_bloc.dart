@@ -17,8 +17,6 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
 
     on<LoadTrendsBooksEvent>(_onLoadTrendsBooks);
     on<LoadRecommendedBooksEvent>(_onLoadRecommendedBooks);
-    on<EnableBooksUIErrorEvent>(_onEnableBooksUIErrorEvent);
-    on<DisableBooksUIErrorEvent>(_onDisableBooksUIErrorEvent);
   }
 
   late GetTrendsBooksUC _getTrendsBooksUC;
@@ -31,35 +29,36 @@ class BooksBloc extends Bloc<BooksEvent, BooksState> {
 
   _onLoadRecommendedBooks(event, emitter) async {
     try {
-      emitter(state.copyWith(isRecommendedLoading: true));
+      emitter(state.copyWith(isRecommendedLoading: true, exception: () => null));
       List<Book> books = await _getRecommendedBooksUC.execute(event.topic);
       emitter(state.copyWith(recommended: books, isRecommendedLoading: false));
     } on NotFoundException catch (_) {
       emitter(state.copyWith(recommended: [], isRecommendedLoading: false));
     } catch (e) {
       developer.log('BooksBloc#_onLoadRecommendedBooks', error: e.toString());
-      emitter(state.copyWith(isUIErrorEnabled: true, isRecommendedLoading: false));
+      emitter(state.copyWith(
+        isRecommendedLoading: false,
+        exception: () => e as Exception,
+      ));
     }
   }
 
   _onLoadTrendsBooks(event, emitter) async {
     try {
-      emitter(state.copyWith(isTrendsLoading: true));
+      emitter(state.copyWith(
+        isTrendsLoading: true,
+        exception: () => null,
+      ));
       List<Book> books = await _getTrendsBooksUC.execute(event.topic);
       emitter(state.copyWith(trends: books, isTrendsLoading: false));
     } on NotFoundException catch (_) {
       emitter(state.copyWith(trends: [], isTrendsLoading: false));
     } catch (e) {
       developer.log('BooksBloc#_onLoadTrendsBooks', error: e.toString());
-      emitter(state.copyWith(isUIErrorEnabled: true, isTrendsLoading: false));
+      emitter(state.copyWith(
+        isTrendsLoading: false,
+        exception: () => e as Exception,
+      ));
     }
-  }
-
-  _onEnableBooksUIErrorEvent(event, emitter) {
-    emitter(state.copyWith(isUIErrorEnabled: true));
-  }
-
-  _onDisableBooksUIErrorEvent(event, emitter) {
-    emitter(state.copyWith(isUIErrorEnabled: false));
   }
 }

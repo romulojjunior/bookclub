@@ -42,43 +42,6 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
     Book? book = bookDetailsBloc.state.book;
     Exception? uiException = bookDetailsBloc.state.exception;
 
-    if (uiException is NotFoundException) {
-      String bookLabel = S.of(context).book;
-      return SafeArea(
-        child: UIErrorMessage(
-          title: S.of(context).notFoundErrorTitle,
-          message: S.of(context).notFoundErrorMessage(bookLabel),
-          actionLabel: S.of(context).back,
-          onRetry: () {
-            Navigator.of(context).pop();
-          },
-        ),
-      );
-    }
-
-    if (uiException is ConnectionException) {
-      return SafeArea(
-        child: UIErrorMessage(
-          title: S.of(context).connectionErrorTitle,
-          message: S.of(context).connectionErrorMessage,
-          onRetry: () {
-            bookDetailsBloc.add(LoadBookEvent(id: widget.bookId));
-          },
-        ),
-      );
-    }
-
-    if (uiException != null) {
-      return SafeArea(
-        child: UIErrorMessage(
-          actionLabel: S.of(context).back,
-          onRetry: () {
-            Navigator.of(context).pop();
-          },
-        ),
-      );
-    }
-
     if (bookDetailsBloc.state.isLoading) {
       return UIScaffold(
           title: S.of(context).bookDetails,
@@ -89,14 +52,47 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
           ));
     }
 
-    if (book == null) {
+    if (uiException is ConnectionException) {
       return UIScaffold(
-          title: S.of(context).bookDetails,
-          child: SafeArea(
-            child: Center(
-              child: Text(S.of(context).bookNotFound),
-            ),
-          ));
+        child: SafeArea(
+          child: UIErrorMessage(
+            title: S.of(context).connectionErrorTitle,
+            message: S.of(context).connectionErrorMessage,
+            onRetry: () {
+              bookDetailsBloc.add(LoadBookEvent(id: widget.bookId));
+            },
+          ),
+        ),
+      );
+    }
+
+    if (uiException is NotFoundException || book == null) {
+      String bookLabel = S.of(context).book;
+      return UIScaffold(
+        child: SafeArea(
+          child: UIErrorMessage(
+            title: S.of(context).notFoundErrorTitle,
+            message: S.of(context).notFoundErrorMessage(bookLabel),
+            actionLabel: S.of(context).back,
+            onRetry: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ),
+      );
+    }
+
+    if (uiException != null) {
+      return UIScaffold(
+        child: SafeArea(
+          child: UIErrorMessage(
+            actionLabel: S.of(context).back,
+            onRetry: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ),
+      );
     }
 
     Widget bookPanelInfo = BookPanelInfo(

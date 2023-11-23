@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:developer' as developer;
 
 class BookDetailsBloc extends Bloc<BookDetailsEvent, BookDetailsState> {
-  BookDetailsBloc({required GetBookUC getBookUC}) : super(const BookDetailsState(isLoading: false)) {
+  BookDetailsBloc({required GetBookUC getBookUC}) : super(BookDetailsState.initialState()) {
     _getBookUC = getBookUC;
 
     on<LoadBookEvent>(_onLoadBook);
@@ -16,12 +16,12 @@ class BookDetailsBloc extends Bloc<BookDetailsEvent, BookDetailsState> {
 
   _onLoadBook(event, emitter) async {
     try {
-      emitter(state.copyWith(book: null, isLoading: true));
+      emitter(state.copyWith(isLoading: true, book: () => null, exception: () => null));
       Book book = await _getBookUC.execute(event.id);
-      emitter(state.copyWith(book: book, isLoading: false));
+      emitter(state.copyWith(book: () => book, isLoading: false));
     } catch (e) {
       developer.log('BookDetailsBloc#_onLoadBook', error: e.toString());
-      emitter(state.copyWith(isLoading: false, exception: e as Exception));
+      emitter(state.copyWith(isLoading: false, exception: () => e as Exception));
     }
   }
 }
