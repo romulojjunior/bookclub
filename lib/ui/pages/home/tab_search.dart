@@ -8,6 +8,7 @@ import 'package:bookclub/ui/utils/screen_utils.dart';
 import 'package:bookclub/ui/widgets/ui_book_card.dart';
 import 'package:bookclub/ui/widgets/ui_conditional.dart';
 import 'package:bookclub/ui/widgets/ui_error_message.dart';
+import 'package:bookclub/ui/widgets/ui_loading_indicator.dart';
 import 'package:bookclub/ui/widgets/ui_page_header.dart';
 import 'package:bookclub/ui/widgets/ui_resizable.dart';
 import 'package:bookclub/ui/widgets/ui_search_bar.dart';
@@ -47,10 +48,15 @@ class TabSearch extends StatelessWidget {
             UIPageHeader(title: title),
             UISearchBar(
               initialValue: searchCubit.state.searchQuery,
-              onChanged: (value) {
+              onSubmitted: (value) {
                 searchCubit.searchByName(value);
               },
             ),
+            UIConditional(
+                canShow: searchCubit.state.isLoading,
+                onBuild: (context) {
+                  return Container(margin: const EdgeInsets.only(top: 36), child: const UILoadingIndicator());
+                }),
             UIConditional(
                 canShow: !searchCubit.state.isLoading,
                 onBuild: (context) {
