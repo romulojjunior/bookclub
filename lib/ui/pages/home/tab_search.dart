@@ -1,9 +1,14 @@
+import 'package:bookclub/data/exceptions/connection_exception.dart';
+import 'package:bookclub/data/exceptions/not_found_exception.dart';
 import 'package:bookclub/domain/entities/book.dart';
+import 'package:bookclub/generated/l10n.dart';
 import 'package:bookclub/ui/router.dart';
 import 'package:bookclub/ui/state/search_cubit/search_cubit.dart';
 import 'package:bookclub/ui/utils/screen_utils.dart';
 import 'package:bookclub/ui/widgets/ui_book_card.dart';
 import 'package:bookclub/ui/widgets/ui_conditional.dart';
+import 'package:bookclub/ui/widgets/ui_error_message.dart';
+import 'package:bookclub/ui/widgets/ui_loading_indicator.dart';
 import 'package:bookclub/ui/widgets/ui_page_header.dart';
 import 'package:bookclub/ui/widgets/ui_resizable.dart';
 import 'package:bookclub/ui/widgets/ui_search_bar.dart';
@@ -21,6 +26,20 @@ class TabSearch extends StatelessWidget {
   Widget build(BuildContext context) {
     SearchCubit searchCubit = context.watch<SearchCubit>();
     List<Book> books = searchCubit.state.books;
+    Exception? searchUIException = searchCubit.state.exception;
+
+    if (searchUIException is ConnectionException) {
+      return SafeArea(
+        child: UIErrorMessage(
+          title: S.of(context).connectionErrorTitle,
+          message: S.of(context).connectionErrorMessage,
+          onRetry: () {
+            String searchQuery = searchCubit.state.searchQuery ?? '';
+            searchCubit.searchByName(searchQuery);
+          },
+        ),
+      );
+    }
 
     return SafeArea(
       child: SingleChildScrollView(
@@ -28,10 +47,16 @@ class TabSearch extends StatelessWidget {
           children: <Widget>[
             UIPageHeader(title: title),
             UISearchBar(
-              onChanged: (value) {
+              initialValue: searchCubit.state.searchQuery,
+              onSubmitted: (value) {
                 searchCubit.searchByName(value);
               },
             ),
+            UIConditional(
+                canShow: searchCubit.state.isLoading,
+                onBuild: (context) {
+                  return Container(margin: const EdgeInsets.only(top: 36), child: const UILoadingIndicator());
+                }),
             UIConditional(
                 canShow: !searchCubit.state.isLoading,
                 onBuild: (context) {
@@ -63,6 +88,12 @@ class TabSearch extends StatelessWidget {
                           );
                         });
                   });
+                }),
+            UIConditional(
+                canShow: searchUIException is NotFoundException,
+                onBuild: (context) {
+                  return Container(
+                      margin: const EdgeInsets.symmetric(vertical: 36), child: Text(S.of(context).noResults));
                 }),
           ],
         ),

@@ -52,6 +52,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "nFollower": m0,
         "nReviews": m1,
         "no": MessageLookupByLibrary.simpleMessage("no"),
+        "noResults": MessageLookupByLibrary.simpleMessage("No results"),
         "notFoundErrorMessage": m2,
         "notFoundErrorTitle": MessageLookupByLibrary.simpleMessage("Not found"),
         "pages": MessageLookupByLibrary.simpleMessage("pages"),

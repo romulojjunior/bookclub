@@ -49,7 +49,7 @@ class BookApi {
       } else if (e.response?.statusCode == 404) {
         throw NotFoundException('BookApiError#getRecommendedBooks: Recommended books using topic $topic not found.}');
       } else {
-        rethrow;
+        throw InternalException('BookApiError#getRecommendedBooks: ${e.error}');
       }
     }
   }
@@ -70,7 +70,7 @@ class BookApi {
       } else if (e.response?.statusCode == 404) {
         throw NotFoundException('BookApiError#getTrendsBooks: Trends books using topic $topic not found.}');
       } else {
-        rethrow;
+        throw InternalException('BookApiError#getTrendsBooks: ${e.error}');
       }
     }
   }
@@ -91,7 +91,7 @@ class BookApi {
       } else if (e.response?.statusCode == 404) {
         throw NotFoundException('BookApiError#searchByName: Books with name $name not found.}');
       } else {
-        rethrow;
+        throw InternalException('BookApiError#searchByName: ${e.error}');
       }
     }
   }
