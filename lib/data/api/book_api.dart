@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:bookclub/data/exceptions/connection_exception.dart';
+import 'package:bookclub/data/exceptions/internal_exception.dart';
 import 'package:bookclub/data/exceptions/not_found_exception.dart';
 import 'package:bookclub/domain/entities/book.dart';
 import 'package:bookclub/domain/utils/book_utils.dart';
@@ -27,7 +28,7 @@ class BookApi {
       } else if (e.response?.statusCode == 404) {
         throw NotFoundException('BookApiError#getBookById: Book using id $id not found.}');
       } else {
-        rethrow;
+        throw InternalException('BookApiError#getBookById: ${e.error}');
       }
     }
   }

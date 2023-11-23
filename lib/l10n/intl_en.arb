@@ -1,6 +1,7 @@
 {
   "appName": "BookClub",
   "books": "Books",
+  "book": "Book",
   "writer": "Writer",
   "writers": "Writers",
   "following": "Following",
@@ -20,8 +21,20 @@
   "empty": "Empty",
   "yes": "yes",
   "no": "no",
-  "messageErrorTitle": "Something went wrong!",
-  "messageErrorBody": "Try refreshing the page or checking \n your internet connection.",
+  "back": "Back",
+  "connectionErrorTitle": "No Connection",
+  "connectionErrorMessage": "Try checking your internet connection",
+  "genericErrorTitle": "Something went wrong",
+  "genericErrorMessage": "Try reopen this page later",
+  "notFoundErrorTitle": "Not found",
+  "notFoundErrorMessage": "{entity} not found",
+  "@notFoundErrorMessage": {
+    "placeholders": {
+      "entity": {
+        "type": "String"
+      }
+    }
+  },
   "retry": "Retry",
   "nFollower": "{count, plural, =0{No follower} =1{1 follower} other{{count} followers}}",
   "@nFollower": {

@@ -1,11 +1,14 @@
+import 'package:bookclub/data/exceptions/connection_exception.dart';
+import 'package:bookclub/data/exceptions/not_found_exception.dart';
+import 'package:bookclub/domain/entities/book.dart';
 import 'package:bookclub/domain/utils/html_utils.dart';
 import 'package:bookclub/generated/l10n.dart';
 import 'package:bookclub/ui/pages/book_details/widgets/book_panel_info.dart';
 import 'package:bookclub/ui/state/book_details_bloc/book_details_bloc.dart';
 import 'package:bookclub/ui/state/book_details_bloc/book_details_event.dart';
-import 'package:bookclub/ui/state/book_details_bloc/book_details_state.dart';
 import 'package:bookclub/ui/state/favorites_cubit/favorites_cubit.dart';
 import 'package:bookclub/ui/widgets/ui_conditional.dart';
+import 'package:bookclub/ui/widgets/ui_error_message.dart';
 import 'package:bookclub/ui/widgets/ui_loading_indicator.dart';
 import 'package:bookclub/ui/widgets/ui_scaffold.dart';
 import 'package:flutter/widgets.dart';
@@ -24,22 +27,59 @@ class BookDetailsPage extends StatefulWidget {
 class _BookDetailsPageState extends State<BookDetailsPage> {
   static const double _containerMaxWidth = 500;
   static const double _largeScreenWidth = 1024;
-  late BookDetailsBloc _bookDetailsBloc;
 
   @override
   void initState() {
     super.initState();
-    _bookDetailsBloc = context.read<BookDetailsBloc>();
-    _bookDetailsBloc.add(LoadBookEvent(id: widget.bookId));
+    context.read<BookDetailsBloc>().add(LoadBookEvent(id: widget.bookId));
   }
 
   @override
   Widget build(BuildContext context) {
-    BookDetailsState state = context.watch<BookDetailsBloc>().state;
     double screenWidth = MediaQuery.of(context).size.width;
     bool isLargeScreen = MediaQuery.of(context).size.width > _largeScreenWidth;
+    BookDetailsBloc bookDetailsBloc = context.watch<BookDetailsBloc>();
+    Book? book = bookDetailsBloc.state.book;
+    Exception? uiException = bookDetailsBloc.state.exception;
 
-    if (state.isLoading) {
+    if (uiException is NotFoundException) {
+      String bookLabel = S.of(context).book;
+      return SafeArea(
+        child: UIErrorMessage(
+          title: S.of(context).notFoundErrorTitle,
+          message: S.of(context).notFoundErrorMessage(bookLabel),
+          actionLabel: S.of(context).back,
+          onRetry: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      );
+    }
+
+    if (uiException is ConnectionException) {
+      return SafeArea(
+        child: UIErrorMessage(
+          title: S.of(context).connectionErrorTitle,
+          message: S.of(context).connectionErrorMessage,
+          onRetry: () {
+            bookDetailsBloc.add(LoadBookEvent(id: widget.bookId));
+          },
+        ),
+      );
+    }
+
+    if (uiException != null) {
+      return SafeArea(
+        child: UIErrorMessage(
+          actionLabel: S.of(context).back,
+          onRetry: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      );
+    }
+
+    if (bookDetailsBloc.state.isLoading) {
       return UIScaffold(
           title: S.of(context).bookDetails,
           child: const SafeArea(
@@ -49,7 +89,7 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
           ));
     }
 
-    if (state.book == null) {
+    if (book == null) {
       return UIScaffold(
           title: S.of(context).bookDetails,
           child: SafeArea(
@@ -60,12 +100,10 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
     }
 
     Widget bookPanelInfo = BookPanelInfo(
-      book: state.book!,
-      isFavorite: context.watch<FavoritesCubit>().isFavoriteBook(state.book!),
+      book: book,
+      isFavorite: context.watch<FavoritesCubit>().isFavoriteBook(book),
       onFavorite: (isFavorite) {
-        isFavorite
-            ? context.read<FavoritesCubit>().addBook(state.book!)
-            : context.read<FavoritesCubit>().removeBook(state.book!.id!);
+        isFavorite ? context.read<FavoritesCubit>().addBook(book) : context.read<FavoritesCubit>().removeBook(book.id!);
       },
     );
 
@@ -82,7 +120,7 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
               child: CachedNetworkImage(
                 width: (screenWidth < 600) ? screenWidth : 600,
                 fit: BoxFit.fitWidth,
-                imageUrl: state.book!.largeThumbnail ?? state.book!.thumbnail ?? '',
+                imageUrl: book.largeThumbnail ?? book.thumbnail ?? '',
                 progressIndicatorBuilder: (context, url, downloadProgress) => const UILoadingIndicator(),
               ),
             ),
@@ -104,13 +142,13 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
         child: Column(
           children: [
             Text(
-              state.book!.title,
+              book.title,
               style: const TextStyle(fontSize: 36),
             ),
             Container(
               margin: const EdgeInsets.only(top: 16),
               child: Text(
-                HtmlUtils.removeTags(state.book!.description ?? ''),
+                HtmlUtils.removeTags(book.description ?? ''),
                 maxLines: 20,
                 style: const TextStyle(fontSize: 18),
               ),

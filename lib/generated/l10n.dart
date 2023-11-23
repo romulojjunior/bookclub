@@ -70,6 +70,16 @@ class S {
     );
   }
 
+  /// `Book`
+  String get book {
+    return Intl.message(
+      'Book',
+      name: 'book',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Writer`
   String get writer {
     return Intl.message(
@@ -260,23 +270,73 @@ class S {
     );
   }
 
-  /// `Something went wrong!`
-  String get messageErrorTitle {
+  /// `Back`
+  String get back {
     return Intl.message(
-      'Something went wrong!',
-      name: 'messageErrorTitle',
+      'Back',
+      name: 'back',
       desc: '',
       args: [],
     );
   }
 
-  /// `Try refreshing the page or checking \n your internet connection.`
-  String get messageErrorBody {
+  /// `No Connection`
+  String get connectionErrorTitle {
     return Intl.message(
-      'Try refreshing the page or checking \n your internet connection.',
-      name: 'messageErrorBody',
+      'No Connection',
+      name: 'connectionErrorTitle',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `Try checking your internet connection`
+  String get connectionErrorMessage {
+    return Intl.message(
+      'Try checking your internet connection',
+      name: 'connectionErrorMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something went wrong`
+  String get genericErrorTitle {
+    return Intl.message(
+      'Something went wrong',
+      name: 'genericErrorTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try reopen this page later`
+  String get genericErrorMessage {
+    return Intl.message(
+      'Try reopen this page later',
+      name: 'genericErrorMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Not found`
+  String get notFoundErrorTitle {
+    return Intl.message(
+      'Not found',
+      name: 'notFoundErrorTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{entity} not found`
+  String notFoundErrorMessage(String entity) {
+    return Intl.message(
+      '$entity not found',
+      name: 'notFoundErrorMessage',
+      desc: '',
+      args: [entity],
     );
   }
 

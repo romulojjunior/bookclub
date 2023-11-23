@@ -23,25 +23,37 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m0(count) =>
       "${Intl.plural(count, zero: 'No follower', one: '1 follower', other: '${count} followers')}";
 
-  static String m1(count) => "${Intl.plural(count, zero: '0 Review', one: '1 Review', other: '${count} reviews')}";
+  static String m1(count) =>
+      "${Intl.plural(count, zero: '0 Review', one: '1 Review', other: '${count} reviews')}";
+
+  static String m2(entity) => "${entity} not found";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appName": MessageLookupByLibrary.simpleMessage("BookClub"),
+        "back": MessageLookupByLibrary.simpleMessage("Back"),
+        "book": MessageLookupByLibrary.simpleMessage("Book"),
         "bookDetails": MessageLookupByLibrary.simpleMessage("Book Details"),
         "bookNotFound": MessageLookupByLibrary.simpleMessage("Book not found."),
         "books": MessageLookupByLibrary.simpleMessage("Books"),
         "buy": MessageLookupByLibrary.simpleMessage("Buy"),
+        "connectionErrorMessage": MessageLookupByLibrary.simpleMessage(
+            "Try checking your internet connection"),
+        "connectionErrorTitle":
+            MessageLookupByLibrary.simpleMessage("No Connection"),
         "ebook": MessageLookupByLibrary.simpleMessage("E-Book"),
         "empty": MessageLookupByLibrary.simpleMessage("Empty"),
         "favorite": MessageLookupByLibrary.simpleMessage("Favorite"),
         "following": MessageLookupByLibrary.simpleMessage("Following"),
-        "messageErrorBody":
-            MessageLookupByLibrary.simpleMessage("Try refreshing the page and checking \n your internet connection."),
-        "messageErrorTitle": MessageLookupByLibrary.simpleMessage("Something went wrong!"),
+        "genericErrorMessage":
+            MessageLookupByLibrary.simpleMessage("Try reopen this page later"),
+        "genericErrorTitle":
+            MessageLookupByLibrary.simpleMessage("Something went wrong"),
         "nFollower": m0,
         "nReviews": m1,
         "no": MessageLookupByLibrary.simpleMessage("no"),
+        "notFoundErrorMessage": m2,
+        "notFoundErrorTitle": MessageLookupByLibrary.simpleMessage("Not found"),
         "pages": MessageLookupByLibrary.simpleMessage("pages"),
         "recommended": MessageLookupByLibrary.simpleMessage("Recommended"),
         "retry": MessageLookupByLibrary.simpleMessage("Retry"),
@@ -50,7 +62,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "tab_search": MessageLookupByLibrary.simpleMessage("Search"),
         "tab_settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "trends": MessageLookupByLibrary.simpleMessage("Trends"),
-        "wouldYouLikeUnfollow": MessageLookupByLibrary.simpleMessage("Would you like unfollow?"),
+        "wouldYouLikeUnfollow":
+            MessageLookupByLibrary.simpleMessage("Would you like unfollow?"),
         "writer": MessageLookupByLibrary.simpleMessage("Writer"),
         "writers": MessageLookupByLibrary.simpleMessage("Writers"),
         "yes": MessageLookupByLibrary.simpleMessage("yes")
