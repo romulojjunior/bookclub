@@ -22,6 +22,7 @@
   "yes": "yes",
   "no": "no",
   "back": "Back",
+  "noResults": "No results",
   "connectionErrorTitle": "No Connection",
   "connectionErrorMessage": "Try checking your internet connection",
   "genericErrorTitle": "Something went wrong",

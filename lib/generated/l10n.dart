@@ -280,6 +280,16 @@ class S {
     );
   }
 
+  /// `No results`
+  String get noResults {
+    return Intl.message(
+      'No results',
+      name: 'noResults',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `No Connection`
   String get connectionErrorTitle {
     return Intl.message(

@@ -19,6 +19,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<Widget> tabs = [];
+
   Widget homeIcon = const UISelector(
     android: Icon(material.Icons.home),
     iOS: Icon(cupertino.CupertinoIcons.home),
@@ -41,12 +43,14 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> tabs = [
-      TabHome(title: S.of(context).tab_home),
-      TabSearch(title: S.of(context).tab_search),
-      FavoritesSettings(title: S.of(context).tab_favorites),
-      TabSettings(title: S.of(context).tab_settings)
-    ];
+    if (tabs.isEmpty) {
+      tabs = [
+        TabHome(title: S.of(context).tab_home),
+        TabSearch(title: S.of(context).tab_search),
+        FavoritesSettings(title: S.of(context).tab_favorites),
+        TabSettings(title: S.of(context).tab_settings)
+      ];
+    }
 
     return UITabScaffold(
       bottomNavigationBarItem: [
