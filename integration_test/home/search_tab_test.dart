@@ -1,3 +1,4 @@
+import 'package:bookclub/data/exceptions/connection_exception.dart';
 import 'package:bookclub/data/exceptions/not_found_exception.dart';
 import 'package:bookclub/di/app_di.dart';
 import 'package:bookclub/domain/entities/book.dart';
@@ -16,6 +17,7 @@ import 'package:mocktail/mocktail.dart';
 void main() {
   late Widget application;
 
+  const searchTextFiledKey = 'SearchTextFiled';
   const searchTabScope = 'SearchTabScope';
 
   BookRepositoryMock bookRepositoryMock = BookRepositoryMock();
@@ -53,7 +55,7 @@ void main() {
       await tester.pumpWidget(application);
 
       // User's interaction
-      Finder searchTextFieldFinder = find.byKey(const ValueKey('SearchTextFiled'));
+      Finder searchTextFieldFinder = find.byKey(const ValueKey(searchTextFiledKey));
 
       await tester.enterText(searchTextFieldFinder, 'Travel');
 
@@ -75,7 +77,7 @@ void main() {
       await tester.pumpWidget(application);
 
       // User's interaction
-      Finder searchTextFieldFinder = find.byKey(const ValueKey('SearchTextFiled'));
+      Finder searchTextFieldFinder = find.byKey(const ValueKey(searchTextFiledKey));
 
       await tester.enterText(searchTextFieldFinder, 'jiwdhciduch  cihcdcdc');
 
@@ -85,6 +87,26 @@ void main() {
 
       // Validations
       expect(find.text('No results'), findsOne);
+    });
+
+    testWidgets('When there is no internet connection, it should display a message.', (tester) async {
+      // Mocks
+      when(() => bookRepositoryMock.searchByName(any())).thenThrow(ConnectionException());
+
+      // Load application
+      await tester.pumpWidget(application);
+
+      // User's interaction
+      Finder searchTextFieldFinder = find.byKey(const ValueKey(searchTextFiledKey));
+
+      await tester.enterText(searchTextFieldFinder, 'Travel books');
+
+      await tester.testTextInput.receiveAction(TextInputAction.send);
+
+      await tester.pumpAndSettle(const Duration(seconds: 1));
+
+      // Validations
+      expect(find.text('No Connection'), findsOne);
     });
   });
 }
