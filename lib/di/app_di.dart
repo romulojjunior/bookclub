@@ -53,19 +53,19 @@ loadRepositories(GetIt getIt) {
 
 loadUsecases(GetIt getIt) {
   // Books
-  getIt.registerLazySingleton(() {
+  getIt.registerFactory(() {
     return GetRecommendedBooksUC(bookReposiotry: getIt.get());
   });
 
-  getIt.registerLazySingleton(() {
+  getIt.registerFactory(() {
     return GetTrendsBooksUC(bookReposiotry: getIt.get());
   });
 
-  getIt.registerLazySingleton(() {
+  getIt.registerFactory(() {
     return GetBookUC(bookReposiotry: getIt.get());
   });
 
-  getIt.registerLazySingleton(() {
+  getIt.registerFactory(() {
     return SearchBookByNameUC(bookReposiotry: getIt.get());
   });
 
@@ -76,33 +76,33 @@ loadUsecases(GetIt getIt) {
 }
 
 loadBlocs(GetIt getIt) {
-  getIt.registerFactory(() {
+  getIt.registerLazySingleton(() {
     BooksBloc booksBloc = BooksBloc(getTrendsBooksUC: getIt.get(), getRecommendedBooksUC: getIt.get());
     booksBloc.loadInitialData();
     return booksBloc;
   });
 
-  getIt.registerFactory(() {
+  getIt.registerLazySingleton(() {
     return BookDetailsBloc(getBookUC: getIt.get());
   });
 }
 
 loadCubits(GetIt getIt) {
-  getIt.registerFactory(() {
+  getIt.registerLazySingleton(() {
     WritersCubit writersCubit = WritersCubit(getWritersUC: getIt.get());
     writersCubit.loadInitialData();
     return writersCubit;
   });
 
-  getIt.registerFactory(() {
+  getIt.registerLazySingleton(() {
     return FavoritesCubit();
   });
 
-  getIt.registerFactory(() {
+  getIt.registerLazySingleton(() {
     return SearchCubit(searchBookByNameUC: getIt.get());
   });
 
-  getIt.registerFactory(() {
+  getIt.registerLazySingleton(() {
     return SettingsCubit();
   });
 }
