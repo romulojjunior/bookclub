@@ -58,7 +58,7 @@ class TabSearch extends StatelessWidget {
                   return Container(margin: const EdgeInsets.only(top: 36), child: const UILoadingIndicator());
                 }),
             UIConditional(
-                canShow: !searchCubit.state.isLoading,
+                canShow: !searchCubit.state.isLoading && searchCubit.state.books.isNotEmpty,
                 onBuild: (context) {
                   return UIResizable(onSize: (screenWidth, _) {
                     return ScreenUtils.calculateGridSize(screenWidth);

@@ -53,24 +53,24 @@ loadRepositories(GetIt getIt) {
 
 loadUsecases(GetIt getIt) {
   // Books
-  getIt.registerLazySingleton(() {
+  getIt.registerFactory(() {
     return GetRecommendedBooksUC(bookReposiotry: getIt.get());
   });
 
-  getIt.registerLazySingleton(() {
+  getIt.registerFactory(() {
     return GetTrendsBooksUC(bookReposiotry: getIt.get());
   });
 
-  getIt.registerLazySingleton(() {
+  getIt.registerFactory(() {
     return GetBookUC(bookReposiotry: getIt.get());
   });
 
-  getIt.registerLazySingleton(() {
+  getIt.registerFactory(() {
     return SearchBookByNameUC(bookReposiotry: getIt.get());
   });
 
   // Writers
-  getIt.registerLazySingleton(() {
+  getIt.registerFactory(() {
     return GetWritersUC(writerReposiotry: getIt.get());
   });
 }
