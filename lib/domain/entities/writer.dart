@@ -1,3 +1,5 @@
+import 'package:bookclub/data/samples/writer_samples.dart';
+
 class Writer {
   Writer(
       {this.id,
@@ -22,5 +24,9 @@ class Writer {
         avatarUrl: object['avatarUrl'],
         imageCoverUrl: object['imageCoverUrl'],
         aboutMe: object['aboutMe']);
+  }
+
+  static List<Writer> getSamples() {
+    return WriterSamples.getSamples().map((e) => fromMap(e)).toList();
   }
 }
