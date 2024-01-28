@@ -19,7 +19,7 @@ void main() {
   const searchTabScope = 'SearchTabScope';
 
   BookRepositoryMock bookRepositoryMock = BookRepositoryMock();
-  List<Book> mockedBooks = Book.getSamples();
+  List<Book> bookSamples = Book.getSamples();
 
   group('SearchTab tests.', () {
     setUpAll(() {
@@ -30,7 +30,7 @@ void main() {
       GetIt.instance.pushNewScope(
           scopeName: searchTabScope,
           init: (getIt) {
-            getIt.registerFactory<BookReposiotry>(() => bookRepositoryMock);
+            getIt.registerLazySingleton<BookReposiotry>(() => bookRepositoryMock);
           });
     });
 
@@ -47,9 +47,9 @@ void main() {
 
     testWidgets('When an user search for a title, it should display two book as result.', (tester) async {
       // Mocks
-      when(() => bookRepositoryMock.searchByName(any())).thenAnswer((_) async => mockedBooks);
+      when(() => bookRepositoryMock.searchByName(any())).thenAnswer((_) async => bookSamples);
 
-      // Load the application
+      // Load application
       await tester.pumpWidget(application);
 
       // User's interaction
@@ -62,8 +62,8 @@ void main() {
       await tester.pumpAndSettle(const Duration(seconds: 1));
 
       // Validations
-      expect(find.text(mockedBooks[0].title), findsOne);
-      expect(find.text(mockedBooks[1].title), findsOne);
+      expect(find.text(bookSamples[0].title), findsOne);
+      expect(find.text(bookSamples[1].title), findsOne);
     });
 
     testWidgets('When an user search for a title, it should display no result.', (tester) async {
@@ -71,7 +71,7 @@ void main() {
       const messageError = 'Search result returned no results.';
       when(() => bookRepositoryMock.searchByName(any())).thenThrow(NotFoundException(messageError));
 
-      // Load the application
+      // Load application
       await tester.pumpWidget(application);
 
       // User's interaction
