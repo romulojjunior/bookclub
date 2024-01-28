@@ -13,7 +13,7 @@ import 'package:integration_test/integration_test.dart';
 void main() {
   late Widget application;
 
-  group('Home tab.', () {
+  group('HomeTab tests.', () {
     setUpAll(() {
       IntegrationTestWidgetsFlutterBinding.ensureInitialized();
       loadAppDI(GetIt.instance);
@@ -21,16 +21,10 @@ void main() {
 
     setUp(() {
       application = MultiBlocProvider(providers: [
-        BlocProvider(create: (context) {
-          return GetIt.I.get<BooksBloc>();
-        }),
-        BlocProvider(create: (context) {
-          return GetIt.I.get<BookDetailsBloc>();
-        }),
-        BlocProvider(create: (context) {
-          return GetIt.I.get<WritersCubit>();
-        })
-      ], child: const UIAppTester(child: TabHome(title: 'Home tab')));
+        BlocProvider(create: (context) => GetIt.I.get<BooksBloc>()),
+        BlocProvider(create: (context) => GetIt.I.get<BookDetailsBloc>()),
+        BlocProvider(create: (context) => GetIt.I.get<WritersCubit>())
+      ], child: const UIAppTester(child: TabHome(title: 'Home')));
     });
 
     testWidgets('It checks the "Writer" label is displyed.', (tester) async {

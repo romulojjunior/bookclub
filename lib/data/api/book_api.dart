@@ -80,6 +80,10 @@ class BookApi {
       String url = '$_apiHost/v1/volumes?q=$name';
       Response response = await _httpClient.get(url);
 
+      if (response.data['totalItems'] == 0) {
+        throw NotFoundException('BookApiError#searchByName: Books with name $name not found.}');
+      }
+
       List<Book> books = (response.data['items'] as List).map((data) {
         return Book.fromMap(data);
       }).toList();

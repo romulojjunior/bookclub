@@ -1,3 +1,5 @@
+import 'package:bookclub/data/samples/book_samples.dart';
+
 class Book {
   Book(
       {required this.title,
@@ -91,5 +93,11 @@ class Book {
     }
 
     return book;
+  }
+
+  static List<Book> getSamples() {
+    return BookSamples.getSamples().map((e) {
+      return Book(id: e['id'], title: e['title']);
+    }).toList();
   }
 }

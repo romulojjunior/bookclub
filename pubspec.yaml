@@ -26,6 +26,7 @@ dependencies:
   dio: ^5.3.4
   get_it: ^7.6.4
   cached_network_image: ^3.3.0
+  mocktail: ^1.0.3
 
 dev_dependencies:
   integration_test:

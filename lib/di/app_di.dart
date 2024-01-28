@@ -70,39 +70,39 @@ loadUsecases(GetIt getIt) {
   });
 
   // Writers
-  getIt.registerLazySingleton(() {
+  getIt.registerFactory(() {
     return GetWritersUC(writerReposiotry: getIt.get());
   });
 }
 
 loadBlocs(GetIt getIt) {
-  getIt.registerLazySingleton(() {
+  getIt.registerFactory(() {
     BooksBloc booksBloc = BooksBloc(getTrendsBooksUC: getIt.get(), getRecommendedBooksUC: getIt.get());
     booksBloc.loadInitialData();
     return booksBloc;
   });
 
-  getIt.registerLazySingleton(() {
+  getIt.registerFactory(() {
     return BookDetailsBloc(getBookUC: getIt.get());
   });
 }
 
 loadCubits(GetIt getIt) {
-  getIt.registerLazySingleton(() {
+  getIt.registerFactory(() {
     WritersCubit writersCubit = WritersCubit(getWritersUC: getIt.get());
     writersCubit.loadInitialData();
     return writersCubit;
   });
 
-  getIt.registerLazySingleton(() {
+  getIt.registerFactory(() {
     return FavoritesCubit();
   });
 
-  getIt.registerLazySingleton(() {
+  getIt.registerFactory(() {
     return SearchCubit(searchBookByNameUC: getIt.get());
   });
 
-  getIt.registerLazySingleton(() {
+  getIt.registerFactory(() {
     return SettingsCubit();
   });
 }

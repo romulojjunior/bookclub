@@ -32,6 +32,7 @@ class _UISearchBarState extends State<UISearchBar> {
         ),
         child: UISelector(
           android: material.TextField(
+            key: const ValueKey('SearchTextFiled'),
             controller: _controller,
             onChanged: widget.onChanged,
             onSubmitted: widget.onSubmitted,
