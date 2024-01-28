@@ -1,8 +1,8 @@
 import 'package:bookclub/data/exceptions/not_found_exception.dart';
 import 'package:bookclub/di/app_di.dart';
 import 'package:bookclub/domain/entities/book.dart';
-import 'package:bookclub/domain/usecases/search/search_book_by_name_uc.dart';
-import 'package:bookclub/mock/domain/usecases/search/search_book_by_name_uc_mock.dart';
+import 'package:bookclub/domain/repositories/books_repository.dart';
+import 'package:bookclub/mock/domain/repositories/book_repository_mock.dart';
 import 'package:bookclub/ui/pages/home/tab_search.dart';
 import 'package:bookclub/ui/state/search_cubit/search_cubit.dart';
 import 'package:bookclub/ui/widgets/ui_app_tester.dart';
@@ -18,7 +18,7 @@ void main() {
 
   const searchTabScope = 'SearchTabScope';
 
-  SearchBookByNameUCMock searchBookByNameUCMock = SearchBookByNameUCMock();
+  BookRepositoryMock bookRepositoryMock = BookRepositoryMock();
   List<Book> mockedBooks = Book.getSamples();
 
   group('SearchTab tests.', () {
@@ -30,7 +30,7 @@ void main() {
       GetIt.instance.pushNewScope(
           scopeName: searchTabScope,
           init: (getIt) {
-            getIt.registerFactory<SearchBookByNameUC>(() => searchBookByNameUCMock);
+            getIt.registerFactory<BookReposiotry>(() => bookRepositoryMock);
           });
     });
 
@@ -47,7 +47,7 @@ void main() {
 
     testWidgets('When an user search for a title, it should display two book as result.', (tester) async {
       // Mocks
-      when(() => searchBookByNameUCMock.execute(any())).thenAnswer((_) async => mockedBooks);
+      when(() => bookRepositoryMock.searchByName(any())).thenAnswer((_) async => mockedBooks);
 
       // Load the application
       await tester.pumpWidget(application);
@@ -69,7 +69,7 @@ void main() {
     testWidgets('When an user search for a title, it should display no result.', (tester) async {
       // Mocks
       const messageError = 'Search result returned no results.';
-      when(() => searchBookByNameUCMock.execute(any())).thenThrow(NotFoundException(messageError));
+      when(() => bookRepositoryMock.searchByName(any())).thenThrow(NotFoundException(messageError));
 
       // Load the application
       await tester.pumpWidget(application);
