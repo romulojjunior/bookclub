@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 class UIPhotoOpacity extends StatelessWidget {
-  const UIPhotoOpacity({required this.child, required this.opacity, super.key});
+  const UIPhotoOpacity({super.key, required this.child, required this.opacity});
 
   final Widget child;
   final double opacity;

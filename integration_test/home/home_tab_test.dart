@@ -57,7 +57,7 @@ void main() {
         BlocProvider(create: (context) => GetIt.I.get<BooksBloc>()),
         BlocProvider(create: (context) => GetIt.I.get<BookDetailsBloc>()),
         BlocProvider(create: (context) => GetIt.I.get<WritersCubit>())
-      ], child: const UIAppTester(child: TabHome(title: 'Home')));
+      ], child: const UIAppTester(child: TabHome()));
     });
 
     testWidgets('It checks the "Writer" label is displyed.', (tester) async {

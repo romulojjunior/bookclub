@@ -11,12 +11,12 @@ class UIBookCard extends StatelessWidget {
   final Function onPress;
 
   const UIBookCard(
-      {required this.id,
+      {super.key,
+      required this.id,
       required this.title,
       required this.description,
       required this.imageUrl,
-      required this.onPress,
-      super.key});
+      required this.onPress});
 
   @override
   Widget build(BuildContext context) {

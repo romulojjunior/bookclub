@@ -11,7 +11,7 @@ import 'package:flutter/widgets.dart';
 
 class RecommendedBooksWidget extends StatelessWidget {
   const RecommendedBooksWidget(
-      {required this.isLoading, required this.recommendedBooks, required this.onBookSelected, super.key});
+      {super.key, required this.isLoading, required this.recommendedBooks, required this.onBookSelected});
 
   final bool isLoading;
   final List<Book> recommendedBooks;

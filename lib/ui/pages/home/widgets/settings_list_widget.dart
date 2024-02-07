@@ -4,7 +4,7 @@ import 'package:flutter/material.dart' as material;
 import 'package:flutter/widgets.dart';
 
 class SettingsList extends StatelessWidget {
-  const SettingsList({required this.items, super.key});
+  const SettingsList({super.key, required this.items});
 
   final List<String> items;
 

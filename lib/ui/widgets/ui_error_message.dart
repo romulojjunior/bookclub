@@ -8,7 +8,7 @@ class UIErrorMessage extends StatelessWidget {
   final String? actionLabel;
   final Function onRetry;
 
-  const UIErrorMessage({this.title, this.message, this.actionLabel, required this.onRetry, super.key});
+  const UIErrorMessage({super.key, this.title, this.message, this.actionLabel, required this.onRetry});
 
   @override
   Widget build(BuildContext context) {

@@ -7,7 +7,7 @@ import 'package:flutter/widgets.dart';
 
 class UIBooks extends StatelessWidget {
   const UIBooks(
-      {required this.title, required this.isLoading, required this.books, required this.onBookSelected, super.key});
+      {super.key, required this.title, required this.isLoading, required this.books, required this.onBookSelected});
 
   final String title;
   final bool isLoading;

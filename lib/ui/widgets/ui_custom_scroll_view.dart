@@ -6,7 +6,7 @@ import 'package:flutter/widgets.dart';
 class UICustomScrollView extends StatelessWidget {
   final Function onRefresh;
   final List<Widget> slivers;
-  const UICustomScrollView({required this.onRefresh, required this.slivers, super.key});
+  const UICustomScrollView({super.key, required this.onRefresh, required this.slivers});
 
   @override
   Widget build(BuildContext context) {

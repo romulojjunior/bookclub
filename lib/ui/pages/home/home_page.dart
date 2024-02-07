@@ -10,9 +10,7 @@ import 'package:flutter/material.dart' as material;
 import 'package:flutter/widgets.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key, required this.title});
-
-  final String title;
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -45,7 +43,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     if (tabs.isEmpty) {
       tabs = [
-        TabHome(title: S.of(context).tab_home),
+        const TabHome(),
         TabSearch(title: S.of(context).tab_search),
         FavoritesSettings(title: S.of(context).tab_favorites),
         TabSettings(title: S.of(context).tab_settings)
