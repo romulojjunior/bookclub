@@ -30,12 +30,11 @@ class WriterDetailsPage extends StatefulWidget {
 }
 
 class _WriterDetailsPageState extends State<WriterDetailsPage> {
-  late Writer writer;
-  late List<Writer> users;
+  late Writer _writer;
 
   @override
   void initState() {
-    writer = context.read<WritersCubit>().state.writers.firstWhere((user) => user.id == widget.userId);
+    _writer = context.read<WritersCubit>().state.writers.firstWhere((user) => user.id == widget.userId);
     super.initState();
   }
 
@@ -62,7 +61,7 @@ class _WriterDetailsPageState extends State<WriterDetailsPage> {
                           child: Container(
                               constraints: const BoxConstraints.expand(height: 400),
                               child: Image.network(
-                                writer.imageCoverUrl,
+                                _writer.imageCoverUrl,
                                 fit: BoxFit.cover,
                                 errorBuilder: (_, __, ___) {
                                   return Container(color: material.Colors.black);
@@ -83,11 +82,11 @@ class _WriterDetailsPageState extends State<WriterDetailsPage> {
                                 android: Icon(material.Icons.star, color: material.Colors.deepOrange),
                                 iOS: Icon(cupertino.CupertinoIcons.star_fill, color: material.Colors.deepOrange),
                               ),
-                              isSelected: context.watch<FavoritesCubit>().isFavoriteWriter(writer),
+                              isSelected: context.watch<FavoritesCubit>().isFavoriteWriter(_writer),
                               onPressed: (isSelected) {
                                 isSelected
-                                    ? context.read<FavoritesCubit>().addWriter(writer)
-                                    : context.read<FavoritesCubit>().removeWriter(writer.id!);
+                                    ? context.read<FavoritesCubit>().addWriter(_writer)
+                                    : context.read<FavoritesCubit>().removeWriter(_writer.id!);
                               }),
                         ),
                       ),
@@ -96,7 +95,7 @@ class _WriterDetailsPageState extends State<WriterDetailsPage> {
                         child: material.Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: Text(
-                            writer.name,
+                            _writer.name,
                             style: const TextStyle(fontSize: 36, color: material.Colors.white),
                           ),
                         ),
@@ -110,7 +109,7 @@ class _WriterDetailsPageState extends State<WriterDetailsPage> {
                             children: [
                               Container(
                                 margin: const EdgeInsets.only(top: 8),
-                                child: Text(S.of(context).nFollower(writer.followers),
+                                child: Text(S.of(context).nFollower(_writer.followers),
                                     style: const TextStyle(fontSize: 14, color: material.Colors.white)),
                               ),
                               Container(
@@ -131,10 +130,10 @@ class _WriterDetailsPageState extends State<WriterDetailsPage> {
                           alignment:
                               (MediaQuery.of(context).size.width > 600) ? Alignment.center : Alignment.centerLeft,
                           child: Hero(
-                            tag: UIAvatarCard.getHeroTag(writer.id),
+                            tag: UIAvatarCard.getHeroTag(_writer.id),
                             child: UIAvatarCard(
-                              id: writer.id!,
-                              imageUrl: writer.avatarUrl,
+                              id: _writer.id!,
+                              imageUrl: _writer.avatarUrl,
                               onPress: (id) {},
                             ),
                           ),
@@ -146,7 +145,7 @@ class _WriterDetailsPageState extends State<WriterDetailsPage> {
                           constraints: const BoxConstraints(maxWidth: 400),
                           margin: const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
                           child:
-                              Text(writer.aboutMe, style: const TextStyle(fontSize: 14, color: material.Colors.white)),
+                              Text(_writer.aboutMe, style: const TextStyle(fontSize: 14, color: material.Colors.white)),
                         ),
                       )
                     ],

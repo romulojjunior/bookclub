@@ -7,7 +7,7 @@ import 'package:flutter/material.dart' as material;
 import 'package:flutter/cupertino.dart' as cupertino;
 
 class BookPanelInfo extends StatelessWidget {
-  const BookPanelInfo({required this.book, required this.isFavorite, required this.onFavorite, super.key});
+  const BookPanelInfo({super.key, required this.book, required this.isFavorite, required this.onFavorite});
 
   final Book book;
   final bool isFavorite;

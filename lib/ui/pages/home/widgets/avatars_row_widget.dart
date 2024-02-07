@@ -8,7 +8,7 @@ import 'package:flutter/material.dart' as material;
 import 'package:go_router/go_router.dart';
 
 class AvatarsRowWidget extends StatelessWidget {
-  const AvatarsRowWidget({required this.users, super.key});
+  const AvatarsRowWidget({super.key, required this.users});
 
   final List<Writer> users;
 

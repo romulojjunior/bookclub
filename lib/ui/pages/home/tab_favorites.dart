@@ -13,7 +13,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-class FavoritesSettings extends material.StatefulWidget {
+class FavoritesSettings extends StatefulWidget {
   const FavoritesSettings({super.key, required this.title});
 
   final String title;
@@ -22,7 +22,7 @@ class FavoritesSettings extends material.StatefulWidget {
   State<FavoritesSettings> createState() => _FavoritesSettingsState();
 }
 
-class _FavoritesSettingsState extends material.State<FavoritesSettings> {
+class _FavoritesSettingsState extends State<FavoritesSettings> {
   final List<bool> _selectedMenuOptions = <bool>[true, false]; // Writers | Books
 
   @override

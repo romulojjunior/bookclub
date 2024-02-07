@@ -16,7 +16,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class BookDetailsPage extends StatefulWidget {
-  const BookDetailsPage({required this.bookId, super.key});
+  const BookDetailsPage({super.key, required this.bookId});
 
   final String bookId;
 

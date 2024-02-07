@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart' as cupertino;
 import 'package:flutter/widgets.dart';
 
 class UISearchBar extends StatefulWidget {
-  const UISearchBar({this.initialValue, this.onChanged, this.onSubmitted, super.key});
+  const UISearchBar({super.key, this.initialValue, this.onChanged, this.onSubmitted});
 
   final String? initialValue;
   final void Function(String)? onChanged;

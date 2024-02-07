@@ -8,7 +8,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TabSettings extends StatefulWidget {
-  const TabSettings({required this.title, super.key});
+  const TabSettings({super.key, required this.title});
 
   final String title;
 

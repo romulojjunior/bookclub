@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:isolate';
 
 import 'package:bookclub/data/exceptions/connection_exception.dart';
 import 'package:bookclub/data/exceptions/internal_exception.dart';
@@ -21,7 +22,7 @@ class BookApi {
     try {
       String url = '$_apiHost/v1/volumes/$id';
       Response response = await _httpClient.get(url);
-      return Book.fromMap(response.data);
+      return Isolate.run(() => Book.fromMap(response.data));
     } on DioException catch (e) {
       if (e.error is SocketException) {
         throw ConnectionException();
@@ -38,11 +39,13 @@ class BookApi {
       String url = '$_apiHost/v1/volumes?q=$topic';
       Response response = await _httpClient.get(url);
 
-      List<Book> books = (response.data['items'] as List).map((data) {
-        return Book.fromMap(data);
-      }).toList();
+      return Isolate.run(() {
+        List<Book> books = (response.data['items'] as List).map((data) {
+          return Book.fromMap(data);
+        }).toList();
 
-      return BookUtils.filterBrokeBooks(books);
+        return BookUtils.filterBrokeBooks(books);
+      });
     } on DioException catch (e) {
       if (e.error is SocketException) {
         throw ConnectionException();
@@ -59,11 +62,13 @@ class BookApi {
       String url = '$_apiHost/v1/volumes?q=$topic';
       Response response = await _httpClient.get(url);
 
-      List<Book> books = (response.data['items'] as List).map((data) {
-        return Book.fromMap(data);
-      }).toList();
+      return Isolate.run(() {
+        List<Book> books = (response.data['items'] as List).map((data) {
+          return Book.fromMap(data);
+        }).toList();
 
-      return BookUtils.filterBrokeBooks(books);
+        return BookUtils.filterBrokeBooks(books);
+      });
     } on DioException catch (e) {
       if (e.error is SocketException) {
         throw ConnectionException();
@@ -84,11 +89,13 @@ class BookApi {
         throw NotFoundException('BookApiError#searchByName: Books with name $name not found.}');
       }
 
-      List<Book> books = (response.data['items'] as List).map((data) {
-        return Book.fromMap(data);
-      }).toList();
+      return Isolate.run(() {
+        List<Book> books = (response.data['items'] as List).map((data) {
+          return Book.fromMap(data);
+        }).toList();
 
-      return BookUtils.filterBrokeBooks(books);
+        return BookUtils.filterBrokeBooks(books);
+      });
     } on DioException catch (e) {
       if (e.error is SocketException) {
         throw ConnectionException();

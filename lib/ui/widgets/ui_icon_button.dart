@@ -2,7 +2,7 @@ import 'package:bookclub/ui/widgets/ui_selector.dart';
 import 'package:flutter/widgets.dart';
 
 class UIIconButton extends StatefulWidget {
-  const UIIconButton({required this.icon, this.secondaryIcon, this.isSelected = false, this.onPressed, super.key});
+  const UIIconButton({super.key, required this.icon, this.secondaryIcon, this.isSelected = false, this.onPressed});
 
   final Widget icon;
   final Widget? secondaryIcon;
